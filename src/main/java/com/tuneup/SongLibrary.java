@@ -4,24 +4,24 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MusicLibrary {
-    private static List<Music> musicLibrary = new ArrayList<>();
+public class SongLibrary {
+    private static List<Song> songLibrary = new ArrayList<>();
 
-    public static List<Music> getMusicLibrary() {
-        loadMusicLibrary();
-        return musicLibrary;
+    public static List<Song> getSongLibrary() {
+        loadSongLibrary();
+        return songLibrary;
     }
 
-    public static void addMusic(Music music) {
-        musicLibrary.add(music);
+    public static void addSong(Song song) {
+        songLibrary.add(song);
     }
 
-    public static void removeMusic(Music music) {
-        musicLibrary.remove(music);
+    public static void removeSong(Song song) {
+        songLibrary.remove(song);
     }
 
-    private static void loadMusicLibrary() {
-        musicLibrary.clear();
+    private static void loadSongLibrary() {
+        songLibrary.clear();
         File folder = new File("sheetmusic");
         if (folder.exists() && folder.isDirectory()) {
             File[] files = folder.listFiles();
@@ -31,7 +31,8 @@ public class MusicLibrary {
                         String fileName = file.getName();
                         String title = fileName.substring(0, fileName.lastIndexOf('.'));
                         String artist = "Unknown Artist"; // Default artist name
-                        musicLibrary.add(new Music(title, artist));
+                        String filePath = file.getAbsolutePath();
+                        songLibrary.add(new Song(title, artist, filePath));
                     }
                 }
             }

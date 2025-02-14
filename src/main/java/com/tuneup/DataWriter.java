@@ -10,7 +10,6 @@ public class DataWriter {
     private static final Gson gson = new Gson();
 
     public static void saveUsers(List<User> users) {
-        FileUtils.ensureDataFolderExists(); // Ensure the data folder exists
         try (FileWriter writer = new FileWriter(DataConstants.USERS_FILE)) {
             gson.toJson(users, writer);
         } catch (IOException e) {
@@ -18,8 +17,7 @@ public class DataWriter {
         }
     }
 
-    public static void saveLessons(List<Lesson> lessons) {
-        FileUtils.ensureDataFolderExists(); // Ensure the data folder exists
+    public static void saveLessons(List<Song> lessons) {
         try (FileWriter writer = new FileWriter(DataConstants.LESSONS_FILE)) {
             gson.toJson(lessons, writer);
         } catch (IOException e) {

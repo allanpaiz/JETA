@@ -105,10 +105,10 @@ public class TuneUp {
 
     private static boolean showMainMenu() {
         System.out.println("\nTuneUp Main Menu");
-        System.out.println("1. Music Library Mode");
-        System.out.println("2. Lesson Mode");
-        System.out.println("3. Create Mode");
-        System.out.println("4. Play Mode");
+        System.out.println("1. Song Library");
+        System.out.println("2. Lessons");
+        System.out.println("3. Create");
+        System.out.println("4. Play");
         System.out.println("5. Exit Application");
         System.out.print("Please select an area (1-5): ");
         
@@ -117,16 +117,16 @@ public class TuneUp {
         
         switch (choice) {
             case 1:
-                enterMusicLibraryMode();
+                enterSongLibrary();
                 return true;
             case 2:
-                enterLessonMode();
+                enterLessons();
                 return true;
             case 3:
-                enterCreateMode();
+                enterCreate();
                 return true;
             case 4:
-                enterPlayMode();
+                enterPlay();
                 return true;
             case 5:
                 System.out.println("Thank you for using TuneUp!");
@@ -137,26 +137,26 @@ public class TuneUp {
         }
     }
 
-    private static void enterMusicLibraryMode() {
-        System.out.println("Entering Music Library Mode...");
-        Mode mode = new MusicLibraryMode(userProfile, profileManager);
+    private static void enterSongLibrary() {
+        System.out.println("Entering Song Library...");
+        Mode mode = new SongLibraryMode(userProfile, profileManager);
         mode.handle();
     }
 
-    private static void enterLessonMode() {
-        System.out.println("Entering Lesson Mode...");
+    private static void enterLessons() {
+        System.out.println("Entering Lessons...");
         Mode mode = new LessonMode(userProfile, profileManager);
         mode.handle();
     }
 
-    private static void enterCreateMode() {
-        System.out.println("Entering Create Mode...");
+    private static void enterCreate() {
+        System.out.println("Entering Create...");
         Mode mode = new CreateMode(userProfile, InstrumentFactory.createInstrument(InstrumentType.PIANO));
         mode.handle();
     }
 
-    private static void enterPlayMode() {
-        System.out.println("Entering Play Mode...");
+    private static void enterPlay() {
+        System.out.println("Entering Play...");
         Mode mode = new PlayMode(userProfile, InstrumentFactory.createInstrument(InstrumentType.PIANO));
         mode.handle();
     }

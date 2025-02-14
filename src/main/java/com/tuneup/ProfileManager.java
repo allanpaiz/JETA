@@ -48,4 +48,14 @@ public class ProfileManager {
         }
         return students;
     }
+
+    public List<User> getStudentsByExperienceLevel(ExperienceLevel experienceLevel) {
+        List<User> students = new ArrayList<>();
+        for (User profile : profiles.values()) {
+            if ("Student".equalsIgnoreCase(profile.getRole()) && profile.getExperienceLevel() == experienceLevel) {
+                students.add(profile);
+            }
+        }
+        return students;
+    }
 }
