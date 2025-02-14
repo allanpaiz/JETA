@@ -1,35 +1,37 @@
 package com.tuneup;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.io.FileReader;
+import java.io.IOException;
+import java.lang.reflect.Type;
+import java.util.List;
+
 public class Lesson {
     private String title;
-    private SongDetails songDetails;
-    private int difficultyLevel;
-    private String practiceNotes;
-    private String sheetMusicFile;
+    private String content;
 
-    public Lesson(String title, SongDetails songDetails, int difficultyLevel, 
-                 String practiceNotes, String sheetMusicFile) {
+    public Lesson(String title, String content) {
         this.title = title;
-        this.songDetails = songDetails;
-        this.difficultyLevel = difficultyLevel;
-        this.practiceNotes = practiceNotes;
-        this.sheetMusicFile = sheetMusicFile;
-    }
-
-    public void display() {
-        System.out.println("\nLesson Details:");
-        System.out.println("Title: " + title);
-        System.out.println("Sheet Music: " + sheetMusicFile);
-        System.out.println("Difficulty Level: " + difficultyLevel);
-        System.out.println("Practice Notes: " + practiceNotes);
-        songDetails.display();
+        this.content = content;
     }
 
     public String getTitle() {
         return title;
     }
 
-    public String getSheetMusicFile() {
-        return sheetMusicFile;
+    public String getContent() {
+        return content;
+    }
+
+    public static List<Lesson> loadLessons() {
+        try (FileReader reader = new FileReader(DataConstants.LESSONS_FILE)) {
+            Type lessonListType = new TypeToken<List<Lesson>>() {}.getType();
+            return new Gson().fromJson(reader, lessonListType);
+        } catch (IOException e) {
+            System.out.println("Error reading lessons: " + e.getMessage());
+            return null;
+        }
     }
 }
