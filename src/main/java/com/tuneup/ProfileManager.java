@@ -6,40 +6,43 @@ import java.util.List;
 import java.util.Map;
 
 public class ProfileManager {
-    private static final String PROFILES_FILE = "profiles.txt";
-    private Map<String, UserProfile> profiles;
+    private Map<String, User> profiles;
 
     public ProfileManager() {
         profiles = new HashMap<>();
         loadProfiles();
     }
 
-    public UserProfile getProfile(String username) {
-        return profiles.get(username);
+    public User getProfile(String username) {
+        return profiles.values().stream()
+                .filter(profile -> profile.getUsername().equalsIgnoreCase(username))
+                .findFirst()
+                .orElse(null);
     }
 
     private void loadProfiles() {
-        List<UserProfile> users = UserProfile.loadProfiles();
+        List<User> users = DataLoader.loadUsers();
         if (users != null) {
-            for (UserProfile user : users) {
-                profiles.put(user.getUsername(), user);
+            for (User user : users) {
+                profiles.put(user.getUserID(), user);
             }
         }
     }
 
-    public void addProfile(UserProfile profile) {
-        profiles.put(profile.getUsername(), profile);
+    public void addProfile(User profile) {
+        profiles.put(profile.getUserID(), profile);
         saveProfiles();
     }
 
-    private void saveProfiles() {
-        // Implementation for saving profiles to a file
+    public void saveProfiles() {
+        List<User> userList = new ArrayList<>(profiles.values());
+        DataWriter.saveUsers(userList);
     }
 
-    public List<UserProfile> getAllStudents() {
-        List<UserProfile> students = new ArrayList<>();
-        for (UserProfile profile : profiles.values()) {
-            if (profile.getUserType() == UserType.STUDENT) {
+    public List<User> getAllStudents() {
+        List<User> students = new ArrayList<>();
+        for (User profile : profiles.values()) {
+            if ("Student".equalsIgnoreCase(profile.getRole())) {
                 students.add(profile);
             }
         }

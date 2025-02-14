@@ -1,16 +1,17 @@
 package com.tuneup;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class MusicLibraryMode implements Mode {
-    private UserProfile userProfile;
+    private User userProfile;
     private ProfileManager profileManager;
     private Scanner scanner;
 
-    public MusicLibraryMode(UserProfile userProfile, ProfileManager profileManager) {
+    public MusicLibraryMode(User userProfile, ProfileManager profileManager) {
         this.userProfile = userProfile;
         this.profileManager = profileManager;
-        scanner = new Scanner(System.in);
+        this.scanner = new Scanner(System.in);
     }
 
     @Override
@@ -48,14 +49,50 @@ public class MusicLibraryMode implements Mode {
     }
 
     private void viewLibrary() {
-        // Implementation for viewing the music library
+        List<Music> musicLibrary = MusicLibrary.getMusicLibrary();
+        if (musicLibrary.isEmpty()) {
+            System.out.println("The music library is empty.");
+        } else {
+            System.out.println("Music Library:");
+            for (int i = 0; i < musicLibrary.size(); i++) {
+                Music music = musicLibrary.get(i);
+                System.out.println((i + 1) + ". " + music.getTitle() + " by " + music.getArtist());
+            }
+        }
     }
 
     private void addMusic() {
-        // Implementation for adding music to the library
+        System.out.print("Enter the title of the music: ");
+        String title = scanner.nextLine();
+        System.out.print("Enter the artist of the music: ");
+        String artist = scanner.nextLine();
+
+        Music newMusic = new Music(title, artist);
+        MusicLibrary.addMusic(newMusic);
+        System.out.println("Music added to the library.");
     }
 
     private void removeMusic() {
-        // Implementation for removing music from the library
+        List<Music> musicLibrary = MusicLibrary.getMusicLibrary();
+        if (musicLibrary.isEmpty()) {
+            System.out.println("The music library is empty.");
+            return;
+        }
+
+        System.out.println("Select the music to remove:");
+        for (int i = 0; i < musicLibrary.size(); i++) {
+            Music music = musicLibrary.get(i);
+            System.out.println((i + 1) + ". " + music.getTitle() + " by " + music.getArtist());
+        }
+
+        int choice = scanner.nextInt();
+        scanner.nextLine(); // Consume newline
+
+        if (choice < 1 || choice > musicLibrary.size()) {
+            System.out.println("Invalid selection.");
+        } else {
+            Music removedMusic = musicLibrary.remove(choice - 1);
+            System.out.println("Removed " + removedMusic.getTitle() + " by " + removedMusic.getArtist() + " from the library.");
+        }
     }
 }

@@ -4,10 +4,13 @@ import java.util.Scanner;
 
 public class TuneUp {
     private static Scanner scanner = new Scanner(System.in);
-    private static UserProfile userProfile;
+    private static User userProfile;
     private static ProfileManager profileManager;
 
     public static void main(String[] args) {
+        // Ensure the data folder exists
+        FileUtils.ensureDataFolderExists();
+
         System.out.println("Welcome to TuneUp!");
         profileManager = new ProfileManager();
         createProfile();
@@ -24,8 +27,14 @@ public class TuneUp {
         System.out.print("Enter your username: ");
         String username = scanner.nextLine();
 
+        System.out.print("Enter your password: ");
+        String password = scanner.nextLine();
+
+        System.out.print("Enter your email: ");
+        String email = scanner.nextLine();
+
         // Check if profile already exists
-        UserProfile existingProfile = profileManager.getProfile(username);
+        User existingProfile = profileManager.getProfile(username);
         if (existingProfile != null) {
             System.out.println("Welcome back, " + username + "!");
             userProfile = existingProfile;
@@ -40,23 +49,49 @@ public class TuneUp {
         int choice = scanner.nextInt();
         scanner.nextLine(); // Consume newline
         
-        UserType userType;
+        String role;
         switch (choice) {
             case 1:
-                userType = UserType.TEACHER;
+                role = "Teacher";
                 System.out.println("Welcome, Teacher " + username + "!");
                 break;
             case 2:
-                userType = UserType.STUDENT;
+                role = "Student";
                 System.out.println("Welcome, Student " + username + "!");
                 break;
             default:
                 System.out.println("Invalid selection. Defaulting to Student.");
-                userType = UserType.STUDENT;
+                role = "Student";
+                break;
+        }
+
+        System.out.println("\nSelect your experience level:");
+        System.out.println("1. Beginner");
+        System.out.println("2. Intermediate");
+        System.out.println("3. Advanced");
+        System.out.print("Please select your experience level (1-3): ");
+        
+        int expChoice = scanner.nextInt();
+        scanner.nextLine(); // Consume newline
+        
+        ExperienceLevel experienceLevel;
+        switch (expChoice) {
+            case 1:
+                experienceLevel = ExperienceLevel.BEGINNER;
+                break;
+            case 2:
+                experienceLevel = ExperienceLevel.INTERMEDIATE;
+                break;
+            case 3:
+                experienceLevel = ExperienceLevel.ADVANCED;
+                break;
+            default:
+                System.out.println("Invalid selection. Defaulting to Beginner.");
+                experienceLevel = ExperienceLevel.BEGINNER;
                 break;
         }
         
-        userProfile = new UserProfile(username, userType);
+        userProfile = new User(username, password, email, role, experienceLevel);
         profileManager.addProfile(userProfile);
     }
 

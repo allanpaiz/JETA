@@ -3,16 +3,16 @@ package com.tuneup;
 import java.util.Scanner;
 
 public class PlayMode implements Mode {
-    private UserProfile userProfile;
+    private User userProfile;
     private InstrumentStrategy instrument;
     private Scanner scanner;
     private boolean isPlaying;
 
-    public PlayMode(UserProfile userProfile, InstrumentStrategy instrument) {
+    public PlayMode(User userProfile, InstrumentStrategy instrument) {
         this.userProfile = userProfile;
         this.instrument = instrument;
-        scanner = new Scanner(System.in);
-        isPlaying = false;
+        this.scanner = new Scanner(System.in);
+        this.isPlaying = false;
     }
 
     @Override
@@ -30,7 +30,7 @@ public class PlayMode implements Mode {
 
             switch (choice) {
                 case 1:
-                    playNote();
+                    playNotes();
                     break;
                 case 2:
                     stopPlaying();
@@ -45,11 +45,19 @@ public class PlayMode implements Mode {
         }
     }
 
-    private void playNote() {
-        System.out.print("Enter note to play (C, D, E, F, G, A, B, HIGH C): ");
-        String note = scanner.nextLine().toUpperCase();
-        instrument.playNote(note);
-        isPlaying = true;
+    private void playNotes() {
+        boolean continuePlaying = true;
+        while (continuePlaying) {
+            System.out.print("Enter note to play (C, D, E, F, G, A, B, HIGH C) or 'STOP' to stop: ");
+            String note = scanner.nextLine().toUpperCase();
+            if (note.equals("STOP")) {
+                continuePlaying = false;
+                stopPlaying();
+            } else {
+                instrument.playNote(note);
+                isPlaying = true;
+            }
+        }
     }
 
     private void stopPlaying() {
