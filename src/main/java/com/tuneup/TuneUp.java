@@ -62,26 +62,39 @@ public class TuneUp {
 
     private static boolean showMainMenu() {
         System.out.println("\nTuneUp Main Menu");
-        System.out.println("1. Learning Area");
-        System.out.println("2. Compose Area");
-        System.out.println("3. Exit Application");
-        System.out.print("Please select an area (1-3): ");
+        System.out.println("1. Music Library Mode");
+        System.out.println("2. Lesson Mode");
+        System.out.println("3. Create Mode");
+        System.out.println("4. Play Mode");
+        System.out.println("5. Exit Application");
+        System.out.print("Please select an area (1-5): ");
         
         int choice = scanner.nextInt();
         scanner.nextLine(); // Consume newline
         
+        Mode mode;
         switch (choice) {
             case 1:
-                System.out.println("Entering Learning Area...");
-                LearningArea learningArea = new LearningArea(userProfile, profileManager);
-                learningArea.displayMenu();
+                System.out.println("Entering Music Library Mode...");
+                mode = new MusicLibraryMode(userProfile, profileManager);
+                mode.handle();
                 return true;
             case 2:
-                System.out.println("Entering Compose Area...");
-                ComposeArea composeArea = new ComposeArea(userProfile);
-                composeArea.displayMenu();
+                System.out.println("Entering Lesson Mode...");
+                mode = new LessonMode(userProfile, profileManager);
+                mode.handle();
                 return true;
             case 3:
+                System.out.println("Entering Create Mode...");
+                mode = new CreateMode(userProfile, new PianoStrategy()); // Assuming PianoStrategy as default
+                mode.handle();
+                return true;
+            case 4:
+                System.out.println("Entering Play Mode...");
+                mode = new PlayMode(userProfile, new PianoStrategy()); // Assuming PianoStrategy as default
+                mode.handle();
+                return true;
+            case 5:
                 System.out.println("Thank you for using TuneUp!");
                 return false;
             default:

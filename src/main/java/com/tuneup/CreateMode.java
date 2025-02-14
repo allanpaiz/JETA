@@ -10,7 +10,9 @@ import com.itextpdf.text.Document;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfReader;
 import com.itextpdf.text.pdf.PdfWriter;
+import com.itextpdf.text.pdf.parser.PdfTextExtractor;
 
 public class CreateMode implements Mode {
     private UserProfile userProfile;
@@ -40,8 +42,9 @@ public class CreateMode implements Mode {
             System.out.println("3. Play Composition");
             System.out.println("4. Change Tempo");
             System.out.println("5. Save Composition");
-            System.out.println("6. Return to Compose Area");
-            System.out.print("Select an option (1-6): ");
+            System.out.println("6. Play Saved Song");
+            System.out.println("7. Return to Main Menu");
+            System.out.print("Select an option (1-7): ");
 
             int choice = scanner.nextInt();
             scanner.nextLine(); // Consume newline
@@ -63,6 +66,9 @@ public class CreateMode implements Mode {
                     saveComposition();
                     break;
                 case 6:
+                    playSavedSong();
+                    break;
+                case 7:
                     composing = false;
                     break;
                 default:
@@ -180,6 +186,82 @@ public class CreateMode implements Mode {
 
         } catch (Exception e) {
             System.out.println("Error saving composition: " + e.getMessage());
+        }
+    }
+
+    private void playSavedSong() {
+        File directory = new File(SHEET_MUSIC_PATH);
+        if (!directory.exists() || directory.listFiles() == null) {
+            System.out.println("\nNo saved compositions found.");
+            return;
+        }
+
+        File[] files = directory.listFiles((dir, name) -> name.toLowerCase().endsWith(".pdf"));
+        if (files == null || files.length == 0) {
+            System.out.println("\nNo saved compositions found.");
+            return;
+        }
+
+        System.out.println("\nSaved Compositions:");
+        for (int i = 0; i < files.length; i++) {
+            System.out.println((i + 1) + ". " + files[i].getName());
+        }
+
+        System.out.print("Select a composition to play (1-" + files.length + "): ");
+        int choice = scanner.nextInt();
+        scanner.nextLine(); // Consume newline
+
+        if (choice < 1 || choice > files.length) {
+            System.out.println("Invalid selection.");
+            return;
+        }
+
+        File selectedFile = files[choice - 1];
+        playPdfComposition(selectedFile);
+    }
+
+    private void playPdfComposition(File pdfFile) {
+        try {
+            PdfReader reader = new PdfReader(pdfFile.getAbsolutePath());
+            StringBuilder content = new StringBuilder();
+            for (int i = 1; i <= reader.getNumberOfPages(); i++) {
+                content.append(PdfTextExtractor.getTextFromPage(reader, i));
+            }
+            reader.close();
+
+            String[] lines = content.toString().split("\n");
+            int tempo = 120; // Default tempo
+            List<List<String>> measures = new ArrayList<>();
+
+            for (String line : lines) {
+                if (line.startsWith("Tempo:")) {
+                    tempo = Integer.parseInt(line.split(":")[1].trim().split(" ")[0]);
+                } else if (line.startsWith("Measure")) {
+                    String[] parts = line.split(":")[1].trim().split(" ");
+                    List<String> measure = new ArrayList<>();
+                    for (String note : parts) {
+                        measure.add(note);
+                    }
+                    measures.add(measure);
+                }
+            }
+
+            System.out.println("\nPlaying composition at " + tempo + " BPM...");
+            int msPerBeat = 60000 / tempo;
+
+            for (List<String> measure : measures) {
+                for (String note : measure) {
+                    instrument.playNote(note);
+                    try {
+                        Thread.sleep(msPerBeat);
+                    } catch (InterruptedException e) {
+                        System.out.println("Playback interrupted.");
+                    }
+                }
+            }
+
+        } catch (Exception e) {
+            System.out.println("Error reading PDF file: " + e.getMessage());
         }
     }
 }
