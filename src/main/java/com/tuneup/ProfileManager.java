@@ -30,7 +30,7 @@ public class ProfileManager {
                 String[] parts = line.split(",");
                 if (parts.length == 2) {
                     String username = parts[0];
-                    UserType userType = "TEACHER".equals(parts[1]) ? UserType.TEACHER : UserType.STUDENT;
+                    UserType userType = UserType.valueOf(parts[1]);
                     profiles.put(username, new UserProfile(username, userType));
                 }
             }
@@ -48,7 +48,7 @@ public class ProfileManager {
     private void saveProfiles() {
         try (PrintWriter writer = new PrintWriter(new FileWriter(PROFILES_FILE))) {
             for (UserProfile profile : profiles.values()) {
-                writer.println(profile.getUsername() + "," + profile.getUserType().getName());
+                writer.println(profile.getUsername() + "," + profile.getUserType().name());
             }
         } catch (IOException e) {
             System.out.println("Error saving profiles: " + e.getMessage());

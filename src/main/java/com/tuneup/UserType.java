@@ -1,21 +1,21 @@
 package com.tuneup;
 
-public class UserType {
-    public static final UserType TEACHER = new UserType("TEACHER");
-    public static final UserType STUDENT = new UserType("STUDENT");
+public enum UserType {
+    TEACHER("Teacher"),
+    STUDENT("Student");
 
-    private String name;
+    private final String displayName;
 
-    private UserType(String name) {
-        this.name = name;
+    UserType(String displayName) {
+        this.displayName = displayName;
     }
 
-    public String getName() {
-        return name;
+    public String getDisplayName() {
+        return displayName;
     }
 
     @Override
     public String toString() {
-        return name;
+        return displayName;
     }
 }

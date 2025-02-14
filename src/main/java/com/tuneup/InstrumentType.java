@@ -1,11 +1,11 @@
 package com.tuneup;
 
-public class InstrumentType {
-    public static final InstrumentType PIANO = new InstrumentType("Piano");
+public enum InstrumentType {
+    PIANO("Piano");
 
     private final String displayName;
 
-    private InstrumentType(String displayName) {
+    InstrumentType(String displayName) {
         this.displayName = displayName;
     }
 
