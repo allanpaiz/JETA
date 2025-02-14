@@ -27,19 +27,27 @@ public class TuneUp {
         System.out.print("Enter your username: ");
         String username = scanner.nextLine();
 
+        // Check if profile already exists
+        User existingProfile = profileManager.getProfile(username);
+        if (existingProfile != null) {
+            System.out.print("Enter your password: ");
+            String password = scanner.nextLine();
+            if (existingProfile.verifyPassword(password)) {
+                System.out.println("Welcome back, " + username + "!");
+                userProfile = existingProfile;
+                return;
+            } else {
+                System.out.println("Incorrect password. Please try again.");
+                createProfile(); // Retry profile creation
+                return;
+            }
+        }
+
         System.out.print("Enter your password: ");
         String password = scanner.nextLine();
 
         System.out.print("Enter your email: ");
         String email = scanner.nextLine();
-
-        // Check if profile already exists
-        User existingProfile = profileManager.getProfile(username);
-        if (existingProfile != null) {
-            System.out.println("Welcome back, " + username + "!");
-            userProfile = existingProfile;
-            return;
-        }
 
         System.out.println("\nAre you a:");
         System.out.println("1. Teacher");

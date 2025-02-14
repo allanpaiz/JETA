@@ -5,7 +5,7 @@ import java.util.UUID;
 public class User {
     private String userID;
     private String username;
-    private String password;
+    private String hashedPassword;
     private String email;
     private String role;
     private ExperienceLevel experienceLevel;
@@ -13,7 +13,7 @@ public class User {
     public User(String username, String password, String email, String role, ExperienceLevel experienceLevel) {
         this.userID = UUID.randomUUID().toString();
         this.username = username;
-        this.password = password;
+        this.hashedPassword = PasswordUtils.hashPassword(password);
         this.email = email;
         this.role = role;
         this.experienceLevel = experienceLevel;
@@ -27,8 +27,8 @@ public class User {
         return username;
     }
 
-    public String getPassword() {
-        return password;
+    public String getHashedPassword() {
+        return hashedPassword;
     }
 
     public String getEmail() {
@@ -41,6 +41,10 @@ public class User {
 
     public ExperienceLevel getExperienceLevel() {
         return experienceLevel;
+    }
+
+    public boolean verifyPassword(String password) {
+        return PasswordUtils.hashPassword(password).equals(hashedPassword);
     }
 
     public void register() {
