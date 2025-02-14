@@ -2,7 +2,6 @@ package com.tuneup;
 
 public class InstrumentType {
     public static final InstrumentType PIANO = new InstrumentType("Piano");
-    public static final InstrumentType GUITAR = new InstrumentType("Guitar");
 
     private final String displayName;
 

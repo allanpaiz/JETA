@@ -86,12 +86,12 @@ public class TuneUp {
                 return true;
             case 3:
                 System.out.println("Entering Create Mode...");
-                mode = new CreateMode(userProfile, new PianoStrategy()); // Assuming PianoStrategy as default
+                mode = new CreateMode(userProfile, InstrumentFactory.createInstrument(InstrumentType.PIANO));
                 mode.handle();
                 return true;
             case 4:
                 System.out.println("Entering Play Mode...");
-                mode = new PlayMode(userProfile, new PianoStrategy()); // Assuming PianoStrategy as default
+                mode = new PlayMode(userProfile, InstrumentFactory.createInstrument(InstrumentType.PIANO));
                 mode.handle();
                 return true;
             case 5:
