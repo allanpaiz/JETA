@@ -22,7 +22,7 @@ public class SongLibrary {
 
     private static void loadSongLibrary() {
         songLibrary.clear();
-        File folder = new File("sheetmusic");
+        File folder = new File(DataConstants.SONGS_FOLDER);
         if (folder.exists() && folder.isDirectory()) {
             File[] files = folder.listFiles();
             if (files != null) {
