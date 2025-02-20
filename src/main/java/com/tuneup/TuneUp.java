@@ -8,7 +8,7 @@ public class TuneUp {
     private static ProfileManager profileManager;
 
     public static void main(String[] args) {
-        // Ensure the data folder exists
+        // Ensure the json folder exists
         FileUtils.ensureDataFolderExists();
 
         System.out.println("Welcome to TuneUp!");
@@ -58,43 +58,44 @@ public class TuneUp {
         scanner.nextLine(); // Consume newline
         
         String role;
+        ExperienceLevel experienceLevel;
         switch (choice) {
             case 1:
                 role = "Teacher";
+                experienceLevel = ExperienceLevel.ADVANCED;
                 System.out.println("Welcome, Teacher " + username + "!");
                 break;
             case 2:
                 role = "Student";
                 System.out.println("Welcome, Student " + username + "!");
+                System.out.println("\nSelect your experience level:");
+                System.out.println("1. Beginner");
+                System.out.println("2. Intermediate");
+                System.out.println("3. Advanced");
+                System.out.print("Please select your experience level (1-3): ");
+                
+                int expChoice = scanner.nextInt();
+                scanner.nextLine(); // Consume newline
+                
+                switch (expChoice) {
+                    case 1:
+                        experienceLevel = ExperienceLevel.BEGINNER;
+                        break;
+                    case 2:
+                        experienceLevel = ExperienceLevel.INTERMEDIATE;
+                        break;
+                    case 3:
+                        experienceLevel = ExperienceLevel.ADVANCED;
+                        break;
+                    default:
+                        System.out.println("Invalid selection. Defaulting to Beginner.");
+                        experienceLevel = ExperienceLevel.BEGINNER;
+                        break;
+                }
                 break;
             default:
                 System.out.println("Invalid selection. Defaulting to Student.");
                 role = "Student";
-                break;
-        }
-
-        System.out.println("\nSelect your experience level:");
-        System.out.println("1. Beginner");
-        System.out.println("2. Intermediate");
-        System.out.println("3. Advanced");
-        System.out.print("Please select your experience level (1-3): ");
-        
-        int expChoice = scanner.nextInt();
-        scanner.nextLine(); // Consume newline
-        
-        ExperienceLevel experienceLevel;
-        switch (expChoice) {
-            case 1:
-                experienceLevel = ExperienceLevel.BEGINNER;
-                break;
-            case 2:
-                experienceLevel = ExperienceLevel.INTERMEDIATE;
-                break;
-            case 3:
-                experienceLevel = ExperienceLevel.ADVANCED;
-                break;
-            default:
-                System.out.println("Invalid selection. Defaulting to Beginner.");
                 experienceLevel = ExperienceLevel.BEGINNER;
                 break;
         }

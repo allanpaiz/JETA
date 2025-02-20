@@ -61,9 +61,14 @@ public class LessonMode implements Mode {
         List<Song> lessons = DataLoader.loadLessons();
         ExperienceLevel userExperienceLevel = userProfile.getExperienceLevel();
 
-        List<Song> filteredLessons = lessons.stream()
-                .filter(lesson -> lesson.getAssignedExperienceLevels().contains(userExperienceLevel))
-                .collect(Collectors.toList());
+        List<Song> filteredLessons;
+        if ("Teacher".equalsIgnoreCase(userProfile.getRole())) {
+            filteredLessons = lessons;
+        } else {
+            filteredLessons = lessons.stream()
+                    .filter(lesson -> lesson.getAssignedExperienceLevels().contains(userExperienceLevel))
+                    .collect(Collectors.toList());
+        }
 
         if (filteredLessons.isEmpty()) {
             System.out.println("No lessons available for your experience level.");
