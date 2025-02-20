@@ -2,13 +2,13 @@ package com.tuneup;
 
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Paths;
 import java.util.List;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 public class DataWriter implements DataConstants {
-    private static final Gson gson = new Gson();
+    private static final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
     public static void saveUsers(List<User> users) {
         try (FileWriter writer = new FileWriter(USERS_FILE)) {
@@ -19,12 +19,6 @@ public class DataWriter implements DataConstants {
     }
 
     public static void saveLessons(List<Song> lessons) {
-        // Convert absolute paths to relative paths
-        for (Song lesson : lessons) {
-            String relativePath = Paths.get("").toUri().relativize(Paths.get(lesson.getFilePath()).toUri()).getPath();
-            lesson.setFilePath(relativePath);
-        }
-
         try (FileWriter writer = new FileWriter(LESSONS_FILE)) {
             gson.toJson(lessons, writer);
         } catch (IOException e) {

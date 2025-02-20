@@ -1,0 +1,15 @@
+[
+  {
+    "title": "211",
+    "artist": "Unknown Artist",
+    "isLesson": true,
+    "instructor": "Me",
+    "assignedStudents": [
+      "44da0967-6714-4e17-9b0f-a867620cc267"
+    ],
+    "assignedExperienceLevels": [
+      "INTERMEDIATE"
+    ],
+    "filePath": "songs\\211.pdf"
+  }
+]
