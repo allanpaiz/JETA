@@ -15,21 +15,19 @@ public class Song {
     public Song(String title, String artist, String filePath) {
         this.title = title;
         this.artist = artist;
-        this.isLesson = false;
-        this.instructor = "";
+        this.filePath = filePath;
         this.assignedStudents = new ArrayList<>();
         this.assignedExperienceLevels = new ArrayList<>();
-        this.filePath = filePath;
     }
 
     public Song(String title, String artist, String instructor, String filePath) {
         this.title = title;
         this.artist = artist;
-        this.isLesson = true;
         this.instructor = instructor;
+        this.filePath = filePath;
+        this.isLesson = true;
         this.assignedStudents = new ArrayList<>();
         this.assignedExperienceLevels = new ArrayList<>();
-        this.filePath = filePath;
     }
 
     public String getTitle() {
@@ -66,5 +64,9 @@ public class Song {
 
     public void assignExperienceLevel(ExperienceLevel experienceLevel) {
         assignedExperienceLevels.add(experienceLevel);
+    }
+
+    public void setFilePath(String filePath) {
+        this.filePath = filePath;
     }
 }

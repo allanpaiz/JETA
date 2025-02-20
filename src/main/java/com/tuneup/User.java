@@ -1,9 +1,12 @@
 package com.tuneup;
 
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.UUID;
 
 public class User {
-    private String userID;
+    private String id;
     private String username;
     private String hashedPassword;
     private String email;
@@ -11,16 +14,16 @@ public class User {
     private ExperienceLevel experienceLevel;
 
     public User(String username, String password, String email, String role, ExperienceLevel experienceLevel) {
-        this.userID = UUID.randomUUID().toString();
+        this.id = UUID.randomUUID().toString();
         this.username = username;
-        this.hashedPassword = PasswordUtils.hashPassword(password);
+        this.hashedPassword = hashPassword(password);
         this.email = email;
         this.role = role;
         this.experienceLevel = experienceLevel;
     }
 
-    public String getUserID() {
-        return userID;
+    public String getId() {
+        return id;
     }
 
     public String getUsername() {
@@ -44,22 +47,24 @@ public class User {
     }
 
     public boolean verifyPassword(String password) {
-        return PasswordUtils.hashPassword(password).equals(hashedPassword);
+        return hashedPassword.equals(hashPassword(password));
     }
 
-    public void register() {
-        // Implementation for user registration
-    }
-
-    public void login() {
-        // Implementation for user login
-    }
-
-    public void logout() {
-        // Implementation for user logout
-    }
-
-    public void updateProfile() {
-        // Implementation for updating user profile
+    private String hashPassword(String password) {
+        try {
+            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+            byte[] encodedHash = digest.digest(password.getBytes(StandardCharsets.UTF_8));
+            StringBuilder hexString = new StringBuilder(2 * encodedHash.length);
+            for (byte b : encodedHash) {
+                String hex = Integer.toHexString(0xff & b);
+                if (hex.length() == 1) {
+                    hexString.append('0');
+                }
+                hexString.append(hex);
+            }
+            return hexString.toString();
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException("Error hashing password", e);
+        }
     }
 }

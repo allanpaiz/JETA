@@ -21,38 +21,56 @@ public class LessonMode implements Mode {
         while (inLessonMode) {
             System.out.println("\nLesson Mode");
             System.out.println("1. View Lessons");
-            System.out.println("2. Add Lesson");
-            System.out.println("3. Remove Lesson");
-            System.out.println("4. Assign Lesson to Student");
-            System.out.println("5. Assign Lesson to Group");
-            System.out.println("6. Return to Main Menu");
-            System.out.print("Please select an option (1-6): ");
+            if ("Teacher".equalsIgnoreCase(userProfile.getRole())) {
+                System.out.println("2. Add Lesson");
+                System.out.println("3. Remove Lesson");
+                System.out.println("4. Assign Lesson to Student");
+                System.out.println("5. Assign Lesson to Group");
+                System.out.println("6. Return to Main Menu");
+            } else {
+                System.out.println("2. Return to Main Menu");
+            }
+            System.out.print("Please select an option: ");
 
             int choice = scanner.nextInt();
             scanner.nextLine(); // Consume newline
 
-            switch (choice) {
-                case 1:
-                    viewLessons();
-                    break;
-                case 2:
-                    addLesson();
-                    break;
-                case 3:
-                    removeLesson();
-                    break;
-                case 4:
-                    assignLessonToStudent();
-                    break;
-                case 5:
-                    assignLessonToGroup();
-                    break;
-                case 6:
-                    inLessonMode = false;
-                    break;
-                default:
-                    System.out.println("Invalid option selected.");
-                    break;
+            if ("Teacher".equalsIgnoreCase(userProfile.getRole())) {
+                switch (choice) {
+                    case 1:
+                        viewLessons();
+                        break;
+                    case 2:
+                        addLesson();
+                        break;
+                    case 3:
+                        removeLesson();
+                        break;
+                    case 4:
+                        assignLessonToStudent();
+                        break;
+                    case 5:
+                        assignLessonToGroup();
+                        break;
+                    case 6:
+                        inLessonMode = false;
+                        break;
+                    default:
+                        System.out.println("Invalid option selected.");
+                        break;
+                }
+            } else {
+                switch (choice) {
+                    case 1:
+                        viewLessons();
+                        break;
+                    case 2:
+                        inLessonMode = false;
+                        break;
+                    default:
+                        System.out.println("Invalid option selected.");
+                        break;
+                }
             }
         }
     }
@@ -82,6 +100,11 @@ public class LessonMode implements Mode {
     }
 
     private void addLesson() {
+        if (!"Teacher".equalsIgnoreCase(userProfile.getRole())) {
+            System.out.println("Only teachers can add lessons.");
+            return;
+        }
+
         List<Song> songLibrary = SongLibrary.getSongLibrary();
         if (songLibrary.isEmpty()) {
             System.out.println("The song library is empty.");
@@ -108,11 +131,17 @@ public class LessonMode implements Mode {
         String instructor = scanner.nextLine();
 
         selectedSong = new Song(selectedSong.getTitle(), selectedSong.getArtist(), instructor, selectedSong.getFilePath());
+
         saveLesson(selectedSong);
         System.out.println("Lesson added.");
     }
 
     private void removeLesson() {
+        if (!"Teacher".equalsIgnoreCase(userProfile.getRole())) {
+            System.out.println("Only teachers can remove lessons.");
+            return;
+        }
+
         List<Song> lessons = DataLoader.loadLessons();
         if (lessons.isEmpty()) {
             System.out.println("No lessons available.");
@@ -138,6 +167,11 @@ public class LessonMode implements Mode {
     }
 
     private void assignLessonToStudent() {
+        if (!"Teacher".equalsIgnoreCase(userProfile.getRole())) {
+            System.out.println("Only teachers can assign lessons to students.");
+            return;
+        }
+
         List<Song> lessons = DataLoader.loadLessons();
         if (lessons.isEmpty()) {
             System.out.println("No lessons available.");
@@ -160,21 +194,39 @@ public class LessonMode implements Mode {
 
         Song selectedLesson = lessons.get(lessonChoice - 1);
 
-        System.out.print("Enter the username of the student to assign the lesson to: ");
-        String studentUsername = scanner.nextLine();
-
-        User student = profileManager.getProfile(studentUsername);
-        if (student == null || !"Student".equalsIgnoreCase(student.getRole())) {
-            System.out.println("Invalid student username.");
+        List<User> students = profileManager.getAllStudents();
+        if (students.isEmpty()) {
+            System.out.println("No students available.");
             return;
         }
 
-        selectedLesson.assignStudent(studentUsername);
+        System.out.println("Select the students to assign the lesson to (comma-separated):");
+        for (int i = 0; i < students.size(); i++) {
+            User student = students.get(i);
+            System.out.println((i + 1) + ". " + student.getUsername());
+        }
+
+        String[] studentChoices = scanner.nextLine().split(",");
+        for (String choiceStr : studentChoices) {
+            int studentIndex = Integer.parseInt(choiceStr.trim()) - 1;
+            if (studentIndex < 0 || studentIndex >= students.size()) {
+                System.out.println("Invalid selection: " + choiceStr);
+                continue;
+            }
+            User student = students.get(studentIndex);
+            selectedLesson.assignStudent(student.getId());
+        }
+
         DataWriter.saveLessons(lessons);
-        System.out.println("Assigned lesson to " + studentUsername + ".");
+        System.out.println("Assigned lesson to selected students.");
     }
 
     private void assignLessonToGroup() {
+        if (!"Teacher".equalsIgnoreCase(userProfile.getRole())) {
+            System.out.println("Only teachers can assign lessons to groups.");
+            return;
+        }
+
         List<Song> lessons = DataLoader.loadLessons();
         if (lessons.isEmpty()) {
             System.out.println("No lessons available.");

@@ -31,7 +31,7 @@ public class SongLibrary {
                         String fileName = file.getName();
                         String title = fileName.substring(0, fileName.lastIndexOf('.'));
                         String artist = "Unknown Artist"; // Default artist name
-                        String filePath = file.getAbsolutePath();
+                        String filePath = new File(DataConstants.SONGS_FOLDER, fileName).getPath();
                         songLibrary.add(new Song(title, artist, filePath));
                     }
                 }

@@ -24,13 +24,13 @@ public class ProfileManager {
         List<User> users = DataLoader.loadUsers();
         if (users != null) {
             for (User user : users) {
-                profiles.put(user.getUserID(), user);
+                profiles.put(user.getId(), user);
             }
         }
     }
 
     public void addProfile(User profile) {
-        profiles.put(profile.getUserID(), profile);
+        profiles.put(profile.getId(), profile);
         saveProfiles();
     }
 
