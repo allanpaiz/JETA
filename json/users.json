@@ -1,1 +1,14 @@
+<<<<<<< HEAD
 [{"id":"e12fb3ff-efff-40f7-9acb-5a90a6ed6474","username":"edwinjwood","hashedPassword":"5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5","email":"1@2.com","role":"Teacher","experienceLevel":"ADVANCED"},{"id":"88cc5652-fe3c-4aec-8902-d63c9246f6d0","username":"EdStu","hashedPassword":"6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b","email":"edstu@hotmail.com","role":"Student","experienceLevel":"INTERMEDIATE"}]
+=======
+[
+    {
+        "userID":"133cfc67-90ed-4165-a920-0a309422aade",
+        "username":"edwinjwood",
+        "hashedPassword":"5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5",
+        "email":"e@j.com",
+        "role":"Teacher",
+        "experienceLevel":"ADVANCED"
+    }
+]
+>>>>>>> 6040799f2967760f0bc1acd94f98b7b5be986280
