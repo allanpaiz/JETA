@@ -36,9 +36,6 @@ This is a music learning app.
 - [Gson](https://github.com/google/gson) for JSON parsing.
 - [iTextPDF](https://itextpdf.com/en) for handling PDF files.
 
-## License
-This project is licensed under the MIT License.
-
 ## Authors
 - JETA Team
 
