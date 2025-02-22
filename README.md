@@ -40,4 +40,4 @@ This is a music learning app.
 - JETA Team
 
 ## Contact
-For any inquiries or feedback, please contact us at [support@tuneup.com](mailto:support@tuneup.com).
+For any inquiries or feedback, please contact us at [support@tuneup.com](mailto:support@tuneup.com)..
