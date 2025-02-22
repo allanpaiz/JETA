@@ -8,6 +8,14 @@
     "experienceLevel": "INTERMEDIATE"
   },
   {
+    "id": "edf22fc8-eb4f-438c-b828-fe4d6d85c154",
+    "username": "Teacher Person",
+    "hashedPassword": "5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5",
+    "email": "a@b.com",
+    "role": "Teacher",
+    "experienceLevel": "ADVANCED"
+  },
+  {
     "id": "172015d3-94c2-422a-a994-8bd7d167cacb",
     "username": "Teach",
     "hashedPassword": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b",
