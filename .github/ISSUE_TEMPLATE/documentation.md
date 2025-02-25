@@ -2,8 +2,8 @@
 name: Documentation
 about: Describe this issue template's purpose here.
 title: ''
-labels: ''
-assignees: ''
+labels: documentation
+assignees: allanpaiz, edwinjwood, JChubb43, Terdooachu
 
 ---
 
