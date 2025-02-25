@@ -2,8 +2,8 @@
 name: New Feature
 about: Suggest an idea for this project
 title: ''
-labels: ''
-assignees: ''
+labels: enhancement
+assignees: allanpaiz, edwinjwood, JChubb43, Terdooachu
 
 ---
 

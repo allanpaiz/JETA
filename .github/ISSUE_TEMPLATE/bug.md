@@ -2,8 +2,8 @@
 name: Bug
 about: Create a report to help us improve
 title: ''
-labels: ''
-assignees: ''
+labels: enhancement
+assignees: allanpaiz, edwinjwood, JChubb43, Terdooachu
 
 ---
 
