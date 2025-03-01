@@ -21,12 +21,13 @@ public class ProfileManager {
     }
 
     private void loadProfiles() {
-        List<User> users = DataLoader.loadUsers();
-        if (users != null) {
-            for (User user : users) {
-                profiles.put(user.getId(), user);
-            }
-        }
+        // TODO: 
+        // List<User> users = DataLoader.loadUsers();
+        // if (users != null) {
+        //     for (User user : users) {
+        //         profiles.put(user.getId(), user);
+        //     }
+        // }
     }
 
     public void addProfile(User profile) {
@@ -34,9 +35,11 @@ public class ProfileManager {
         saveProfiles();
     }
 
+
     public void saveProfiles() {
-        List<User> userList = new ArrayList<>(profiles.values());
-        DataWriter.saveUsers(userList);
+        // TODO:
+        // List<User> userList = new ArrayList<>(profiles.values());
+        // DataWriter.saveUsers(userList);
     }
 
     public List<User> getAllStudents() {

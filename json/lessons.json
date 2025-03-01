@@ -11,5 +11,18 @@
       "INTERMEDIATE"
     ],
     "filePath": "songs\\211.pdf"
+  },
+  {
+    "title": "StudentLesson",
+    "artist": "M Huncho",
+    "isLesson": true,
+    "instructor": "Me",
+    "assignedStudents": [
+      "44da0967-6714-4e17-9b0f-a867620cc267"
+    ],
+    "assignedExperienceLevels": [
+      "BEGINNER"
+    ],
+    "filePath": "songs\\My_Song.pdf"
   }
 ]
