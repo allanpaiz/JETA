@@ -1,13 +1,12 @@
 package com.tuneup;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.io.FileReader;
 import java.io.IOException;
-import java.lang.reflect.Type;
 import java.util.List;
 import java.util.UUID;
-
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
 public class UserProfile {
     private String id;
@@ -45,9 +44,9 @@ public class UserProfile {
     }
 
     public static List<UserProfile> loadProfiles() {
+        ObjectMapper mapper = new ObjectMapper();
         try (FileReader reader = new FileReader(DataConstants.USERS_FILE)) {
-            Type userListType = new TypeToken<List<UserProfile>>() {}.getType();
-            return new Gson().fromJson(reader, userListType);
+            return mapper.readValue(reader, new TypeReference<List<UserProfile>>() {});
         } catch (IOException e) {
             System.out.println("Error reading users: " + e.getMessage());
             return null;
