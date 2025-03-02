@@ -1,16 +1,10 @@
 package com.tuneup;
 
-import javafx.scene.Scene;
-import javafx.scene.control.*;
-import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
-
-// import java.util.List;
+import java.util.Scanner;
 
 public class SongLibraryMode implements Mode {
     private User userProfile;
     private ProfileManager profileManager;
-    private Stage primaryStage;
     private TuneUpUI tuneUpUI;
 
     /**
@@ -18,13 +12,11 @@ public class SongLibraryMode implements Mode {
      * 
      * @param userProfile User 
      * @param profileManager ProfileManager
-     * @param primaryStage Stage
      * @param tuneUpUI TuneUpUI
      */
-    public SongLibraryMode(User userProfile, ProfileManager profileManager, Stage primaryStage, TuneUpUI tuneUpUI) {
+    public SongLibraryMode(User userProfile, ProfileManager profileManager, TuneUpUI tuneUpUI) {
         this.userProfile = userProfile;
         this.profileManager = profileManager;
-        this.primaryStage = primaryStage;
         this.tuneUpUI = tuneUpUI;
     }
 
@@ -34,76 +26,64 @@ public class SongLibraryMode implements Mode {
      */
     @Override
     public void handle() {
-        primaryStage.setScene(createSongLibraryScene());
+        createSongLibraryMenu();
     }
 
     /**
-     * Creates the Song Library scene
-     * 
-     * @return Scene
+     * Creates the Song Library menu
      */
-    private Scene createSongLibraryScene() {
-        // Layout
-        VBox layout = new VBox(10);
-        layout.setPadding(new javafx.geometry.Insets(20));
+    private void createSongLibraryMenu() {
+        Scanner scanner = new Scanner(System.in);
+        while (true) {
+            System.out.println("Song Library");
+            System.out.println("1. View Library");
+            System.out.println("2. Add Song");
+            System.out.println("3. Remove Song");
+            System.out.println("4. Back to Main Menu");
+            System.out.print("Choose an option: ");
+            int choice = scanner.nextInt();
+            scanner.nextLine(); // Consume newline
 
-        // Components
-        Label title = new Label("Song Library");
-        Button viewLibraryBtn = new Button("View Library");
-        Button addSongBtn = new Button("Add Song");
-        Button removeSongBtn = new Button("Remove Song");
-        Button backBtn = new Button("Back to Main Menu");
-        Label statusLabel = new Label();
-
-        // Event handlers
-        viewLibraryBtn.setOnAction(e -> viewLibrary(layout, statusLabel));
-        addSongBtn.setOnAction(e -> addSong(layout, statusLabel));
-        removeSongBtn.setOnAction(e -> removeSong(layout, statusLabel));
-
-        // Back button, this needs to be the same for all modes
-        backBtn.setOnAction(e -> primaryStage.setScene(new TuneUpUI().createMainMenuScene(primaryStage)));
-
-        // Add all the elements to the layout
-        layout.getChildren().addAll(title, viewLibraryBtn, addSongBtn, removeSongBtn, backBtn, statusLabel);
-        
-        // Return the scene
-        return new Scene(layout, 400, 300);
+            switch (choice) {
+                case 1:
+                    viewLibrary();
+                    break;
+                case 2:
+                    addSong(scanner);
+                    break;
+                case 3:
+                    removeSong(scanner);
+                    break;
+                case 4:
+                    return; // Exit the song library menu
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+            }
+        }
     }
 
-    private void viewLibrary(VBox layout, Label statusLabel) {
+    private void viewLibrary() {
         // TODO: Placeholder
-        statusLabel.setText("TODO: View Library");
+        System.out.println("TODO: View Library");
     }
 
-    private void addSong(VBox layout, Label statusLabel) {
-        // Clear previous layout
-        layout.getChildren().clear();
+    private void addSong(Scanner scanner) {
+        System.out.print("Enter song title: ");
+        String title = scanner.nextLine();
+        System.out.print("Enter artist: ");
+        String artist = scanner.nextLine();
+        System.out.print("Enter PDF file path: ");
+        String filePath = scanner.nextLine();
 
-        // Components
-        TextField titleField = new TextField();
-        titleField.setPromptText("Song Title");
-        TextField artistField = new TextField();
-        artistField.setPromptText("Artist");
-        TextField filePathField = new TextField();
-        filePathField.setPromptText("PDF File Path");
-        Button submitBtn = new Button("Add Song");
-        Button backBtn = new Button("Back");
+        // TODO: Add song logic
+        System.out.println("TODO: Add Song");
 
-        // Event handlers
-        submitBtn.setOnAction(e -> {
-            statusLabel.setText("TODO: Add Song");
-            handle();   // Refresh the scene basically a back button
-        });
-
-        // Back button to Song Library scene
-        backBtn.setOnAction(e -> handle());
-
-        // Add all the elements to the layout
-        layout.getChildren().addAll(titleField, artistField, filePathField, submitBtn, backBtn, statusLabel);
+        // Refresh the menu
+        handle();
     }
 
-    private void removeSong(VBox layout, Label statusLabel) {
+    private void removeSong(Scanner scanner) {
         // TODO: Placeholder
-        statusLabel.setText("Remove Song functionality to be implemented");
+        System.out.println("Remove Song functionality to be implemented");
     }
 }
