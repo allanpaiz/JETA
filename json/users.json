@@ -1,26 +1,22 @@
-[
-  {
-    "id": "44da0967-6714-4e17-9b0f-a867620cc267",
-    "username": "edwinjwood",
-    "hashedPassword": "5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5",
-    "email": "stu@mail.com",
-    "role": "Student",
-    "experienceLevel": "INTERMEDIATE"
-  },
-  {
-    "id": "edf22fc8-eb4f-438c-b828-fe4d6d85c154",
-    "username": "Teacher Person",
-    "hashedPassword": "5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5",
-    "email": "a@b.com",
-    "role": "Teacher",
-    "experienceLevel": "ADVANCED"
-  },
-  {
-    "id": "172015d3-94c2-422a-a994-8bd7d167cacb",
-    "username": "Teach",
-    "hashedPassword": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b",
-    "email": "3@4.com",
-    "role": "Teacher",
-    "experienceLevel": "ADVANCED"
-  }
-]
+[ {
+  "id" : "908c513e-f599-4ecb-bf94-c6254395d47a",
+  "username" : "Stu",
+  "password" : "+trznCqSZlnyazco/9ecLGOVXjGxZrqTaDQ4bxRBP6Q=",
+  "email" : "e@e.com",
+  "role" : "Student",
+  "experienceLevel" : "INTERMEDIATE"
+}, {
+  "id" : "8bd65b36-e494-4a19-a8f7-b5cc4da57cec",
+  "username" : "allan",
+  "password" : "9dc/QpiSsCILmjigFq71inPYT57e0wCr5mJnnEtkCek=",
+  "email" : "1@email.com",
+  "role" : "Teacher",
+  "experienceLevel" : "ADVANCED"
+}, {
+  "id" : "0ea060fa-eaa8-4ba4-8a66-cf1671461397",
+  "username" : "edwinjwood",
+  "password" : "JW6oZ42Z6klgWKYyAswLkcF33AAt7Hfm477OasyABNU=",
+  "email" : "a@b.com",
+  "role" : "Teacher",
+  "experienceLevel" : "ADVANCED"
+} ]
