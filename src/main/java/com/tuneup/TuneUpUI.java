@@ -166,23 +166,37 @@ public class TuneUpUI extends Application {
      * 
      * @param stage
      */
-    private void showMainMenu(Stage stage) {
-        VBox layout = new VBox(10);
-        layout.setPadding(new javafx.geometry.Insets(20));
+    public void showMainMenu(Stage stage) {
+        if (mainMenuScene == null) {
+            VBox layout = new VBox(10);
+            layout.setPadding(new javafx.geometry.Insets(20));
+    
+            Label titleLabel = new Label("Main Menu");
+            Button createButton = new Button("Create");
+            Button songLibraryButton = new Button("Song Library");
+            Button exitButton = new Button("Exit");
+    
+            // Handle the "Create" button click
+            createButton.setOnAction(e -> {
+                facade.activateCreateMode(userProfile, stage, this);
+            });
+    
+            songLibraryButton.setOnAction(e -> {
+                facade.activateSongLibrary(userProfile, stage, this);
+            });
+    
+            exitButton.setOnAction(e -> {
+                stage.close();
+            });
 
-        Label titleLabel = new Label("Main Menu");
-        Button createButton = new Button("Create");
+            layout.getChildren().addAll(titleLabel, createButton, songLibraryButton, exitButton);
+    
+            mainMenuScene = new Scene(layout, 300, 200);
+        }
 
-        // Handle the "Create" button click
-        createButton.setOnAction(e -> {
-            facade.activateCreateMode(userProfile, stage, this);
-        });
-
-        layout.getChildren().addAll(titleLabel, createButton);
-
-        mainMenuScene = new Scene(layout, 300, 200);
         stage.setScene(mainMenuScene);
     }
+
 
     /**
      * Main method, launches the application

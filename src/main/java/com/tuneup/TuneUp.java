@@ -5,9 +5,11 @@ import java.util.List;
 
 public class TuneUp {
     private ProfileManager profileManager;
+    private TuneUpUI tuneUpUI;
 
     public TuneUp() {
         profileManager = new ProfileManager();
+        tuneUpUI = new TuneUpUI();
     }
 
     public User login(String username, String password) {
@@ -40,8 +42,17 @@ public class TuneUp {
         return profileManager.getStudentsByExperienceLevel(experienceLevel);
     }
 
+    public void activateMainMenu(User userProfile, Stage stage) {
+        tuneUpUI.showMainMenu(stage);
+    }
+
     public void activateCreateMode(User userProfile, Stage stage, TuneUpUI tuneUpUI) {
         Mode createMode = new CreateMode(userProfile, this, stage, tuneUpUI);
         createMode.handle();
+    }
+
+    public void activateSongLibrary(User userProfile, Stage stage, TuneUpUI tuneUpUI) {
+        Mode songLibraryMode = new SongLibraryMode(userProfile, this, stage, tuneUpUI);
+        songLibraryMode.handle();
     }
 }
