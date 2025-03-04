@@ -1,4 +1,11 @@
 [ {
+  "id" : "3c2ae7fe-def1-474d-9f3c-c0199ff84685",
+  "username" : "a",
+  "password" : "aZM1wchC4BKF3ktf6zQ9rQpDPxKJrCJN4850SfNrRvc=",
+  "email" : "a",
+  "role" : "Teacher",
+  "experienceLevel" : "ADVANCED"
+}, {
   "id" : "908c513e-f599-4ecb-bf94-c6254395d47a",
   "username" : "Stu",
   "password" : "+trznCqSZlnyazco/9ecLGOVXjGxZrqTaDQ4bxRBP6Q=",

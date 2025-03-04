@@ -5,6 +5,7 @@ import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
+import java.io.File;
 
 public class SongLibraryMode implements Mode {
     private User userProfile;
@@ -49,9 +50,8 @@ public class SongLibraryMode implements Mode {
         Label statusLabel = new Label();
 
         // Event handlers
-        // viewLibraryBtn.setOnAction(e -> viewLibrary(layout, statusLabel));
-        // addSongBtn.setOnAction(e -> addSong(layout, statusLabel));
-        // removeSongBtn.setOnAction(e -> removeSong(layout, statusLabel));
+        viewLibraryBtn.setOnAction(e -> viewLibrary(layout, statusLabel));
+        removeSongBtn.setOnAction(e -> removeSong(layout, statusLabel));
 
         // Back button, this needs to be the same for all modes
         backBtn.setOnAction(e -> tuneUpUI.showMainMenu(stage));
@@ -61,9 +61,41 @@ public class SongLibraryMode implements Mode {
         
         // Return the scene
         return new Scene(layout, 400, 300);
-    }
+        }
 
+        /**
+         * View the song library
+         * 
+         * @param layout VBox
+         * @param statusLabel Label
+         */
+        private void viewLibrary(VBox layout, Label statusLabel) {
+            File songDirectory = new File("songs/");
+            File[] songFiles = songDirectory.listFiles();
+            for (File songFile : songFiles) {
+            statusLabel.setText(statusLabel.getText() + "\n" + songFile.getName());
+            }
+        }
 
+        /**
+         * Remove a song from the library
+         * 
+         * @param layout VBox
+         * @param statusLabel Label
+         */
+        private void removeSong(VBox layout, Label statusLabel) {
+            TextInputDialog dialog = new TextInputDialog();
+            dialog.setContentText("Enter the name of the song file:");
+
+            dialog.showAndWait().ifPresent(songName -> {
+            File songFile = new File("songs/" + songName);
+            if (songFile.exists() && songFile.delete()) {
+                statusLabel.setText("Song removed: " + songName);
+            } else {
+                statusLabel.setText("Song not found: " + songName);
+            }
+            });
+        }
 
     /**
      * Creates the Song Library menu
