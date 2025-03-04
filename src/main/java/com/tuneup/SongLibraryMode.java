@@ -1,10 +1,15 @@
 package com.tuneup;
 
 import java.util.Scanner;
+import javafx.stage.Stage;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.layout.VBox;
 
 public class SongLibraryMode implements Mode {
     private User userProfile;
-    private ProfileManager profileManager;
+    private TuneUp facade;
+    private Stage stage;
     private TuneUpUI tuneUpUI;
 
     /**
@@ -14,9 +19,10 @@ public class SongLibraryMode implements Mode {
      * @param profileManager ProfileManager
      * @param tuneUpUI TuneUpUI
      */
-    public SongLibraryMode(User userProfile, ProfileManager profileManager, TuneUpUI tuneUpUI) {
+    public SongLibraryMode(User userProfile, TuneUp facade, Stage stage, TuneUpUI tuneUpUI) {
         this.userProfile = userProfile;
-        this.profileManager = profileManager;
+        this.facade = facade;
+        this.stage = stage;
         this.tuneUpUI = tuneUpUI;
     }
 
@@ -26,8 +32,38 @@ public class SongLibraryMode implements Mode {
      */
     @Override
     public void handle() {
-        createSongLibraryMenu();
+        stage.setScene(createSongLibraryScene());
     }
+
+    private Scene createSongLibraryScene() {
+        // Layout
+        VBox layout = new VBox(10);
+        layout.setPadding(new javafx.geometry.Insets(20));
+
+        // Components
+        Label title = new Label("Song Library");
+        Button viewLibraryBtn = new Button("View Library");
+        Button addSongBtn = new Button("Add Song");
+        Button removeSongBtn = new Button("Remove Song");
+        Button backBtn = new Button("Back to Main Menu");
+        Label statusLabel = new Label();
+
+        // Event handlers
+        // viewLibraryBtn.setOnAction(e -> viewLibrary(layout, statusLabel));
+        // addSongBtn.setOnAction(e -> addSong(layout, statusLabel));
+        // removeSongBtn.setOnAction(e -> removeSong(layout, statusLabel));
+
+        // Back button, this needs to be the same for all modes
+        backBtn.setOnAction(e -> tuneUpUI.showMainMenu(stage));
+
+        // Add all the elements to the layout
+        layout.getChildren().addAll(title, viewLibraryBtn, addSongBtn, removeSongBtn, backBtn, statusLabel);
+        
+        // Return the scene
+        return new Scene(layout, 400, 300);
+    }
+
+
 
     /**
      * Creates the Song Library menu
