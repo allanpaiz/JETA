@@ -7,6 +7,7 @@ public class User {
     private String id;
     private String username;
     private String password; // This will store the hashed password
+    // possibly store unhashed password as well for ease of testing & use?
     private String email;
     private String role;
     private ExperienceLevel experienceLevel;
