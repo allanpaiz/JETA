@@ -7,9 +7,17 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * {@code DataLoader} loads data from their JSON files.
+ */
 public class DataLoader implements DataConstants {
     private static final ObjectMapper mapper = new ObjectMapper();
 
+    /**
+     * Loads and returns the list of {@code Users}
+     * 
+     * @return List of {@code User} objects
+     */
     public static List<User> loadUsers() {
         try (FileReader reader = new FileReader(USERS_FILE)) {
             List<User> users = mapper.readValue(reader, new TypeReference<List<User>>() {});
@@ -24,6 +32,11 @@ public class DataLoader implements DataConstants {
         }
     }
 
+    /**
+     * Loads and returns the list of {@code Songs}
+     * 
+     * @return List of {@code Song} objects
+     */
     public static List<Song> loadLessons() {
         try (FileReader reader = new FileReader(LESSONS_FILE)) {
             List<Song> lessons = mapper.readValue(reader, new TypeReference<List<Song>>() {});
