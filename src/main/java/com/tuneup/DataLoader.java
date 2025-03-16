@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class DataLoader implements DataConstants {
@@ -21,6 +22,17 @@ public class DataLoader implements DataConstants {
         } catch (IOException e) {
             System.out.println("Error reading users: " + e.getMessage());
             return null;
+        }
+    }
+
+    public static List<Song> loadSongs() {
+        try (FileReader reader = new FileReader(SONGS_FILE)) {
+            List<Song> songs = mapper.readValue(reader, new TypeReference<List<Song>>() {});
+            System.out.println("Loaded " + songs.size() + " songs from songs.json"); // Debug statement
+            return songs;
+        } catch (IOException e) {
+            System.out.println("Error loading songs: " + e.getMessage());
+            return new ArrayList<>();
         }
     }
 
