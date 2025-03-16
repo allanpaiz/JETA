@@ -19,6 +19,14 @@ public class DataWriter implements DataConstants {
             System.out.println("Error saving users: " + e.getMessage());
         }
     }
+    
+    public static void saveSongs(List<Song> songs) {
+        try (FileWriter fileWriter = new FileWriter(SONGS_FILE)) {
+            writer.writeValue(fileWriter, songs);
+        } catch (IOException e) {
+            System.out.println("Error saving songs: " + e.getMessage());
+        }
+    }
 
     public static void saveLessons(List<Song> lessons) {
         try (FileWriter fileWriter = new FileWriter(LESSONS_FILE)) {
