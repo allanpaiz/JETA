@@ -1,0 +1,16 @@
+[ {
+  "title" : "New Song",
+  "creatorId" : "0ea060fa-eaa8-4ba4-8a66-cf1671461397",
+  "notes" : [ "C4", "G4", "A4" ],
+  "id" : "8d644b37-e274-4e9f-84bf-0e0b414495e9"
+}, {
+  "title" : "New Song 2",
+  "creatorId" : "0ea060fa-eaa8-4ba4-8a66-cf1671461397",
+  "notes" : [ "C4", "C4", "D4", "C4", "F4", "E4" ],
+  "id" : "4ffc5caf-ad12-4b6f-8181-1638bd1846e0"
+}, {
+  "title" : "New Song 3",
+  "creatorId" : "0ea060fa-eaa8-4ba4-8a66-cf1671461397",
+  "notes" : [ "C5", "G4", "F4", "C4", "B4", "G4" ],
+  "id" : "fe927079-83af-495e-9333-035c14100403"
+} ]

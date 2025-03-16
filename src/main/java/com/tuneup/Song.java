@@ -1,72 +1,62 @@
 package com.tuneup;
 
-import java.util.ArrayList;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.List;
+import java.util.UUID;
 
 public class Song {
+    private String id;
     private String title;
-    private String artist;
-    private boolean isLesson;
-    private String instructor;
-    private List<String> assignedStudents;
-    private List<ExperienceLevel> assignedExperienceLevels;
-    private String filePath;
+    private String creatorId; // Change from creator to creatorId to be more explicit
+    private List<String> notes;
 
-    public Song(String title, String artist, String filePath) {
+    @JsonCreator
+    public Song(
+        @JsonProperty("title") String title,
+        @JsonProperty("creatorId") String creatorId,
+        @JsonProperty("notes") List<String> notes) {
+        
+        this.id = UUID.randomUUID().toString();
         this.title = title;
-        this.artist = artist;
-        this.filePath = filePath;
-        this.assignedStudents = new ArrayList<>();
-        this.assignedExperienceLevels = new ArrayList<>();
+        this.creatorId = creatorId;
+        this.notes = notes;
     }
 
-    public Song(String title, String artist, String instructor, String filePath) {
-        this.title = title;
-        this.artist = artist;
-        this.instructor = instructor;
-        this.filePath = filePath;
-        this.isLesson = true;
-        this.assignedStudents = new ArrayList<>();
-        this.assignedExperienceLevels = new ArrayList<>();
+    // For Jackson deserialization
+    public Song() {
+    }
+
+    public String getId() {
+        return id;
     }
 
     public String getTitle() {
         return title;
     }
 
-    public String getArtist() {
-        return artist;
+    public String getCreatorId() {
+        return creatorId;
     }
 
-    public boolean isLesson() {
-        return isLesson;
+    public List<String> getNotes() {
+        return notes;
     }
 
-    public String getInstructor() {
-        return instructor;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public List<String> getAssignedStudents() {
-        return assignedStudents;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public List<ExperienceLevel> getAssignedExperienceLevels() {
-        return assignedExperienceLevels;
+    public void setCreatorId(String creatorId) {
+        this.creatorId = creatorId;
     }
 
-    public String getFilePath() {
-        return filePath;
-    }
-
-    public void assignStudent(String studentUsername) {
-        assignedStudents.add(studentUsername);
-    }
-
-    public void assignExperienceLevel(ExperienceLevel experienceLevel) {
-        assignedExperienceLevels.add(experienceLevel);
-    }
-
-    public void setFilePath(String filePath) {
-        this.filePath = filePath;
+    public void setNotes(List<String> notes) {
+        this.notes = notes;
     }
 }

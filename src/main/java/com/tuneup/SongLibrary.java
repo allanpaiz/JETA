@@ -1,41 +1,62 @@
 package com.tuneup;
 
-import java.io.File;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
-public class SongLibrary {
+public class SongLibrary implements DataConstants {
     private static List<Song> songLibrary = new ArrayList<>();
+    private static boolean isInitialized = false;
 
+    /**
+     * Gets the song library sorted by title, loading it first if needed
+     * @return List of songs in the library sorted by title
+     */
     public static List<Song> getSongLibrary() {
-        loadSongLibrary();
-        return songLibrary;
-    }
-
-    public static void addSong(Song song) {
-        songLibrary.add(song);
-    }
-
-    public static void removeSong(Song song) {
-        songLibrary.remove(song);
-    }
-
-    private static void loadSongLibrary() {
-        songLibrary.clear();
-        File folder = new File(DataConstants.SONGS_FOLDER);
-        if (folder.exists() && folder.isDirectory()) {
-            File[] files = folder.listFiles();
-            if (files != null) {
-                for (File file : files) {
-                    if (file.isFile()) {
-                        String fileName = file.getName();
-                        String title = fileName.substring(0, fileName.lastIndexOf('.'));
-                        String artist = "Unknown Artist"; // Default artist name
-                        String filePath = new File(DataConstants.SONGS_FOLDER, fileName).getPath();
-                        songLibrary.add(new Song(title, artist, filePath));
-                    }
-                }
-            }
+        if (!isInitialized) {
+            loadSongLibrary();
         }
+        
+        // Sort songs by title before returning
+        List<Song> sortedSongs = new ArrayList<>(songLibrary);
+        sortedSongs.sort(Comparator.comparing(Song::getTitle));
+        
+        return sortedSongs;
+    }
+
+    /**
+     * Adds a song to the library
+     * @param song The song to add
+     */
+    public static void addSong(Song song) {
+        if (!isInitialized) {
+            loadSongLibrary();
+        }
+        songLibrary.add(song);
+        saveSongLibrary();
+    }
+
+    /**
+     * Loads songs from the songs.json file using DataLoader
+     */
+    private static void loadSongLibrary() {
+        // Load songs using DataLoader
+        songLibrary = DataLoader.loadSongs();
+        isInitialized = true;
+    }
+
+    /**
+     * Saves the song library to the songs.json file
+     */
+    private static void saveSongLibrary() {
+        DataWriter.saveSongs(songLibrary);
+    }
+    
+    /**
+     * Reloads the song library (useful after external changes)
+     */
+    public static void refresh() {
+        isInitialized = false;
+        loadSongLibrary();
     }
 }
