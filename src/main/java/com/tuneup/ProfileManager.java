@@ -14,32 +14,29 @@ public class ProfileManager {
     }
 
     public User getProfile(String username) {
-        return profiles.values().stream()
-                .filter(profile -> profile.getUsername().equalsIgnoreCase(username))
-                .findFirst()
-                .orElse(null);
+        return profiles.get(username.toLowerCase());
     }
 
     private void loadProfiles() {
-        // TODO: 
-        // List<User> users = DataLoader.loadUsers();
-        // if (users != null) {
-        //     for (User user : users) {
-        //         profiles.put(user.getId(), user);
-        //     }
-        // }
+        List<User> users = DataLoader.loadUsers();
+        if (users != null) {
+            for (User user : users) {
+                profiles.put(user.getUsername().toLowerCase(), user);
+                System.out.println("Loaded user: " + user.getUsername()); // Debug statement
+            }
+        } else {
+            System.out.println("No users loaded from users.json"); // Debug statement
+        }
     }
 
     public void addProfile(User profile) {
-        profiles.put(profile.getId(), profile);
+        profiles.put(profile.getUsername().toLowerCase(), profile);
         saveProfiles();
     }
 
-
     public void saveProfiles() {
-        // TODO:
-        // List<User> userList = new ArrayList<>(profiles.values());
-        // DataWriter.saveUsers(userList);
+        List<User> userList = new ArrayList<>(profiles.values());
+        DataWriter.saveUsers(userList);
     }
 
     public List<User> getAllStudents() {
