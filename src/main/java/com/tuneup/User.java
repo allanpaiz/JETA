@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 /**
  * User class
  * 
+ * @author edwinjwood
  * @author allanpaiz
  */
 public class User {
