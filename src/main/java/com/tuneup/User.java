@@ -3,20 +3,30 @@ package com.tuneup;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+/**
+ * User class
+ * 
+ * @author edwinjwood
+ * @author allanpaiz
+ */
 public class User {
     private String id;
     private String username;
-    private String password; // This will store the hashed password
-    // possibly store unhashed password as well for ease of testing & use?
+    private String password;
     private String email;
     private String role;
     private ExperienceLevel experienceLevel;
 
-    // Default constructor
-    public User() {
-    }
-
-    // Constructor with parameters
+    /**
+     * Constructor
+     * 
+     * @param id String - UUID made in ProfileManager
+     * @param username String
+     * @param password String - hashed password made in ProfileManager via PasswordUtils
+     * @param email String
+     * @param role String - (Teacher/Student)
+     * @param experienceLevel - ExperienceLevel enum
+     */
     @JsonCreator
     public User(
         @JsonProperty("id") String id,
@@ -25,17 +35,16 @@ public class User {
         @JsonProperty("email") String email,
         @JsonProperty("role") String role,
         @JsonProperty("experienceLevel") ExperienceLevel experienceLevel) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
-        this.email = email;
-        this.role = role;
-        this.experienceLevel = experienceLevel;
+        setId(id);
+        setUsername(username);
+        setPassword(password);
+        setEmail(email);
+        setRole(role);
+        setExperienceLevel(experienceLevel);
     }
 
     // Getters and setters
-
-    public String getId() {
+    public String getUserId() {
         return id;
     }
 
@@ -83,7 +92,13 @@ public class User {
         this.experienceLevel = experienceLevel;
     }
 
-    // Method to verify the password
+    /**
+     * Method to verify the user's password
+     * 
+     * @param password String - plain text password
+     * 
+     * @return boolean - true if the password is correct
+     */
     public boolean verifyPassword(String password) {
         return PasswordUtils.verifyPassword(password, this.password);
     }

@@ -9,19 +9,32 @@ import java.util.UUID;
 public class Song {
     private String id;
     private String title;
-    private String creatorId; // Change from creator to creatorId to be more explicit
+    private String creatorId;
     private List<String> notes;
+    private int tempo = 120; // Default tempo (beats per minute)
+    private String timeSignature = "4/4"; // Default time signature
 
     @JsonCreator
     public Song(
         @JsonProperty("title") String title,
         @JsonProperty("creatorId") String creatorId,
-        @JsonProperty("notes") List<String> notes) {
+        @JsonProperty("notes") List<String> notes,
+        @JsonProperty("tempo") Integer tempo,
+        @JsonProperty("timeSignature") String timeSignature) {
         
         this.id = UUID.randomUUID().toString();
         this.title = title;
         this.creatorId = creatorId;
         this.notes = notes;
+        
+        // Set optional properties with defaults if null
+        this.tempo = (tempo != null) ? tempo : 120;
+        this.timeSignature = (timeSignature != null) ? timeSignature : "4/4";
+    }
+    
+    // Simpler constructor for backward compatibility
+    public Song(String title, String creatorId, List<String> notes) {
+        this(title, creatorId, notes, null, null);
     }
 
     // For Jackson deserialization
@@ -43,6 +56,14 @@ public class Song {
     public List<String> getNotes() {
         return notes;
     }
+    
+    public int getTempo() {
+        return tempo;
+    }
+    
+    public String getTimeSignature() {
+        return timeSignature;
+    }
 
     public void setId(String id) {
         this.id = id;
@@ -58,5 +79,13 @@ public class Song {
 
     public void setNotes(List<String> notes) {
         this.notes = notes;
+    }
+    
+    public void setTempo(int tempo) {
+        this.tempo = tempo;
+    }
+    
+    public void setTimeSignature(String timeSignature) {
+        this.timeSignature = timeSignature;
     }
 }

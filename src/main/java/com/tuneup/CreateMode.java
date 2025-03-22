@@ -9,6 +9,10 @@ public class CreateMode implements Mode {
     private TuneUp facade;
     private final String[] VALID_NOTES = {"C4", "D4", "E4", "F4", "G4", "A4", "B4", "C5"};
     
+    // Default music parameters
+    private static final int DEFAULT_TEMPO = 120; // beats per minute
+    private static final String DEFAULT_TIME_SIGNATURE = "4/4"; // common time
+    
     // Constructor for terminal mode
     public CreateMode(User userProfile, TuneUp facade) {
         this.userProfile = userProfile;
@@ -70,8 +74,12 @@ public class CreateMode implements Mode {
             return;
         }
         
+        // Get tempo and time signature
+        int tempo = getTempo(scanner);
+        String timeSignature = getTimeSignature(scanner);
+        
         // Get song notes using improved note selection interface
-        List<String> notes = buildSongWithMeasures(scanner);
+        List<String> notes = buildSongWithMeasures(scanner, timeSignature);
         
         // Check if any notes were added
         if (notes.isEmpty()) {
@@ -79,33 +87,114 @@ public class CreateMode implements Mode {
             return;
         }
         
-        // Create the song object
-        Song newSong = new Song(title, userProfile.getId(), notes);
+        // Create the song object with all properties
+        Song newSong = new Song(title, userProfile.getUserId(), notes, tempo, timeSignature);
         
         // Add song to the library
         SongLibrary.addSong(newSong);
+        
+        // Preview completed song
+        previewCompleteSong(newSong);
         
         System.out.println("Song '" + title + "' saved successfully!");
     }
     
     /**
+     * Gets tempo from user input
+     * @param scanner Scanner for user input
+     * @return The chosen tempo (beats per minute)
+     */
+    private int getTempo(Scanner scanner) {
+        int tempo = DEFAULT_TEMPO;
+        
+        System.out.println("\n=== Set Tempo ===");
+        System.out.println("Tempo determines the speed of your song (beats per minute).");
+        System.out.println("Common tempos: Slow (60-80), Medium (90-120), Fast (130-160)");
+        System.out.print("Enter tempo (or press Enter for default " + DEFAULT_TEMPO + " BPM): ");
+        
+        String input = scanner.nextLine().trim();
+        
+        if (!input.isEmpty()) {
+            try {
+                tempo = Integer.parseInt(input);
+                if (tempo < 40 || tempo > 240) {
+                    System.out.println("Tempo should be between 40-240 BPM. Using default tempo: " + DEFAULT_TEMPO);
+                    tempo = DEFAULT_TEMPO;
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid tempo. Using default tempo: " + DEFAULT_TEMPO);
+            }
+        }
+        
+        System.out.println("Tempo set to: " + tempo + " BPM");
+        return tempo;
+    }
+    
+    /**
+     * Gets time signature from user input
+     * @param scanner Scanner for user input
+     * @return The chosen time signature
+     */
+    private String getTimeSignature(Scanner scanner) {
+        String timeSignature = DEFAULT_TIME_SIGNATURE;
+        
+        System.out.println("\n=== Set Time Signature ===");
+        System.out.println("Time signature determines the rhythm structure of your song.");
+        System.out.println("Common time signatures: 4/4 (common), 3/4 (waltz), 6/8 (compound)");
+        System.out.println("1. 4/4 (Common time)");
+        System.out.println("2. 3/4 (Waltz time)");
+        System.out.println("3. 6/8 (Compound time)");
+        System.out.print("Choose time signature (1-3) or press Enter for default 4/4: ");
+        
+        String input = scanner.nextLine().trim();
+        
+        if (!input.isEmpty()) {
+            try {
+                int choice = Integer.parseInt(input);
+                switch (choice) {
+                    case 1:
+                        timeSignature = "4/4";
+                        break;
+                    case 2:
+                        timeSignature = "3/4";
+                        break;
+                    case 3:
+                        timeSignature = "6/8";
+                        break;
+                    default:
+                        System.out.println("Invalid choice. Using default time signature: " + DEFAULT_TIME_SIGNATURE);
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input. Using default time signature: " + DEFAULT_TIME_SIGNATURE);
+            }
+        }
+        
+        System.out.println("Time signature set to: " + timeSignature);
+        return timeSignature;
+    }
+    
+    /**
      * Builds a song using a measure-based approach for easier note selection
      * @param scanner Scanner for user input
+     * @param timeSignature The time signature for the song
      * @return List of notes in the song
      */
-    private List<String> buildSongWithMeasures(Scanner scanner) {
+    private List<String> buildSongWithMeasures(Scanner scanner, String timeSignature) {
         List<String> allNotes = new ArrayList<>();
         List<String> currentMeasure = new ArrayList<>();
         int measureCount = 1;
         boolean buildingSong = true;
         
+        // Calculate beats per measure based on time signature
+        int beatsPerMeasure = getBeatsPerMeasure(timeSignature);
+        
         System.out.println("\n=== Song Builder ===");
         System.out.println("Create your song by adding notes to measures.");
-        System.out.println("A song consists of multiple measures, each with a sequence of notes.");
+        System.out.println("Time signature " + timeSignature + " means " + beatsPerMeasure + " beats per measure.");
         
         while (buildingSong) {
             System.out.println("\n=== Measure " + measureCount + " ===");
-            currentMeasure = buildMeasure(scanner);
+            currentMeasure = buildMeasure(scanner, beatsPerMeasure);
             
             if (!currentMeasure.isEmpty()) {
                 // Add notes from this measure to the song
@@ -139,15 +228,32 @@ public class CreateMode implements Mode {
     }
     
     /**
+     * Calculates beats per measure based on time signature
+     * @param timeSignature The time signature string
+     * @return Number of beats per measure
+     */
+    private int getBeatsPerMeasure(String timeSignature) {
+        // Extract the numerator from time signature (e.g., "4" from "4/4")
+        try {
+            return Integer.parseInt(timeSignature.split("/")[0]);
+        } catch (Exception e) {
+            return 4; // Default to 4 beats if parsing fails
+        }
+    }
+    
+    /**
      * Builds a single measure by allowing the user to select notes by number
      * @param scanner Scanner for user input
+     * @param beatsPerMeasure Number of beats in this measure
      * @return List of notes in the measure
      */
-    private List<String> buildMeasure(Scanner scanner) {
+    private List<String> buildMeasure(Scanner scanner, int beatsPerMeasure) {
         List<String> measure = new ArrayList<>();
         boolean buildingMeasure = true;
         
         displayNoteOptions();
+        System.out.println("\nThis measure needs " + beatsPerMeasure + " beats. Each note counts as 1 beat.");
+        System.out.println("Current beats: 0/" + beatsPerMeasure);
         
         while (buildingMeasure) {
             System.out.print("\nSelect note (1-8) or enter commands: [P]review, [C]lear, [D]one: ");
@@ -155,12 +261,21 @@ public class CreateMode implements Mode {
             
             // Check for commands
             if (input.equals("D")) {
+                if (measure.size() < beatsPerMeasure) {
+                    System.out.println("Warning: Measure has " + measure.size() + " beats but needs " + beatsPerMeasure);
+                    System.out.print("Continue anyway? (Y/N): ");
+                    String confirm = scanner.nextLine().trim().toUpperCase();
+                    if (!confirm.equals("Y")) {
+                        continue;
+                    }
+                }
                 buildingMeasure = false;
             } else if (input.equals("P")) {
                 previewMeasure(measure);
             } else if (input.equals("C")) {
                 measure.clear();
                 System.out.println("Measure cleared.");
+                System.out.println("Current beats: 0/" + beatsPerMeasure);
             } else {
                 // Try to parse as a number for note selection
                 try {
@@ -169,6 +284,14 @@ public class CreateMode implements Mode {
                         String selectedNote = VALID_NOTES[noteIndex - 1];
                         measure.add(selectedNote);
                         System.out.println("Added note: " + selectedNote);
+                        System.out.println("Current beats: " + measure.size() + "/" + beatsPerMeasure);
+                        
+                        // Warn or auto-complete when measure is full
+                        if (measure.size() == beatsPerMeasure) {
+                            System.out.println("Measure is now full. You can press D to finish this measure.");
+                        } else if (measure.size() > beatsPerMeasure) {
+                            System.out.println("Warning: Measure has exceeded " + beatsPerMeasure + " beats.");
+                        }
                     } else {
                         System.out.println("Invalid selection. Please enter a number between 1 and " + VALID_NOTES.length);
                     }
@@ -243,6 +366,56 @@ public class CreateMode implements Mode {
         }
         
         System.out.println("Preview complete.");
+    }
+    
+    /**
+     * Previews the entire completed song
+     * @param song The song to preview
+     */
+    private void previewCompleteSong(Song song) {
+        System.out.println("\n=== Previewing Completed Song: " + song.getTitle() + " ===");
+        
+        List<String> notes = song.getNotes();
+        int tempo = song.getTempo();
+        
+        // Calculate note duration based on tempo (in milliseconds)
+        int noteDuration = (int) (60000 / tempo);
+        
+        System.out.println("Song has " + notes.size() + " notes at tempo " + tempo + " BPM");
+        System.out.println("Playing...");
+        
+        // Create piano for playback
+        PianoStrategy piano = new PianoStrategy();
+        
+        try {
+            for (String note : notes) {
+                System.out.print(note + " ");
+                
+                // Play the note
+                piano.playNote(note);
+                
+                // Hold note based on tempo
+                try {
+                    Thread.sleep(noteDuration * 3/4); // Play note for 75% of the beat
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                
+                // Stop the note
+                piano.stop();
+                
+                // Brief silence between notes
+                try {
+                    Thread.sleep(noteDuration * 1/4); // 25% of the beat for silence
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+            System.out.println("\nSong preview complete!");
+        } finally {
+            // Ensure piano resources are released
+            piano.close();
+        }
     }
     
     /**
