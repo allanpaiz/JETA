@@ -6,6 +6,13 @@
   "role" : "Student",
   "experienceLevel" : "INTERMEDIATE"
 }, {
+  "id" : "5ccd46dd-04bc-4980-9eb0-744b310632f0",
+  "username" : "Student",
+  "password" : "JW6oZ42Z6klgWKYyAswLkcF33AAt7Hfm477OasyABNU=",
+  "email" : "e@g.com",
+  "role" : "Student",
+  "experienceLevel" : "BEGINNER"
+}, {
   "id" : "8bd65b36-e494-4a19-a8f7-b5cc4da57cec",
   "username" : "allan",
   "password" : "9dc/QpiSsCILmjigFq71inPYT57e0wCr5mJnnEtkCek=",

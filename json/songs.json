@@ -1,16 +1,22 @@
 [ {
-  "title" : "New Song",
+  "title" : "New Song With tempo",
   "creatorId" : "0ea060fa-eaa8-4ba4-8a66-cf1671461397",
-  "notes" : [ "C4", "G4", "A4" ],
-  "id" : "8d644b37-e274-4e9f-84bf-0e0b414495e9"
+  "notes" : [ "C4", "C4", "E4", "F4" ],
+  "tempo" : 120,
+  "timeSignature" : "4/4",
+  "id" : "c4d5bb8c-a5fe-4fb3-ac8b-df134c08bc69"
 }, {
-  "title" : "New Song 2",
+  "title" : "Song with 2 Meas",
   "creatorId" : "0ea060fa-eaa8-4ba4-8a66-cf1671461397",
-  "notes" : [ "C4", "C4", "D4", "C4", "F4", "E4" ],
-  "id" : "4ffc5caf-ad12-4b6f-8181-1638bd1846e0"
+  "notes" : [ "G4", "D4", "A4", "G4", "E4", "A4" ],
+  "tempo" : 80,
+  "timeSignature" : "3/4",
+  "id" : "d848e43a-1c21-4829-843c-4e9d679b8ebd"
 }, {
-  "title" : "New Song 3",
-  "creatorId" : "0ea060fa-eaa8-4ba4-8a66-cf1671461397",
-  "notes" : [ "C5", "G4", "F4", "C4", "B4", "G4" ],
-  "id" : "fe927079-83af-495e-9333-035c14100403"
+  "title" : "allan-test",
+  "creatorId" : "8bd65b36-e494-4a19-a8f7-b5cc4da57cec",
+  "notes" : [ "C4", "C4", "D4", "C4", "C5", "C5", "C4", "F4", "E4", "C5", "C4", "C5" ],
+  "tempo" : 90,
+  "timeSignature" : "4/4",
+  "id" : "0a7bcd2a-0400-47db-b50a-d4fa8388860f"
 } ]
