@@ -10,13 +10,16 @@ public class Lesson {
     private Song song;
     private List<ExperienceLevel> assignedLevels;
     private List<User> assignedUsers;
-    // not including LessonDetails for rn because it could probably be condensed just into this fileS
 
     public Lesson(String title, String instructor, Song song, List<ExperienceLevel> assignedLevels, List<User> assignedUsers) {
         this.id = UUID.randomUUID().toString();
         this.title = title;
         this.instructor = instructor;
         this.song = song;
+    }
+
+    public String getId() {
+        return id;
     }
 
     public String getTitle() {

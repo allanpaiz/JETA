@@ -46,7 +46,7 @@ public class ProfileManager implements DataConstants {
      * @param experienceLevel Experience level for the user
      * @return New User object if creation succeeds, null if username exists
      */
-    public User createProfile(String username, String password, String email, String role, ExperienceLevel experienceLevel) {
+    public User createProfile(String username, String password, String email, UserType role, ExperienceLevel experienceLevel) {
         // Check if username is already taken
         if (getProfile(username) != null) {
             return null; // Username already exists
@@ -96,22 +96,61 @@ public class ProfileManager implements DataConstants {
         String password = scanner.nextLine();
         System.out.print("Enter email: ");
         String email = scanner.nextLine();
-        System.out.print("Enter role (Teacher/Student): ");
-        String role = scanner.nextLine();
+
+        System.out.print("Choose your role: ");
+        System.out.println("\n1. Student");
+        System.out.println("2. Teacher");
         
-        ExperienceLevel experienceLevel = ExperienceLevel.BEGINNER;
-        if (role.equalsIgnoreCase("Student")) {
-            System.out.print("Enter experience level (Beginner/Intermediate/Advanced): ");
-            String expLevel = scanner.nextLine();
-            try {
-                experienceLevel = ExperienceLevel.valueOf(expLevel.toUpperCase());
-            } catch (IllegalArgumentException e) {
-                System.out.println("Invalid experience level. Defaulting to BEGINNER.");
-            }
-        } else {
-            experienceLevel = ExperienceLevel.ADVANCED;
+        int choice = 0;
+        try {
+            choice = scanner.nextInt();
+            scanner.nextLine();  // Consume newline
+        } catch (Exception e) {
+            System.out.println("Please enter a valid number.");
+            scanner.nextLine(); // Clear the invalid input
+        }
+
+        UserType role = UserType.STUDENT;
+        switch(choice) {
+            case 1: // student
+                role = UserType.STUDENT;
+                break;
+            case 2: // teacher
+                role = UserType.TEACHER;
+                break;
+            default:
+                System.out.println("Invalid choice. Defaulting to Student.");
         }
         
+        System.out.print("Choose your experience level: ");
+        System.out.println("\n1. Beginner");
+        System.out.println("2. Intermediate");
+        System.out.println("3. Advanced");
+
+        choice = 0;
+        try {
+            choice = scanner.nextInt();
+            scanner.nextLine();  // Consume newline
+        } catch (Exception e) {
+            System.out.println("Please enter a valid number.");
+            scanner.nextLine(); // Clear the invalid input
+        }
+
+        ExperienceLevel experienceLevel = ExperienceLevel.BEGINNER;
+        switch(choice) {
+            case 1: // beginner
+                experienceLevel = ExperienceLevel.BEGINNER;
+                break;
+            case 2: // intermediate
+                experienceLevel = ExperienceLevel.INTERMEDIATE;
+                break;
+            case 3: // advanced
+                experienceLevel = ExperienceLevel.ADVANCED;
+                break;
+            default:
+                System.out.println("Invalid choice. Defaulting to Beginner.");
+        }
+
         User user = createProfile(username, password, email, role, experienceLevel);
         if (user != null) {
             System.out.println("Registration successful!");
@@ -184,13 +223,13 @@ public class ProfileManager implements DataConstants {
     
     public List<User> getAllStudents() {
         return profiles.stream()
-            .filter(user -> user.getRole().equalsIgnoreCase("Student"))
+            .filter(user -> user.getRole().equals("Student"))
             .collect(Collectors.toList());
     }
     
     public List<User> getStudentsByExperienceLevel(ExperienceLevel experienceLevel) {
         return profiles.stream()
-            .filter(user -> user.getRole().equalsIgnoreCase("Student") && 
+            .filter(user -> user.getRole().equals("Student") && 
                    user.getExperienceLevel() == experienceLevel)
             .collect(Collectors.toList());
     }
@@ -203,7 +242,7 @@ public class ProfileManager implements DataConstants {
      * @return Formatted string with student list or access denied message
      */
     public String displayStudentList(User currentUser) {
-        if (currentUser == null || !currentUser.getRole().equalsIgnoreCase("Teacher")) {
+        if (currentUser == null || !currentUser.getRole().equals("Teacher")) {
             return "This option is only available to teachers.";
         }
         
