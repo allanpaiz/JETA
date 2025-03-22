@@ -1,29 +1,36 @@
 [ {
-  "id" : "908c513e-f599-4ecb-bf94-c6254395d47a",
   "username" : "Stu",
   "password" : "+trznCqSZlnyazco/9ecLGOVXjGxZrqTaDQ4bxRBP6Q=",
   "email" : "e@e.com",
-  "role" : "Student",
-  "experienceLevel" : "INTERMEDIATE"
+  "role" : "STUDENT",
+  "experienceLevel" : "INTERMEDIATE",
+  "userId" : "908c513e-f599-4ecb-bf94-c6254395d47a"
 }, {
-  "id" : "5ccd46dd-04bc-4980-9eb0-744b310632f0",
   "username" : "Student",
   "password" : "JW6oZ42Z6klgWKYyAswLkcF33AAt7Hfm477OasyABNU=",
   "email" : "e@g.com",
-  "role" : "Student",
-  "experienceLevel" : "BEGINNER"
+  "role" : "STUDENT",
+  "experienceLevel" : "BEGINNER",
+  "userId" : "5ccd46dd-04bc-4980-9eb0-744b310632f0"
 }, {
-  "id" : "8bd65b36-e494-4a19-a8f7-b5cc4da57cec",
   "username" : "allan",
   "password" : "9dc/QpiSsCILmjigFq71inPYT57e0wCr5mJnnEtkCek=",
   "email" : "1@email.com",
-  "role" : "Teacher",
-  "experienceLevel" : "ADVANCED"
+  "role" : "TEACHER",
+  "experienceLevel" : "ADVANCED",
+  "userId" : "8bd65b36-e494-4a19-a8f7-b5cc4da57cec"
 }, {
-  "id" : "0ea060fa-eaa8-4ba4-8a66-cf1671461397",
   "username" : "edwinjwood",
   "password" : "JW6oZ42Z6klgWKYyAswLkcF33AAt7Hfm477OasyABNU=",
   "email" : "a@b.com",
-  "role" : "Teacher",
-  "experienceLevel" : "ADVANCED"
+  "role" : "TEACHER",
+  "experienceLevel" : "ADVANCED",
+  "userId" : "0ea060fa-eaa8-4ba4-8a66-cf1671461397"
+}, {
+  "username" : "jchubb",
+  "password" : "JW6oZ42Z6klgWKYyAswLkcF33AAt7Hfm477OasyABNU=",
+  "email" : "jchubb@emailthattotallyexists.com",
+  "role" : "STUDENT",
+  "experienceLevel" : "INTERMEDIATE",
+  "userId" : "ed0fe689-cebf-4ee7-88ff-7cdb048a2c5e"
 } ]
