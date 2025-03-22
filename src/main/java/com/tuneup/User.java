@@ -14,7 +14,7 @@ public class User {
     private String username;
     private String password;
     private String email;
-    private String role;
+    private UserType role;
     private ExperienceLevel experienceLevel;
 
     /**
@@ -24,7 +24,7 @@ public class User {
      * @param username String
      * @param password String - hashed password made in ProfileManager via PasswordUtils
      * @param email String
-     * @param role String - (Teacher/Student)
+     * @param role UserType - (Teacher/Student)
      * @param experienceLevel - ExperienceLevel enum
      */
     @JsonCreator
@@ -33,7 +33,7 @@ public class User {
         @JsonProperty("username") String username,
         @JsonProperty("password") String password,
         @JsonProperty("email") String email,
-        @JsonProperty("role") String role,
+        @JsonProperty("role") UserType role,
         @JsonProperty("experienceLevel") ExperienceLevel experienceLevel) {
         setId(id);
         setUsername(username);
@@ -76,11 +76,11 @@ public class User {
         this.email = email;
     }
 
-    public String getRole() {
+    public UserType getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(UserType role) {
         this.role = role;
     }
 
