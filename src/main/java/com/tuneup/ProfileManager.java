@@ -5,13 +5,25 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
+/**
+ * ProfileManager class manages user profiles
+ * 
+ * @author edwinjwood
+ * @author allanpaiz
+ */
 public class ProfileManager implements DataConstants {
     private List<User> profiles;
     
+    /**
+     * Constructor initializes profiles
+     */
     public ProfileManager() {
         loadProfiles();
     }
     
+    /**
+     * Loads profiles from json file via DataLoader
+     */
     private void loadProfiles() {
         profiles = DataLoader.loadUsers();
         if (profiles == null) {
@@ -200,7 +212,7 @@ public class ProfileManager implements DataConstants {
         }
         
         for (User user : profiles) {
-            if (user.getUserId().equals(userId)) {
+            if (user.getId().equals(userId)) {
                 return user;
             }
         }
@@ -211,7 +223,7 @@ public class ProfileManager implements DataConstants {
         if (getProfile(user.getUsername()) != null) {
             return false; // Username already exists
         }
-        
+
         profiles.add(user);
         saveProfiles();
         return true;
