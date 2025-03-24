@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
  * 
  * @author edwinjwood
  * @author allanpaiz
+ * @author jaychubb - role & experienceLevel
  */
 public class ProfileManager implements DataConstants {
     private List<User> profiles;
