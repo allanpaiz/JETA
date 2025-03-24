@@ -36,9 +36,9 @@ public class DataLoader implements DataConstants {
         }
     }
 
-    public static List<Song> loadLessons() {
+    public static List<Lesson> loadLessons() {
         try (FileReader reader = new FileReader(LESSONS_FILE)) {
-            List<Song> lessons = mapper.readValue(reader, new TypeReference<List<Song>>() {});
+            List<Lesson> lessons = mapper.readValue(reader, new TypeReference<List<Lesson>>() {});
             System.out.println("Loaded " + lessons.size() + " lessons from lessons.json"); // Debug statement
             return lessons;
         } catch (IOException e) {

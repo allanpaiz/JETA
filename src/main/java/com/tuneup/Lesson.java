@@ -3,6 +3,13 @@ package com.tuneup;
 import java.util.List;
 import java.util.UUID;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+/**
+ * Lesson Class
+ * 
+ * @author jaychubb
+ */
 public class Lesson {
     private String id;
     private String title;
@@ -10,13 +17,24 @@ public class Lesson {
     private Song song;
     private List<ExperienceLevel> assignedLevels;
     private List<User> assignedUsers;
-    // not including LessonDetails for rn because it could probably be condensed just into this fileS
 
-    public Lesson(String title, String instructor, Song song, List<ExperienceLevel> assignedLevels, List<User> assignedUsers) {
-        this.id = UUID.randomUUID().toString();
-        this.title = title;
-        this.instructor = instructor;
-        this.song = song;
+    public Lesson(
+        @JsonProperty("id") String id,
+        @JsonProperty("title") String title, 
+        @JsonProperty("instructor") String instructor, 
+        @JsonProperty("song") Song song, 
+        @JsonProperty("assignedExperienceLevel") List<ExperienceLevel> assignedLevels, 
+        @JsonProperty("assignedUsers")List<User> assignedUsers) {
+        setId(id);
+        setTitle(title);
+        setInstructor(instructor);
+        setSong(song);
+        setAssignedLevels(assignedLevels);
+        setAssignedUsers(assignedUsers);
+    }
+
+    public String getId() {
+        return id;
     }
 
     public String getTitle() {
@@ -37,6 +55,10 @@ public class Lesson {
 
     public List<User> getAssignedUsers() {
         return assignedUsers;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public void setTitle(String title) {

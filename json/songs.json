@@ -12,4 +12,11 @@
   "tempo" : 80,
   "timeSignature" : "3/4",
   "id" : "d848e43a-1c21-4829-843c-4e9d679b8ebd"
+}, {
+  "title" : "allan-test",
+  "creatorId" : "8bd65b36-e494-4a19-a8f7-b5cc4da57cec",
+  "notes" : [ "C4", "C4", "D4", "C4", "C5", "C5", "C4", "F4", "E4", "C5", "C4", "C5" ],
+  "tempo" : 90,
+  "timeSignature" : "4/4",
+  "id" : "0a7bcd2a-0400-47db-b50a-d4fa8388860f"
 } ]

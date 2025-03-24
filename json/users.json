@@ -3,27 +3,41 @@
   "username" : "Stu",
   "password" : "+trznCqSZlnyazco/9ecLGOVXjGxZrqTaDQ4bxRBP6Q=",
   "email" : "e@e.com",
-  "role" : "Student",
+  "role" : "STUDENT",
   "experienceLevel" : "INTERMEDIATE"
 }, {
   "id" : "5ccd46dd-04bc-4980-9eb0-744b310632f0",
   "username" : "Student",
   "password" : "JW6oZ42Z6klgWKYyAswLkcF33AAt7Hfm477OasyABNU=",
   "email" : "e@g.com",
-  "role" : "Student",
+  "role" : "STUDENT",
   "experienceLevel" : "BEGINNER"
 }, {
   "id" : "8bd65b36-e494-4a19-a8f7-b5cc4da57cec",
   "username" : "allan",
   "password" : "9dc/QpiSsCILmjigFq71inPYT57e0wCr5mJnnEtkCek=",
   "email" : "1@email.com",
-  "role" : "Teacher",
+  "role" : "TEACHER",
   "experienceLevel" : "ADVANCED"
 }, {
   "id" : "0ea060fa-eaa8-4ba4-8a66-cf1671461397",
   "username" : "edwinjwood",
   "password" : "JW6oZ42Z6klgWKYyAswLkcF33AAt7Hfm477OasyABNU=",
   "email" : "a@b.com",
-  "role" : "Teacher",
+  "role" : "TEACHER",
+  "experienceLevel" : "ADVANCED"
+}, {
+  "id" : "8100803a-dd60-4d32-8d80-aee3217c5f18",
+  "username" : "allan2",
+  "password" : "9dc/QpiSsCILmjigFq71inPYT57e0wCr5mJnnEtkCek=",
+  "email" : "1",
+  "role" : "STUDENT",
+  "experienceLevel" : "BEGINNER"
+}, {
+  "id" : "285162d0-a879-4a0d-b4a8-b70751943a93",
+  "username" : "bob",
+  "password" : "2+XwjMJbEnHxtP7IDyrNGXjoqiRcePzYsB28XOyitI0=",
+  "email" : "1",
+  "role" : "TEACHER",
   "experienceLevel" : "ADVANCED"
 } ]
