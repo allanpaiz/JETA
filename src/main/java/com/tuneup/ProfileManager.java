@@ -5,6 +5,12 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
+/**
+ * Profile Manager Class
+ * Interacts with DataWriter & DataLoader to manage User profiles
+ * @author
+ * @author jaychubb - role & experienceLevel
+ */
 public class ProfileManager implements DataConstants {
     private List<User> profiles;
     

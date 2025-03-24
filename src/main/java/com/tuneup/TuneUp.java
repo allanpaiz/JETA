@@ -48,7 +48,7 @@ public class TuneUp {
      * @param experienceLevel Experience level for the user
      * @return New User object if creation succeeds, null otherwise
      */
-    public User register(String username, String password, String email, String role, ExperienceLevel experienceLevel) {
+    public User register(String username, String password, String email, UserType role, ExperienceLevel experienceLevel) {
         return profileManager.createProfile(username, password, email, role, experienceLevel);
     }
     
