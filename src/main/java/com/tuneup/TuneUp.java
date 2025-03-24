@@ -4,17 +4,20 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
- * TuneUp facade provides a simplified interface to the subsystems
+ * TuneUp facade provides an interface to the the app
+ * 
+ * @author edwinjwood
+ * @author allanpaiz
  */
 public class TuneUp {
     private ProfileManager profileManager;
     
     /**
-     * Constructor initializes the subsystems
+     * Constructor initializes profileManager and ensures data folder exists
      */
     public TuneUp() {
         profileManager = new ProfileManager();
-        // Initialize other subsystems as needed
+        FileUtils.ensureDataFolderExists();
     }
     
     /**
@@ -99,17 +102,5 @@ public class TuneUp {
      */
     public void displayStudentList(User currentUser, Scanner scanner) {
         profileManager.handleListStudents(currentUser, scanner);
-    }
-    
-    /**
-     * Main method - entry point of the application
-     */
-    public static void main(String[] args) {
-        // Create the facade
-        TuneUp tuneUp = new TuneUp();
-        
-        // Create the UI and start it
-        TerminalUI terminalUI = new TerminalUI(tuneUp);
-        terminalUI.run();
     }
 }

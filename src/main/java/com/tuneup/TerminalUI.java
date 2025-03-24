@@ -4,6 +4,9 @@ import java.util.Scanner;
 
 /**
  * Handles terminal-based user interface for the TuneUp application
+ *  
+ * @author edwinjwood
+ * @author allanpaiz
  */
 public class TerminalUI {
     private TuneUp facade;
@@ -26,7 +29,7 @@ public class TerminalUI {
         User currentUser = null;
         boolean running = true;
 
-        System.out.println("Welcome to TuneUp Terminal Mode");
+        System.out.println("\nWelcome to TuneUp Terminal Mode");
 
         while (running) {
             if (currentUser == null) {
@@ -86,6 +89,8 @@ public class TerminalUI {
     
     /**
      * Display authentication menu and get user choice
+     * 
+     * @return int choice
      */
     private int displayAuthMenu() {
         System.out.println("\n1. Login");
@@ -106,6 +111,9 @@ public class TerminalUI {
     
     /**
      * Display main application menu and get user choice
+     * 
+     * @param currentUser User - the logged in user
+     * @return int choice
      */
     private int displayMainMenu(User currentUser) {
         System.out.println("\nLogged in as: " + currentUser.getUsername() + " (" + currentUser.getRole() + ")");
@@ -179,5 +187,17 @@ public class TerminalUI {
      */
     private void listStudents(User currentUser) {
         facade.displayStudentList(currentUser, scanner);
+    }
+
+    /**
+     * Main method - entry point of the application
+     */
+    public static void main(String[] args) {
+        // Create the facade
+        TuneUp tuneUp = new TuneUp();
+        
+        // Create the UI and run
+        TerminalUI terminalUI = new TerminalUI(tuneUp);
+        terminalUI.run();
     }
 }

@@ -44,7 +44,7 @@ public class User {
     }
 
     // Getters and setters
-    public String getUserId() {
+    public String getId() {
         return id;
     }
 
@@ -101,5 +101,21 @@ public class User {
      */
     public boolean verifyPassword(String password) {
         return PasswordUtils.verifyPassword(password, this.password);
+    }
+
+    /**
+     * Method to return a string representation of the user
+     *  
+     * @return String - user info
+     */
+    @Override
+    public String toString() {
+        return "User{" +
+                "id='" + id + '\'' +
+                ", username='" + username + '\'' +
+                ", email='" + email + '\'' +
+                ", role=" + role +
+                ", experienceLevel=" + experienceLevel +
+                '}';
     }
 }
