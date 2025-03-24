@@ -42,6 +42,12 @@ public class LessonLibrary implements DataConstants {
     private static void loadLessonLibrary() {
         // Load songs using DataLoader
         lessonLibrary = DataLoader.loadLessons();
+
+        // if lessonLibrary is null create an empty list @author allanpaiz
+        if (lessonLibrary == null) {
+            lessonLibrary = new ArrayList<>();
+        }
+        
         isInitialized = true;
     }
 
