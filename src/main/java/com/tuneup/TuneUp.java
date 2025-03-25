@@ -103,4 +103,8 @@ public class TuneUp {
     public void displayStudentList(User currentUser, Scanner scanner) {
         profileManager.handleListStudents(currentUser, scanner);
     }
+
+    public String getUsernameById(String userId) {
+        return profileManager.getUsernameById(userId);
+    }
 }
