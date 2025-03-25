@@ -1,6 +1,7 @@
 [ {
   "title" : "New Song With tempo",
   "creatorId" : "0ea060fa-eaa8-4ba4-8a66-cf1671461397",
+  "artistName" : "edwinjwood",
   "notes" : [ "C4", "C4", "E4", "F4" ],
   "tempo" : 120,
   "timeSignature" : "4/4",
@@ -8,6 +9,7 @@
 }, {
   "title" : "Song with 2 Meas",
   "creatorId" : "0ea060fa-eaa8-4ba4-8a66-cf1671461397",
+  "artistName" : "edwinjwood",
   "notes" : [ "G4", "D4", "A4", "G4", "E4", "A4" ],
   "tempo" : 80,
   "timeSignature" : "3/4",
@@ -15,8 +17,17 @@
 }, {
   "title" : "allan-test",
   "creatorId" : "8bd65b36-e494-4a19-a8f7-b5cc4da57cec",
+  "artistName" : "allan",
   "notes" : [ "C4", "C4", "D4", "C4", "C5", "C5", "C4", "F4", "E4", "C5", "C4", "C5" ],
   "tempo" : 90,
   "timeSignature" : "4/4",
   "id" : "0a7bcd2a-0400-47db-b50a-d4fa8388860f"
+}, {
+  "title" : "test artist",
+  "creatorId" : "0ea060fa-eaa8-4ba4-8a66-cf1671461397",
+  "artistName" : "edwinjwood",
+  "notes" : [ "E4", "F4", "G4", "A4" ],
+  "tempo" : 80,
+  "timeSignature" : "4/4",
+  "id" : "280e4ca6-48df-4305-89cf-4f3ef28f421d"
 } ]
