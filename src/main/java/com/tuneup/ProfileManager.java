@@ -10,7 +10,6 @@ import java.util.stream.Collectors;
  * 
  * @author edwinjwood
  * @author allanpaiz
- * @author jaychubb - role & experienceLevel
  */
 public class ProfileManager implements DataConstants {
     private List<User> profiles;
@@ -110,6 +109,10 @@ public class ProfileManager implements DataConstants {
         System.out.print("Enter email: ");
         String email = scanner.nextLine();
 
+        /**
+         * Choosing role and experience level from enums
+         * @author jaychubb
+         */
         System.out.print("Choose your role: ");
         System.out.println("\n1. Student");
         System.out.println("2. Teacher");

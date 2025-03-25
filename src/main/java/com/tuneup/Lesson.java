@@ -6,7 +6,7 @@ import java.util.UUID;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Lesson Class
+ * Lesson Class - contains lesson information
  * 
  * @author jaychubb
  */
