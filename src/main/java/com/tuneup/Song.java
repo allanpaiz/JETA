@@ -10,6 +10,7 @@ public class Song {
     private String id;
     private String title;
     private String creatorId;
+    private String artistName;
     private List<String> notes;
     private int tempo = 120; // Default tempo (beats per minute)
     private String timeSignature = "4/4"; // Default time signature
@@ -18,6 +19,7 @@ public class Song {
     public Song(
         @JsonProperty("title") String title,
         @JsonProperty("creatorId") String creatorId,
+        @JsonProperty("artistName") String artistName,
         @JsonProperty("notes") List<String> notes,
         @JsonProperty("tempo") Integer tempo,
         @JsonProperty("timeSignature") String timeSignature) {
@@ -25,6 +27,7 @@ public class Song {
         this.id = UUID.randomUUID().toString();
         this.title = title;
         this.creatorId = creatorId;
+        this.artistName = artistName;
         this.notes = notes;
         
         // Set optional properties with defaults if null
@@ -33,8 +36,8 @@ public class Song {
     }
     
     // Simpler constructor for backward compatibility
-    public Song(String title, String creatorId, List<String> notes) {
-        this(title, creatorId, notes, null, null);
+    public Song(String title, String creatorId, String artistName, List<String> notes) {
+        this(title, creatorId, artistName, notes, null, null);
     }
 
     // For Jackson deserialization
@@ -54,6 +57,10 @@ public class Song {
     // Gets the ID of the creator of the song.
     public String getCreatorId() {
         return creatorId;
+    }
+
+    public String getArtistName() {
+        return artistName;
     }
 
     // Gets the notes of the song.
@@ -84,6 +91,10 @@ public class Song {
     // Sets the ID of the creator of the song.
     public void setCreatorId(String creatorId) {
         this.creatorId = creatorId;
+    }
+
+    public void setArtistName(String artistName) {
+        this.artistName = artistName;
     }
 
     // Sets the notes of the song.
