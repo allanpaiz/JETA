@@ -100,26 +100,26 @@ public class SongLibraryMode implements Mode {
      * @param songs List of songs to display
      */
     private void displayAllSongs(List<Song> songs) {
-        System.out.println("\n=== All Songs in Library (Sorted by Title) ===");
-        
+    
         // Print header
-        System.out.println("\n-------------------------------------------------");
-        System.out.printf("%-5s %-25s %-20s\n", "No.", "Title", "Creator Username");
-        System.out.println("-------------------------------------------------");
-        
+        System.out.println("\n=== All Songs in Library (Sorted by Title) ===");
+        System.out.println("\n----------------------------------------------------------------------");
+        System.out.printf("%-5s %-30s %-20s %-20s\n", "No.", "Title", "Artist Name", "Creator Username");
+        System.out.println("----------------------------------------------------------------------");
+
+     
         // Print each song
         for (int i = 0; i < songs.size(); i++) {
             Song song = songs.get(i);
             String creatorUsername = facade.getUsernameById(song.getCreatorId());
-            System.out.printf("%-5d %-25s %-20s\n", 
-                (i+1), 
-                truncate(song.getTitle(), 24), 
+            System.out.printf("%-5d %-30s %-20s %-20s\n",
+                (i + 1),
+                truncate(song.getTitle(), 29),
+                truncate(song.getArtistName(), 19),
                 truncate(creatorUsername, 19));
         }
-        
-        System.out.println("-------------------------------------------------");
-        
-        // Print total number of songs
+
+        System.out.println("----------------------------------------------------------------------");
         System.out.println("\nTotal songs: " + songs.size());
     }
     

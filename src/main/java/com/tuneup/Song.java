@@ -59,6 +59,7 @@ public class Song {
         return creatorId;
     }
 
+    // Gets the name of the artist of the song.
     public String getArtistName() {
         return artistName;
     }

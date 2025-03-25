@@ -107,4 +107,8 @@ public class TuneUp {
     public String getUsernameById(String userId) {
         return profileManager.getUsernameById(userId);
     }
+
+    public List<Song> getAllSongs() {
+        return DataLoader.loadSongs();
+    }
 }
