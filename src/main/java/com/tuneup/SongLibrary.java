@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
+/**
+ * Keeps a 'library' of songs in the system, interacts with the DataLoader/DataWriter to access songs
+ */
 public class SongLibrary implements DataConstants {
     private static List<Song> songLibrary = new ArrayList<>();
     private static boolean isInitialized = false;

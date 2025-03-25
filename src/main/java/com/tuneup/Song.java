@@ -59,6 +59,7 @@ public class Song {
         return creatorId;
     }
 
+    // Gets the name of the artist of the song.
     public String getArtistName() {
         return artistName;
     }
@@ -110,5 +111,27 @@ public class Song {
     // Sets the time signature of the song.
     public void setTimeSignature(String timeSignature) {
         this.timeSignature = timeSignature;
+    }
+
+    /**
+     * Return sheet music tempo notation based on the bpm tempo of the song
+     * @return String tempo
+     * 
+     * @author allanpaiz
+     */
+    public String getTempoNotation() {
+        if (tempo <= 60) {
+            return "Largo";
+        } else if (tempo > 60 && tempo <= 80) {
+            return "Adagio";
+        } else if (tempo > 80 && tempo <= 100) {
+            return "Andante";
+        } else if (tempo > 100 && tempo <= 120) {
+            return "Moderato";
+        } else if (tempo > 120 && tempo <= 160) {
+            return "Allegro";
+        } else {
+            return "Presto";
+        }
     }
 }
