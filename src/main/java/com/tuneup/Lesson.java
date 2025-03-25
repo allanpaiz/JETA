@@ -5,8 +5,7 @@ import java.util.UUID;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/**
- * Lesson Class representing a musical lesson.
+/** Lesson Class representing a musical lesson
  * 
  * @author jaychubb
  */
