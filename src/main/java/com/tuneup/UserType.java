@@ -1,7 +1,7 @@
 package com.tuneup;
 
-/**
- * Defines UserTypes (student, teacher, etc)
+/** Enum representing the type of user in the system (student, teacher, etc)
+ * 
  * @author edwinjwood
  * @author jaychubb
  */
@@ -12,25 +12,26 @@ public enum UserType {
 
     private final String displayName;
 
-    /**
-     * Constructor
-     * @param displayName
+    /** Constructor for UserType.
+     * 
+     * @param displayName The display name of the user type.
      */
     UserType(String displayName) {
         this.displayName = displayName;
     }
 
-    /**
-     * returns display name variable
+    /** Gets the display name of the user type.
+     * 
+     * @return The display name of the user type.
      * @return display name
      */
     public String getDisplayName() {
         return displayName;
     }
 
-    /**
-     * creates String to print enum
-     * @return creates displayable string to show user type
+    /** Returns the string representation of the user type.
+     * 
+     * @return The display name of the user type.
      */
     @Override
     public String toString() {

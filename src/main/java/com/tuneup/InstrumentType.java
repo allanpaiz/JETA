@@ -1,5 +1,8 @@
 package com.tuneup;
 
+/**
+ * Enum representing the piano in the system.
+ */
 public enum InstrumentType {
     PIANO("Piano");
 

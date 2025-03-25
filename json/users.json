@@ -40,4 +40,11 @@
   "email" : "1",
   "role" : "TEACHER",
   "experienceLevel" : "ADVANCED"
+}, {
+  "id" : "3fb698eb-ff0f-47d1-97e9-a6db92bbd67e",
+  "username" : "Tee",
+  "password" : "JW6oZ42Z6klgWKYyAswLkcF33AAt7Hfm477OasyABNU=",
+  "email" : "tee@7.com",
+  "role" : "STUDENT",
+  "experienceLevel" : "ADVANCED"
 } ]

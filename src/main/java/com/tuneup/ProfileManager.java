@@ -292,4 +292,9 @@ public class ProfileManager implements DataConstants {
         System.out.println("\nPress Enter to return to the main menu...");
         scanner.nextLine();
     }
+
+    public String getUsernameById(String userId) {
+        User user = getProfileById(userId);
+        return (user != null) ? user.getUsername() : "Unknown";
+    }
 }
