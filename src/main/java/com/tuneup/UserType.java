@@ -2,7 +2,8 @@ package com.tuneup;
 
 public enum UserType {
     TEACHER("Teacher"),
-    STUDENT("Student");
+    STUDENT("Student"),
+    NULL("Null");
 
     private final String displayName;
 

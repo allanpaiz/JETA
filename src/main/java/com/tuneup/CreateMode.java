@@ -88,7 +88,7 @@ public class CreateMode implements Mode {
         }
         
         // Create the song object with all properties
-        Song newSong = new Song(title, userProfile.getUserId(), notes, tempo, timeSignature);
+        Song newSong = new Song(title, userProfile.getId(), notes, tempo, timeSignature);
         
         // Add song to the library
         SongLibrary.addSong(newSong);

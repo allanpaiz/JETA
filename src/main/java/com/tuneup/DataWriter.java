@@ -28,7 +28,7 @@ public class DataWriter implements DataConstants {
         }
     }
 
-    public static void saveLessons(List<Song> lessons) {
+    public static void saveLessons(List<Lesson> lessons) {
         try (FileWriter fileWriter = new FileWriter(LESSONS_FILE)) {
             writer.writeValue(fileWriter, lessons);
         } catch (IOException e) {
