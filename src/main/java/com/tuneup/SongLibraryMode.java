@@ -1,5 +1,6 @@
 package com.tuneup;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -28,7 +29,8 @@ public class SongLibraryMode implements Mode {
         while (inMode) {
             System.out.println("\nSong Library Options:");
             System.out.println("1. Browse All Songs");
-            System.out.println("2. Return to Main Menu");
+            System.out.println("2. Search by Artist");
+            System.out.println("3. Return to Main Menu");
             System.out.print("Choose an option: ");
             
             try {
@@ -40,6 +42,9 @@ public class SongLibraryMode implements Mode {
                         browseSongs(scanner);
                         break;
                     case 2:
+                        searchSongs(scanner);
+                        break;
+                    case 3:
                         inMode = false;
                         break;
                     default:
@@ -195,5 +200,38 @@ public class SongLibraryMode implements Mode {
             return text;
         }
         return text.substring(0, maxLength - 3) + "...";
+    }
+
+    private void searchSongs(Scanner scanner) {
+        System.out.println("Who would you like to search for?");
+        String artist = scanner.nextLine().trim();
+
+        List<Song> songs = SongLibrary.getSongLibrary();
+        List<Song> songsByArtist = new ArrayList<>();
+        for(int i = 0; i < songs.size(); ++i) {
+            if(songs.get(i).getArtistName().equals(artist)) {
+                songsByArtist.add(songs.get(i));
+            }
+        }
+
+        displayAllSongs(songsByArtist);
+
+        System.out.print("\nEnter the number of a song to play (or 0 to return): ");
+        try {
+            int selection = scanner.nextInt();
+            scanner.nextLine();  // Consume newline
+            
+            if (selection > 0 && selection <= songs.size()) {
+                // Play the selected song
+                playSong(songs.get(selection - 1), scanner);
+            } else if (selection != 0) {
+                System.out.println("Invalid selection.");
+                System.out.println("\nPress Enter to continue...");
+                scanner.nextLine();
+            }
+        } catch (Exception e) {
+            System.out.println("Please enter a valid number.");
+            scanner.nextLine(); // Clear the invalid input
+        }
     }
 }
