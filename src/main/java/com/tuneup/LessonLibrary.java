@@ -4,6 +4,11 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
+/**
+ * LessonLibrary
+ * organizes lessons & interacts with DataReader & DataWriter
+ * @author jaychubb
+ */
 public class LessonLibrary implements DataConstants {
     private static List<Lesson> lessonLibrary = new ArrayList<>();
     private static boolean isInitialized = false; 
@@ -40,10 +45,12 @@ public class LessonLibrary implements DataConstants {
      * Loads lessons from the lessons.json file using DataLoader
      */
     private static void loadLessonLibrary() {
-        // Load songs using DataLoader
+        // Load lessons using DataLoader
         lessonLibrary = DataLoader.loadLessons();
 
-        // if lessonLibrary is null create an empty list @author allanpaiz
+        /** if lessonLibrary is null create an empty list
+         *  @author allanpaiz
+         */  
         if (lessonLibrary == null) {
             lessonLibrary = new ArrayList<>();
         }
@@ -52,14 +59,14 @@ public class LessonLibrary implements DataConstants {
     }
 
     /**
-     * Saves the song library to the songs.json file
+     * Saves the lesson library to the lessons.json file
      */
     private static void saveLessonLibrary() {
         DataWriter.saveLessons(lessonLibrary);
     }
     
     /**
-     * Reloads the song library (useful after external changes)
+     * Reloads the lesson library (useful after external changes)
      */
     public static void refresh() {
         isInitialized = false;

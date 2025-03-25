@@ -41,50 +41,62 @@ public class Song {
     public Song() {
     }
 
+    // Gets the ID of the song.
     public String getId() {
         return id;
     }
-
+    
+    //Gets the title of the song.
     public String getTitle() {
         return title;
     }
 
+    // Gets the ID of the creator of the song.
     public String getCreatorId() {
         return creatorId;
     }
 
+    // Gets the notes of the song.
     public List<String> getNotes() {
         return notes;
     }
     
+    // Gets the tempo of the song.
     public int getTempo() {
         return tempo;
     }
     
+    // Gets the time signature of the song.
     public String getTimeSignature() {
         return timeSignature;
     }
 
+    // Sets the ID of the song.
     public void setId(String id) {
         this.id = id;
     }
 
+    // Sets the title of the song.
     public void setTitle(String title) {
         this.title = title;
     }
 
+    // Sets the ID of the creator of the song.
     public void setCreatorId(String creatorId) {
         this.creatorId = creatorId;
     }
 
+    // Sets the notes of the song.
     public void setNotes(List<String> notes) {
         this.notes = notes;
     }
     
+    // Sets the tempo of the song.
     public void setTempo(int tempo) {
         this.tempo = tempo;
     }
     
+    // Sets the time signature of the song.
     public void setTimeSignature(String timeSignature) {
         this.timeSignature = timeSignature;
     }

@@ -99,16 +99,17 @@ public class SongLibraryMode implements Mode {
         
         // Print header
         System.out.println("\n-------------------------------------------------");
-        System.out.printf("%-5s %-25s %-20s\n", "No.", "Title", "Creator ID");
+        System.out.printf("%-5s %-25s %-20s\n", "No.", "Title", "Creator Username");
         System.out.println("-------------------------------------------------");
         
         // Print each song
         for (int i = 0; i < songs.size(); i++) {
             Song song = songs.get(i);
+            String creatorUsername = facade.getUsernameById(song.getCreatorId());
             System.out.printf("%-5d %-25s %-20s\n", 
                 (i+1), 
                 truncate(song.getTitle(), 24), 
-                truncate(song.getCreatorId(), 19));
+                truncate(creatorUsername, 19));
         }
         
         System.out.println("-------------------------------------------------");
