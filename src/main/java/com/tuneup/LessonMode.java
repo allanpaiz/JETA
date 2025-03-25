@@ -45,9 +45,15 @@ public class LessonMode implements Mode {
         // JavaFX specific code would go here but is commented out for now
     }
     
+    /**
+     * Creates main LessonMode menu in terminal
+     * @param scanner
+     */
     @Override
     public void handleTerminal(Scanner scanner) {
         System.out.println("\n=== Lesson Mode ===");
+        System.out.println("This mode is still in beta. Currently, teachers can only assign lessons.");
+        System.out.println("Students will be able to view their lessons and Teachers will be able to see lessons they've assigned in final version");
         
         boolean inMode = true;
         while (inMode) {
@@ -122,6 +128,7 @@ public class LessonMode implements Mode {
 
     /**
      * Allows Teachers to assign a Lesson
+     * @param scanner allows for user input
      */
     public void assignLesson(Scanner scanner) {
         System.out.println("\n=== Create New Lesson ===");
