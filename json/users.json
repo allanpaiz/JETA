@@ -47,4 +47,11 @@
   "email" : "tee@7.com",
   "role" : "STUDENT",
   "experienceLevel" : "ADVANCED"
+}, {
+  "id" : "0a6d59fb-2dc0-4534-8263-225e1cd0e510",
+  "username" : "ffredrickson",
+  "password" : "JW6oZ42Z6klgWKYyAswLkcF33AAt7Hfm477OasyABNU=",
+  "email" : "FeliciaF@mail.com",
+  "role" : "TEACHER",
+  "experienceLevel" : "ADVANCED"
 } ]
