@@ -30,7 +30,8 @@ public class SongLibraryMode implements Mode {
             System.out.println("\nSong Library Options:");
             System.out.println("1. Browse All Songs");
             System.out.println("2. Search by Artist");
-            System.out.println("3. Return to Main Menu");
+            System.out.println("3. Print a song to text file");
+            System.out.println("4. Return to Main Menu");
             System.out.print("Choose an option: ");
             
             try {
@@ -45,6 +46,9 @@ public class SongLibraryMode implements Mode {
                         searchSongs(scanner);
                         break;
                     case 3:
+                        printSongToFileSelector(scanner);
+                        break;
+                    case 4:
                         inMode = false;
                         break;
                     default:
@@ -94,32 +98,32 @@ public class SongLibraryMode implements Mode {
             scanner.nextLine(); // Clear the invalid input
         }
     }
-    
+
     /**
      * Displays all songs in the library (sorted by title)
      * @param songs List of songs to display
      */
     private void displayAllSongs(List<Song> songs) {
-        System.out.println("\n=== All Songs in Library (Sorted by Title) ===");
-        
+    
         // Print header
-        System.out.println("\n-------------------------------------------------");
-        System.out.printf("%-5s %-25s %-20s\n", "No.", "Title", "Creator Username");
-        System.out.println("-------------------------------------------------");
-        
+        System.out.println("\n=== All Songs in Library (Sorted by Title) ===");
+        System.out.println("\n----------------------------------------------------------------------");
+        System.out.printf("%-5s %-30s %-20s %-20s\n", "No.", "Title", "Artist Name", "Creator Username");
+        System.out.println("----------------------------------------------------------------------");
+
+     
         // Print each song
         for (int i = 0; i < songs.size(); i++) {
             Song song = songs.get(i);
             String creatorUsername = facade.getUsernameById(song.getCreatorId());
-            System.out.printf("%-5d %-25s %-20s\n", 
-                (i+1), 
-                truncate(song.getTitle(), 24), 
+            System.out.printf("%-5d %-30s %-20s %-20s\n",
+                (i + 1),
+                truncate(song.getTitle(), 29),
+                truncate(song.getArtistName(), 19),
                 truncate(creatorUsername, 19));
         }
-        
-        System.out.println("-------------------------------------------------");
-        
-        // Print total number of songs
+
+        System.out.println("----------------------------------------------------------------------");
         System.out.println("\nTotal songs: " + songs.size());
     }
     
@@ -232,6 +236,79 @@ public class SongLibraryMode implements Mode {
         } catch (Exception e) {
             System.out.println("Please enter a valid number.");
             scanner.nextLine(); // Clear the invalid input
+        }
+    }
+
+    /**
+     * Prints a song to a text file
+     * @param scanner Scanner
+     * 
+     * @author allanpaiz
+     */
+    private void printSongToFileSelector(Scanner scanner) {       
+        List<Song> songs = SongLibrary.getSongLibrary();
+        displayAllSongs(songs);
+        System.out.println("\nEnter the number of the song to print (or 0 to return): ");
+
+        try {
+            int selection = scanner.nextInt();
+            scanner.nextLine();
+            
+            if (selection > 0 && selection <= songs.size()) {
+                Song song = songs.get(selection - 1);
+                String filename = song.getTitle() + ".txt";
+                printSongToFile(song, filename);
+                System.out.println("\nPrinted " + song.getTitle() +  " to text file.");
+                System.out.println("Saved to songs/" + filename);
+            } else if (selection != 0) {
+                System.out.println("Invalid selection.");
+            }
+        } catch (Exception e) {
+            System.out.println("Please enter a valid number.");
+            scanner.nextLine();
+        }
+    }
+
+    /**
+     * Prints a song to a text file
+     * @param song Song to print
+     * @param filename String
+     * 
+     * @author allanpaiz
+     */
+    private void printSongToFile(Song song, String filename) {
+        try {
+            List<String> notes = song.getNotes();
+            String timeSignature = song.getTimeSignature();
+            int beatsPerMeasure = Integer.parseInt(timeSignature.split("/")[0]);
+
+            java.io.FileWriter fileWriter = new java.io.FileWriter("./songs/" + filename);
+            java.io.PrintWriter printWriter = new java.io.PrintWriter(fileWriter);
+
+            printWriter.println(song.getTitle());
+            printWriter.println("by " + song.getArtistName());
+            printWriter.println();
+            printWriter.println("Tempo: " + song.getTempo());
+            printWriter.println("Time Signature: " + timeSignature);
+            printWriter.println();
+            printWriter.println(song.getTempoNotation());
+
+            for (int i = 0; i < notes.size(); i += beatsPerMeasure) {
+                printWriter.print("Measure " + (i / beatsPerMeasure + 1) + ": ");
+                for (int j = 0; j < beatsPerMeasure; j++) {
+                    if (i + j < notes.size()) {
+                        printWriter.print(notes.get(i + j) + " ");
+                    }
+                }
+                printWriter.println();
+            }
+
+            printWriter.println();
+            String creatorUsername = facade.getUsernameById(song.getCreatorId());
+            printWriter.println("Uploaded by: " + creatorUsername);
+            printWriter.close();
+        } catch (java.io.IOException e) {
+            System.out.println("Error writing to file: " + filename);
         }
     }
 }

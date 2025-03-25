@@ -1,0 +1,12 @@
+allan-test
+by allan
+
+Tempo: 90
+Time Signature: 4/4
+
+Andante
+Measure 1: C4 C4 D4 C4 
+Measure 2: C5 C5 C4 F4 
+Measure 3: E4 C5 C4 C5 
+
+Uploaded by: allan
