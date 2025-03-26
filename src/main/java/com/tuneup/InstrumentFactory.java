@@ -2,6 +2,8 @@ package com.tuneup;
 
 /**
  * InstrumentFactory class that creates instances of InstrumentStrategy based on the provided InstrumentType.
+ * 
+ * @author edwinjwood
  */
 public class InstrumentFactory {
 

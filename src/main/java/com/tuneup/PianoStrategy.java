@@ -6,12 +6,21 @@ import javax.sound.midi.MidiSystem;
 import javax.sound.midi.MidiUnavailableException;
 import javax.sound.midi.Synthesizer;
 
+/**
+ * PianoStrategy - creates the piano instrument that can then be played using the different modes
+ * 
+ * @author edwinjwood
+ * @author jaychubb - javadoc
+ */
 public class PianoStrategy implements InstrumentStrategy {
     private static final int PIANO_INSTRUMENT = 0;
     private Synthesizer synth;
     private MidiChannel[] channels;
     private int currentNote = -1; // Track the currently playing note
 
+    /**
+     * PianoStrategy constructor
+     */
     public PianoStrategy() {
         try {
             synth = MidiSystem.getSynthesizer();
@@ -24,11 +33,19 @@ public class PianoStrategy implements InstrumentStrategy {
         }
     }
 
+    /**
+     * Playing the instrument
+     */
     @Override
     public void play() {
         // Implementation for playing the instrument
     }
 
+    /**
+     * playing a ceratin note (akin to pressing a key on the piano)
+     * 
+     * @param String dictates which note to play
+     */
     @Override
     public void playNote(String note) {
         int midiNote = getMidiNote(note);
@@ -37,6 +54,9 @@ public class PianoStrategy implements InstrumentStrategy {
         channels[0].noteOn(midiNote, 100);
     }
 
+    /**
+     * stops the current note being played
+     */
     @Override
     public void stop() {
         if (currentNote != -1) {

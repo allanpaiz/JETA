@@ -43,51 +43,98 @@ public class User {
         setExperienceLevel(experienceLevel);
     }
 
-    // Getters and setters
+    /**
+     * returns id
+     * @return String id
+     */
     public String getId() {
         return id;
     }
 
+    /**
+     * sets id value
+     * @param id
+     */
     public void setId(String id) {
         this.id = id;
     }
 
+    /**
+     * returns the user's username
+     * @return String username
+     */
     public String getUsername() {
         return username;
     }
 
+    /**
+     * sets username
+     * @param username
+     */
     public void setUsername(String username) {
         this.username = username;
     }
 
+    /**
+     * returns the user's hashed password
+     * @return String hashed password
+     */
     public String getPassword() {
         return password;
     }
 
+    /**
+     * set password (already hashed)
+     * @param password
+     */
     public void setPassword(String password) {
         this.password = password;
     }
 
+    /**
+     * returns email
+     * @return String email address
+     */
     public String getEmail() {
         return email;
     }
 
+    /**
+     * sets email
+     * @param email
+     */
     public void setEmail(String email) {
         this.email = email;
     }
 
+    /**
+     * returns UserType enum of role
+     * @return UserType role
+     */
     public UserType getRole() {
         return role;
     }
 
+    /**
+     * sets role to one of the enum UserType roles
+     * @param role
+     */
     public void setRole(UserType role) {
         this.role = role;
     }
 
+    /**
+     * returns ExperienceLevel enum of level
+     * @return ExperienceLevel level
+     */
     public ExperienceLevel getExperienceLevel() {
         return experienceLevel;
     }
 
+    /**
+     * sets experience level to one of the enum ExperienceLevel levels
+     * @param experienceLevel
+     */
     public void setExperienceLevel(ExperienceLevel experienceLevel) {
         this.experienceLevel = experienceLevel;
     }
@@ -96,7 +143,6 @@ public class User {
      * Method to verify the user's password
      * 
      * @param password String - plain text password
-     * 
      * @return boolean - true if the password is correct
      */
     public boolean verifyPassword(String password) {
