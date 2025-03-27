@@ -2,22 +2,33 @@ package com.tuneup;
 
 import java.util.Scanner;
 
+/**
+ *  PlayMode acts as a sandbox for users to play musical instruments.
+ * 
+ * @author edwinjwood
+ */
 public class PlayMode implements Mode {
     private User userProfile;
-    private TuneUp facade;
+    // private TuneUp facade;
     
     // Constructor for terminal mode
     public PlayMode(User userProfile, TuneUp facade) {
         this.userProfile = userProfile;
-        this.facade = facade;
+        // this.facade = facade;
     }
 
+    /**
+     * Placeholder method for GUI implementation
+     */
     @Override
     public void handle() {
         // Placeholder for GUI implementation
         System.out.println("Play mode activated for user: " + userProfile.getUsername());
     }
     
+    /**
+     * Handles the Play Mode for the terminal application
+     */
     @Override
     public void handleTerminal(Scanner scanner) {
         System.out.println("\n=== Play Mode ===");
@@ -32,7 +43,7 @@ public class PlayMode implements Mode {
             
             try {
                 int choice = scanner.nextInt();
-                scanner.nextLine();  // Consume newline
+                scanner.nextLine();
                 
                 switch (choice) {
                     case 1:
@@ -46,13 +57,14 @@ public class PlayMode implements Mode {
                 }
             } catch (Exception e) {
                 System.out.println("Please enter a valid number.");
-                scanner.nextLine(); // Clear the invalid input
+                scanner.nextLine();
             }
         }
     }
     
     /**
      * Plays the selected instrument with just four notes
+     * 
      * @param instrument The instrument strategy to use
      * @param scanner Scanner for user input
      */
@@ -69,7 +81,7 @@ public class PlayMode implements Mode {
             try {
                 System.out.print("Select a note to play (1-4) or exit (5): ");
                 int choice = scanner.nextInt();
-                scanner.nextLine();  // Consume newline
+                scanner.nextLine();
                 
                 switch (choice) {
                     case 1:
@@ -97,7 +109,7 @@ public class PlayMode implements Mode {
                 }
             } catch (Exception e) {
                 System.out.println("Please enter a valid number.");
-                scanner.nextLine(); // Clear the invalid input
+                scanner.nextLine();
             }
         }
     }
@@ -116,6 +128,7 @@ public class PlayMode implements Mode {
     
     /**
      * Plays a specific note using the provided instrument strategy
+     * 
      * @param note The note to play
      * @param instrument The instrument strategy to use
      */
