@@ -6,6 +6,7 @@ import java.util.Scanner;
  *  PlayMode acts as a sandbox for users to play musical instruments.
  * 
  * @author edwinjwood
+ * @author Terdoo
  */
 public class PlayMode implements Mode {
     private User userProfile;
@@ -18,7 +19,8 @@ public class PlayMode implements Mode {
     }
 
     /**
-     * Placeholder method for GUI implementation
+     * Placeholder method for GUI implementation.
+     * This method is intended to be implemented for graphical user interface interactions.
      */
     @Override
     public void handle() {
@@ -27,7 +29,9 @@ public class PlayMode implements Mode {
     }
     
     /**
-     * Handles the Play Mode for the terminal application
+     * Handles the Play Mode for the terminal application.
+     * 
+     * @param scanner A {@link Scanner} object for reading user input from the terminal.
      */
     @Override
     public void handleTerminal(Scanner scanner) {
@@ -63,14 +67,14 @@ public class PlayMode implements Mode {
     }
     
     /**
-     * Plays the selected instrument with just four notes
+     * Plays the selected instrument with a limited set of notes.
      * 
-     * @param instrument The instrument strategy to use
-     * @param scanner Scanner for user input
+     * @param instrument The {@link InstrumentStrategy} to use for playing the instrument.
+     * @param scanner A {@link Scanner} object for reading user input from the terminal.
      */
     private void playInstrument(InstrumentStrategy instrument, Scanner scanner) {
         System.out.println("\n=== Piano Playing Mode ===");
-        System.out.println("You can now play notes on the piano!");
+        System.out.println("You can play the following notes:");
         
         // Keep playing until user chooses to exit
         boolean playing = true;
@@ -115,7 +119,7 @@ public class PlayMode implements Mode {
     }
     
     /**
-     * Displays the available note options
+     * Displays the available note options for the user to play.
      */
     private void showNoteMenu() {
         System.out.println("\nAvailable Notes:");
@@ -129,7 +133,7 @@ public class PlayMode implements Mode {
     /**
      * Plays a specific note using the provided instrument strategy
      * 
-     * @param note The note to play
+     * @param note The note to play (e.g., "C4", "C5")
      * @param instrument The instrument strategy to use
      */
     private void playNote(String note, InstrumentStrategy instrument) {
@@ -143,7 +147,7 @@ public class PlayMode implements Mode {
             e.printStackTrace();
         }
         
-        // Stop the note
+        // Stops the note
         instrument.stop();
     }
 }
