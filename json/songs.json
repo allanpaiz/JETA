@@ -1,16 +1,82 @@
 [ {
-  "title" : "New Song",
+  "title" : "wildflower",
   "creatorId" : "0ea060fa-eaa8-4ba4-8a66-cf1671461397",
-  "notes" : [ "C4", "G4", "A4" ],
-  "id" : "8d644b37-e274-4e9f-84bf-0e0b414495e9"
+  "artistName" : "edwinjwood",
+  "notes" : [ "C4", "C4", "E4", "F4" ],
+  "tempo" : 120,
+  "timeSignature" : "4/4",
+  "id" : "c4d5bb8c-a5fe-4fb3-ac8b-df134c08bc69",
+  "tempoNotation" : "Moderato"
 }, {
-  "title" : "New Song 2",
+  "title" : "Songs of the heart",
   "creatorId" : "0ea060fa-eaa8-4ba4-8a66-cf1671461397",
-  "notes" : [ "C4", "C4", "D4", "C4", "F4", "E4" ],
-  "id" : "4ffc5caf-ad12-4b6f-8181-1638bd1846e0"
+  "artistName" : "edwinjwood",
+  "notes" : [ "G4", "D4", "A4", "G4", "E4", "A4" ],
+  "tempo" : 80,
+  "timeSignature" : "3/4",
+  "id" : "d848e43a-1c21-4829-843c-4e9d679b8ebd",
+  "tempoNotation" : "Adagio"
 }, {
-  "title" : "New Song 3",
+  "title" : "allan-test",
+  "creatorId" : "8bd65b36-e494-4a19-a8f7-b5cc4da57cec",
+  "artistName" : "allan",
+  "notes" : [ "C4", "C4", "D4", "C4", "C5", "C5", "C4", "F4", "E4", "C5", "C4", "C5" ],
+  "tempo" : 90,
+  "timeSignature" : "4/4",
+  "id" : "0a7bcd2a-0400-47db-b50a-d4fa8388860f",
+  "tempoNotation" : "Andante"
+}, {
+  "title" : "midnight dance",
   "creatorId" : "0ea060fa-eaa8-4ba4-8a66-cf1671461397",
-  "notes" : [ "C5", "G4", "F4", "C4", "B4", "G4" ],
-  "id" : "fe927079-83af-495e-9333-035c14100403"
+  "artistName" : "edwinjwood",
+  "notes" : [ "E4", "F4", "G4", "A4" ],
+  "tempo" : 80,
+  "timeSignature" : "4/4",
+  "id" : "280e4ca6-48df-4305-89cf-4f3ef28f421d",
+  "tempoNotation" : "Adagio"
+}, {
+  "title" : "I Won't Back Down",
+  "creatorId" : "0a6d59fb-2dc0-4534-8263-225e1cd0e510",
+  "artistName" : "Tom Petty",
+  "notes" : [ "G4", "D4", "A4", "G4" ],
+  "tempo" : 80,
+  "timeSignature" : "4/4",
+  "id" : "280e7ca6-48df-4305-89cf-4r3ef29f421d",
+  "tempoNotation" : "Adagio"
+}, {
+  "title" : "Mary jane's last dance",
+  "creatorId" : "0a6d59fb-2dc0-4534-8263-225e1cd0e510",
+  "artistName" : "Tom Petty",
+  "notes" : [ "E4", "F4", "G4", "A4" ],
+  "tempo" : 80,
+  "timeSignature" : "4/4",
+  "id" : "380e6ca6-48df-4305-89cf-4f3ef24f421d",
+  "tempoNotation" : "Adagio"
+}, {
+  "title" : "Free Fallin'",
+  "creatorId" : "0a6d59fb-2dc0-4534-8263-225e1cd0e510",
+  "artistName" : "Tom Petty",
+  "notes" : [ "C4", "C4", "E4", "F4" ],
+  "tempo" : 120,
+  "timeSignature" : "4/4",
+  "id" : "280e4ca6-48df-4305-89cf-4f3ef28f422d",
+  "tempoNotation" : "Moderato"
+}, {
+  "title" : "dancing wild",
+  "creatorId" : "3fb698eb-ff0f-47d1-97e9-a6db92bbd67e",
+  "artistName" : "Tee",
+  "notes" : [ "C4", "D4", "E4", "F4", "G4", "B4" ],
+  "tempo" : 120,
+  "timeSignature" : "6/8",
+  "id" : "93db70da-468d-4343-b006-626174eb0677",
+  "tempoNotation" : "Moderato"
+}, {
+  "title" : "A horses journey",
+  "creatorId" : "0a6d59fb-2dc0-4534-8263-225e1cd0e510",
+  "artistName" : "ffredrickson",
+  "notes" : [ "C4", "D4", "F4", "D4", "E4", "F4", "A4", "F4" ],
+  "tempo" : 90,
+  "timeSignature" : "4/4",
+  "id" : "15fcc85a-93ea-458d-a791-71043bb543b8",
+  "tempoNotation" : "Andante"
 } ]
