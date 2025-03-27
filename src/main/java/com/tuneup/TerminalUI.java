@@ -6,7 +6,7 @@ import java.util.Scanner;
  * Handles terminal-based user interface for the TuneUp application
  *  
  * @author edwinjwood
- * @author allanpaiz
+ * @author allanpaiz - added main method / javadoc
  */
 public class TerminalUI {
     private TuneUp facade;
@@ -100,11 +100,11 @@ public class TerminalUI {
         
         try {
             int choice = scanner.nextInt();
-            scanner.nextLine();  // Consume newline
+            scanner.nextLine();
             return choice;
         } catch (Exception e) {
             System.out.println("Please enter a valid number.");
-            scanner.nextLine(); // Clear the invalid input
+            scanner.nextLine();
             return 0; // Invalid choice
         }
     }
@@ -123,24 +123,26 @@ public class TerminalUI {
         System.out.println("3. Lesson Mode");
         System.out.println("4. Create Mode");
         System.out.println("5. View Profile");
-        System.out.println("6. List Students"); // Only relevant for teachers
+        System.out.println("6. List Students");
         System.out.println("7. Logout");
         System.out.println("8. Exit");
         System.out.print("Choose an option: ");
         
         try {
             int choice = scanner.nextInt();
-            scanner.nextLine();  // Consume newline
+            scanner.nextLine();
             return choice;
         } catch (Exception e) {
             System.out.println("Please enter a valid number.");
-            scanner.nextLine(); // Clear the invalid input
+            scanner.nextLine();
             return 0; // Invalid choice
         }
     }
     
     /**
      * Activate Play Mode
+     * 
+     * @param currentUser User
      */
     private void activatePlayMode(User currentUser) {
         Mode playMode = new PlayMode(currentUser, facade);
@@ -149,6 +151,8 @@ public class TerminalUI {
     
     /**
      * Activate Song Library
+     * 
+     * @param currentUser User
      */
     private void activateSongLibrary(User currentUser) {
         Mode songLibraryMode = new SongLibraryMode(currentUser, facade);
@@ -157,6 +161,8 @@ public class TerminalUI {
     
     /**
      * Activate Lesson Mode
+     * 
+     * @param currentUser User
      */
     private void activateLessonMode(User currentUser) {
         Mode lessonMode = new LessonMode(currentUser, facade);
@@ -165,6 +171,8 @@ public class TerminalUI {
     
     /**
      * Activate Create Mode
+     * 
+     * @param currentUser User
      */
     private void activateCreateMode(User currentUser) {
         Mode createMode = new CreateMode(currentUser, facade);
@@ -173,6 +181,8 @@ public class TerminalUI {
     
     /**
      * View user profile
+     * 
+     * @param currentUser User
      */
     private void viewProfile(User currentUser) {
         String profileInfo = facade.getProfileDisplay(currentUser);
@@ -184,6 +194,8 @@ public class TerminalUI {
     
     /**
      * List students (teacher only)
+     * 
+     * @param currentUser User
      */
     private void listStudents(User currentUser) {
         facade.displayStudentList(currentUser, scanner);
