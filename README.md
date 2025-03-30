@@ -26,11 +26,7 @@ Watch the phase 1 of development video below:
 
 
 ## Authors
-- JETA Team
-Jay Chubb
-Edwin Wood
-Terdoo Achu
-Allan Paiz
+- JETA Team: Jay Chubb, Edwin Wood, Terdoo Achu, Allan Paiz
 
 ## Contact
 For any inquiries or feedback, please contact us at [support@tuneup.com](mailto:support@tuneup.com)..
