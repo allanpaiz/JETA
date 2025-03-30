@@ -6,6 +6,7 @@ module com.tuneup {
     requires com.fasterxml.jackson.annotation;
     requires com.fasterxml.jackson.databind;
     requires com.fasterxml.jackson.core;
+    requires junit;
 
     opens com.tuneup to javafx.controls;
     exports com.tuneup;
