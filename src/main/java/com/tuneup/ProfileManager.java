@@ -23,6 +23,16 @@ public class ProfileManager implements DataConstants {
     }
     
     /**
+     * Testing constructor that initializes profiles
+     * @param users List<User>
+     * 
+     * @author allanpaiz
+     */
+    public ProfileManager(List<User> users) {
+        this.profiles = users;
+    }
+    
+    /**
      * Loads profiles from json file via DataLoader
      */
     private void loadProfiles() {
@@ -251,7 +261,26 @@ public class ProfileManager implements DataConstants {
         saveProfiles();
         return true;
     }
-    
+
+    /**
+     * Test addProfile(), does not saveProfiles()
+     * 
+     * @param user User
+     * @return True if added successfully, false if username exists
+     * 
+     * @author allanpaiz
+     */
+    public boolean addProfileTest(User user) {
+        if (getProfile(user.getUsername()) != null) {
+            return false; // Username already exists
+        }
+
+        profiles.add(user);
+        // saveProfiles();
+        return true;
+    }
+
+
     /**
      * Save profiles to json file via DataWriter
      */
@@ -265,11 +294,9 @@ public class ProfileManager implements DataConstants {
      * @return List<User> with role "Student"
      */
     public List<User> getAllStudents() {
-        return profiles.stream()
-            .filter(user -> user.getRole().equals("Student"))
-            .collect(Collectors.toList());
+        return profiles.stream().filter(user -> user.getRole() == UserType.STUDENT).collect(Collectors.toList());
     }
-    
+
     /**
      * Get all students by experience level
      * 
@@ -277,10 +304,8 @@ public class ProfileManager implements DataConstants {
      * @return List<User> with role "Student" and matching experience level
      */
     public List<User> getStudentsByExperienceLevel(ExperienceLevel experienceLevel) {
-        return profiles.stream()
-            .filter(user -> user.getRole().equals("Student") && 
-                   user.getExperienceLevel() == experienceLevel)
-            .collect(Collectors.toList());
+        return profiles.stream().filter(user -> user.getRole() == UserType.STUDENT && 
+                   user.getExperienceLevel() == experienceLevel).collect(Collectors.toList());
     }
 
     /**
@@ -291,7 +316,7 @@ public class ProfileManager implements DataConstants {
      * @return Formatted string with student list or access denied message
      */
     public String displayStudentList(User currentUser) {
-        if (currentUser == null || !currentUser.getRole().equals("Teacher")) {
+        if (currentUser == null || currentUser.getRole() != UserType.TEACHER) {
             return "This option is only available to teachers.";
         }
         
