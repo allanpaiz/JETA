@@ -7,10 +7,13 @@ import javax.sound.midi.MidiUnavailableException;
 import javax.sound.midi.Synthesizer;
 
 /**
- * PianoStrategy - creates the piano instrument that can then be played using the different modes
+ * PianoStrategy - creates the piano instrument that can then be played using the different modes.
+ * This class implements the {@link InstrumentStrategy} interface and provides functionality
+ * for playing piano notes using MIDI.
  * 
  * @author edwinjwood
  * @author jaychubb - javadoc
+ * @author Terdoo - javadoc
  */
 public class PianoStrategy implements InstrumentStrategy {
     private static final int PIANO_INSTRUMENT = 0;
@@ -19,7 +22,8 @@ public class PianoStrategy implements InstrumentStrategy {
     private int currentNote = -1; // Track the currently playing note
 
     /**
-     * PianoStrategy constructor
+     * Constructor for PianoStrategy.
+     * Initializes the MIDI synthesizer and loads the piano instrument.
      */
     public PianoStrategy() {
         try {
@@ -34,7 +38,8 @@ public class PianoStrategy implements InstrumentStrategy {
     }
 
     /**
-     * Playing the instrument
+     * Plays the instrument.
+     * This method is currently a placeholder for future implementation.
      */
     @Override
     public void play() {
@@ -42,9 +47,9 @@ public class PianoStrategy implements InstrumentStrategy {
     }
 
     /**
-     * playing a ceratin note (akin to pressing a key on the piano)
+     * Plays a specific note on the piano (akin to pressing a key on the piano).
      * 
-     * @param String dictates which note to play
+     * @param note The note to play (e.g., "C4", "D#5").
      */
     @Override
     public void playNote(String note) {
@@ -55,7 +60,7 @@ public class PianoStrategy implements InstrumentStrategy {
     }
 
     /**
-     * stops the current note being played
+     * Stops the currently playing note.
      */
     @Override
     public void stop() {
@@ -66,9 +71,11 @@ public class PianoStrategy implements InstrumentStrategy {
     }
 
     /**
-     * Converts a note name (e.g., "C4", "D4") to a MIDI note number
-     * @param note The note name
-     * @return The MIDI note number
+     * Converts a note name (e.g., "C4", "D4") to a MIDI note number.
+     * 
+     * @param note The note name to convert.
+     * @return The MIDI note number corresponding to the given note name.
+     *         Defaults to middle C (60) if the note is invalid.
      */
     private int getMidiNote(String note) {
         // Basic structure of a MIDI octave: C, C#, D, D#, E, F, F#, G, G#, A, A#, B
@@ -83,8 +90,8 @@ public class PianoStrategy implements InstrumentStrategy {
         int octave = 4; // Default to middle octave
         
         // Get the octave if specified
-        if (note.length() > 1 && Character.isDigit(note.charAt(note.length()-1))) {
-            octave = Character.getNumericValue(note.charAt(note.length()-1));
+        if (note.length() > 1 && Character.isDigit(note.charAt(note.length() - 1))) {
+            octave = Character.getNumericValue(note.charAt(note.length() - 1));
         }
         
         // Check if it's a sharp note
@@ -114,7 +121,8 @@ public class PianoStrategy implements InstrumentStrategy {
     }
 
     /**
-     * Closes the synthesizer to free resources
+     * Closes the synthesizer to free resources.
+     * Ensures that the synthesizer is properly closed if it is open.
      */
     public void close() {
         if (synth != null && synth.isOpen()) {

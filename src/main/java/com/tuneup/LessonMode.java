@@ -1,26 +1,27 @@
 package com.tuneup;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
-// import javafx.stage.Stage;  // Comment out JavaFX import
 import java.util.Scanner;
+// import java.util.Comparator;
+// import javafx.stage.Stage;
 
 /**
  * Lesson Mode
- * Allows students to view assigned lessonsn & teachers to assign lessons
+ * Allows students to view assigned lessons & teachers to assign lessons
+ * 
  * @author edwinjwood
  * @author jaychubb
  */
 public class LessonMode implements Mode {
     private User userProfile;
-    private TuneUp facade;
-    private static List<Lesson> lessonLibrary = new ArrayList<>();
-    private static boolean isInitialized = false;
-    // private Stage stage;      // Comment out JavaFX field
-    // private TuneUpUI tuneUpUI;  // Comment out JavaFX field
+    // private TuneUp facade;
+    // private static List<Lesson> lessonLibrary = new ArrayList<>();
+    // private static boolean isInitialized = false;
+    // private Stage stage;
+    // private TuneUpUI tuneUpUI;
 
-    /* Comment out GUI constructor
+    /*
     // Constructor for GUI mode
     public LessonMode(User userProfile, TuneUp facade, Stage stage, TuneUpUI tuneUpUI) {
         this.userProfile = userProfile;
@@ -33,20 +34,23 @@ public class LessonMode implements Mode {
     // Constructor for terminal mode
     public LessonMode(User userProfile, TuneUp facade) {
         this.userProfile = userProfile;
-        this.facade = facade;
-        // this.stage = null;      // Comment out JavaFX reference
-        // this.tuneUpUI = null;   // Comment out JavaFX reference
+        // this.facade = facade;
+        // this.stage = null;
+        // this.tuneUpUI = null;
     }
 
+    /**
+     * Activates Lesson Mode
+     */
     @Override
     public void handle() {
         // Implement the lesson functionality here for GUI - placeholder only
         System.out.println("Lesson mode activated for user: " + userProfile.getUsername());
-        // JavaFX specific code would go here but is commented out for now
     }
     
     /**
      * Creates main LessonMode menu in terminal
+     * 
      * @param scanner
      */
     @Override
@@ -67,7 +71,7 @@ public class LessonMode implements Mode {
                 System.out.print("Choose an option: ");
             
                 int choice = scanner.nextInt();
-                scanner.nextLine();  // Consume newline
+                scanner.nextLine();
             
                 switch (choice) {
                     case 1:
@@ -97,7 +101,7 @@ public class LessonMode implements Mode {
                 System.out.print("Choose an option: ");
             
                 int choice = scanner.nextInt();
-                scanner.nextLine();  // Consume newline
+                scanner.nextLine();
             
                 switch (choice) {
                     case 1:
@@ -128,6 +132,7 @@ public class LessonMode implements Mode {
 
     /**
      * Allows Teachers to assign a Lesson
+     * 
      * @param scanner allows for user input
      */
     public void assignLesson(Scanner scanner) {
@@ -159,7 +164,7 @@ public class LessonMode implements Mode {
         Song selectedSong = null;
         try {
             int selection = scanner.nextInt();
-            scanner.nextLine();  // Consume newline
+            scanner.nextLine();
             
             if (selection > 0 && selection <= songs.size()) {
                 // Chose this song
@@ -171,7 +176,7 @@ public class LessonMode implements Mode {
             }
         } catch (Exception e) {
             System.out.println("Please enter a valid number.");
-            scanner.nextLine(); // Clear the invalid input
+            scanner.nextLine();
         }
 
         System.out.println("Would you like to assign this lesson to a specific experience level? (Y/N): ");
@@ -186,7 +191,7 @@ public class LessonMode implements Mode {
             System.out.print("Choose an option: ");
             
             int choice = scanner.nextInt();
-            scanner.nextLine();  // Consume newline
+            scanner.nextLine();
             
             switch (choice) {
                 case 1:
@@ -223,6 +228,7 @@ public class LessonMode implements Mode {
 
     /**
      * Displays all songs in the library (sorted by title) to choose one for a Lesson
+     * 
      * @param songs List of songs to display
      */
     private void displayAllSongs(List<Song> songs) {
@@ -250,6 +256,7 @@ public class LessonMode implements Mode {
 
     /**
      * Truncates a string if it's longer than the specified length
+     * 
      * @param text The text to truncate
      * @param maxLength The maximum length
      * @return Truncated string
@@ -260,6 +267,4 @@ public class LessonMode implements Mode {
         }
         return text.substring(0, maxLength - 3) + "...";
     }
-
-
 }

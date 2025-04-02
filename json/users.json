@@ -1,22 +1,57 @@
 [ {
-  "id" : "908c513e-f599-4ecb-bf94-c6254395d47a",
-  "username" : "Stu",
-  "password" : "+trznCqSZlnyazco/9ecLGOVXjGxZrqTaDQ4bxRBP6Q=",
-  "email" : "e@e.com",
+  "id" : "1",
+  "username" : "student1",
+  "password" : "ffhcUYEzfA3b0x3W80BM3akLW/uiK1IJu3b4znxC5BA=",
+  "email" : "student1@test.com",
+  "role" : "STUDENT",
+  "experienceLevel" : "BEGINNER"
+}, {
+  "id" : "2",
+  "username" : "student2",
+  "password" : "/vIbi/6Ascc+GJ6hVxXOGm7op8WfN0rqPkHObfsVYZg=",
+  "email" : "student2@test.com",
   "role" : "STUDENT",
   "experienceLevel" : "INTERMEDIATE"
 }, {
-  "id" : "0a6d59fb-2dc0-4534-8263-225e1cd0e510",
-  "username" : "ffredrickson",
-  "password" : "JW6oZ42Z6klgWKYyAswLkcF33AAt7Hfm477OasyABNU=",
-  "email" : "FeliciaF@mail.com",
+  "id" : "3",
+  "username" : "student3",
+  "password" : "mYCa+OBqFvsc/Cky58un57mYL38XCzY78R+5K9D9P6w=",
+  "email" : "student3@test.com",
+  "role" : "STUDENT",
+  "experienceLevel" : "ADVANCED"
+}, {
+  "id" : "4",
+  "username" : "teacher1",
+  "password" : "aGbOVlTosTs4NERrPFBm+Hof4TluTVtfNmvZtfIkAm0=",
+  "email" : "teacher1@test.com",
   "role" : "TEACHER",
   "experienceLevel" : "ADVANCED"
 }, {
-  "id" : "e6561dbd-6080-401c-aea5-9a9dd77616de",
-  "username" : "ffred",
-  "password" : "JW6oZ42Z6klgWKYyAswLkcF33AAt7Hfm477OasyABNU=",
-  "email" : "f@email.com",
+  "id" : "cd467a3d-2286-49ba-8b11-492dc773b7fa",
+  "username" : "newstudent",
+  "password" : "Ikw8M68rvh65RYwx/SphdYwSHD+jjEUqzNK7sx508mo=",
+  "email" : "newstudent@test.com",
+  "role" : "STUDENT",
+  "experienceLevel" : "BEGINNER"
+}, {
+  "id" : "52403c14-a174-4c6e-b972-ac7051dc4e42",
+  "username" : "newteacher",
+  "password" : "Ikw8M68rvh65RYwx/SphdYwSHD+jjEUqzNK7sx508mo=",
+  "email" : "newteacher@test.com",
+  "role" : "TEACHER",
+  "experienceLevel" : "ADVANCED"
+}, {
+  "id" : "1a265a94-535e-40d0-9742-e440d8137d05",
+  "username" : "testRole",
+  "password" : "Ikw8M68rvh65RYwx/SphdYwSHD+jjEUqzNK7sx508mo=",
+  "email" : "testRole@test.com",
+  "role" : "STUDENT",
+  "experienceLevel" : "BEGINNER"
+}, {
+  "id" : "42579581-7d5e-457b-8ae5-944888ed413c",
+  "username" : "testExperience",
+  "password" : "Ikw8M68rvh65RYwx/SphdYwSHD+jjEUqzNK7sx508mo=",
+  "email" : "testExperience@test.com",
   "role" : "STUDENT",
   "experienceLevel" : "BEGINNER"
 } ]
