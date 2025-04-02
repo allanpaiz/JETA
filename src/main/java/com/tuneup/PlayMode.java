@@ -130,13 +130,13 @@ public class PlayMode implements Mode {
         System.out.println("5. Exit to instrument selection");
     }
     
-    /**
+   /**
      * Plays a specific note using the provided instrument strategy
      * 
      * @param note The note to play (e.g., "C4", "C5")
      * @param instrument The instrument strategy to use
      */
-    private void playNote(String note, InstrumentStrategy instrument) {
+     public void playNote(String note, InstrumentStrategy instrument) {
         System.out.println("Playing " + note);
         instrument.playNote(note);
         
