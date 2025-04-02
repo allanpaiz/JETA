@@ -232,7 +232,7 @@ public class CreateMode implements Mode {
      * @param timeSignature The time signature string
      * @return Number of beats per measure
      */
-    private int getBeatsPerMeasure(String timeSignature) {
+    public int getBeatsPerMeasure(String timeSignature) {
         // Extract the numerator from time signature (e.g., "4" from "4/4")
         try {
             return Integer.parseInt(timeSignature.split("/")[0]);
@@ -423,7 +423,7 @@ public class CreateMode implements Mode {
      * @param note The note to validate
      * @return true if valid, false otherwise
      */
-    private boolean isValidNote(String note) {
+    public boolean isValidNote(String note) {
         for (String validNote : VALID_NOTES) {
             if (validNote.equalsIgnoreCase(note)) {
                 return true;

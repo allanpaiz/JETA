@@ -6,6 +6,9 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 
+/**
+ * Tested by JChubb
+ */
 public class UserTest {
     public User testUser = new User("023", "ffred", "JW6oZ42Z6klgWKYyAswLkcF33AAt7Hfm477OasyABNU=", "ffred@email.com", UserType.STUDENT, ExperienceLevel.INTERMEDIATE);
 
@@ -23,16 +26,12 @@ public class UserTest {
 
     @Test
     public void testSetUsernameString() {
-        String username = "bob";
-        
-        testUser.setUsername(username);
+        testUser.setUsername("bob");
         assertTrue(testUser.getUsername().equals("bob"));
     }
     @Test
     public void testSetUsernameEmpty() {
-        String username = "";
-
-        testUser.setUsername(username);
+        testUser.setUsername("");
         assertFalse(testUser.getUsername().equals(""));
     }
     
@@ -62,6 +61,7 @@ public class UserTest {
         assertFalse(testUser.getPassword().equals(""));
     }
     
+    // emails are generally not case sensitive
     @Test
     public void testEmailCaptialization() {
         assertTrue(testUser.getEmail().equals("FFRED@email.com"));
