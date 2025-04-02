@@ -16,6 +16,8 @@ import java.util.List;
  * @see com.fasterxml.jackson.databind.ObjectMapper
  * @see com.fasterxml.jackson.databind.ObjectWriter
  * @see com.fasterxml.jackson.databind.SerializationFeature
+ * 
+ * @author edwinjwood
  */
 public class DataWriter implements DataConstants {
     private static final ObjectMapper mapper = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT);

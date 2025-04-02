@@ -4,22 +4,43 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * SongLibraryMode displays all songs in the library and allows for playback.
+ *  Users can also search for songs by artist and print songs to text files.
+ * 
+ * @author edwinjwood
+ * @author jaychubb
+ * @author allanpaiz
+ */
 public class SongLibraryMode implements Mode {
     private User userProfile;
     private TuneUp facade;
     
-    // Constructor for terminal mode
+    /**
+     * Constructor for terminal mode
+     * 
+     * @param userProfile User profile
+     * @param facade TuneUp facade
+     */
     public SongLibraryMode(User userProfile, TuneUp facade) {
         this.userProfile = userProfile;
         this.facade = facade;
     }
 
+    /**
+     * Placeholder method for GUI implementation
+     */
     @Override
     public void handle() {
         // Placeholder for GUI implementation
         System.out.println("Song Library mode activated for user: " + userProfile.getUsername());
     }
     
+    /**
+     * Handles the Song Library Mode for the terminal application
+     * 
+     * @param scanner Scanner for user input
+     */
     @Override
     public void handleTerminal(Scanner scanner) {
         System.out.println("\n=== Song Library Mode ===");
@@ -36,7 +57,7 @@ public class SongLibraryMode implements Mode {
             
             try {
                 int choice = scanner.nextInt();
-                scanner.nextLine();  // Consume newline
+                scanner.nextLine();
                 
                 switch (choice) {
                     case 1:
@@ -56,13 +77,14 @@ public class SongLibraryMode implements Mode {
                 }
             } catch (Exception e) {
                 System.out.println("Please enter a valid number.");
-                scanner.nextLine(); // Clear the invalid input
+                scanner.nextLine();
             }
         }
     }
     
     /**
      * Browses songs and allows for selection and playback
+     * 
      * @param scanner Scanner for user input
      */
     private void browseSongs(Scanner scanner) {
@@ -83,7 +105,7 @@ public class SongLibraryMode implements Mode {
         System.out.print("\nEnter the number of a song to play (or 0 to return): ");
         try {
             int selection = scanner.nextInt();
-            scanner.nextLine();  // Consume newline
+            scanner.nextLine();
             
             if (selection > 0 && selection <= songs.size()) {
                 // Play the selected song
@@ -95,12 +117,13 @@ public class SongLibraryMode implements Mode {
             }
         } catch (Exception e) {
             System.out.println("Please enter a valid number.");
-            scanner.nextLine(); // Clear the invalid input
+            scanner.nextLine();
         }
     }
 
     /**
      * Displays all songs in the library (sorted by title)
+     * 
      * @param songs List of songs to display
      */
     private void displayAllSongs(List<Song> songs) {
@@ -129,6 +152,7 @@ public class SongLibraryMode implements Mode {
     
     /**
      * Plays a selected song
+     * 
      * @param song The song to play
      * @param scanner Scanner for user input
      */
@@ -195,6 +219,7 @@ public class SongLibraryMode implements Mode {
     
     /**
      * Truncates a string if it's longer than the specified length
+     * 
      * @param text The text to truncate
      * @param maxLength The maximum length
      * @return Truncated string
@@ -206,6 +231,12 @@ public class SongLibraryMode implements Mode {
         return text.substring(0, maxLength - 3) + "...";
     }
 
+    /**
+     * Searches for songs by artist
+     * 
+     * @param scanner Scanner for user input
+     * @author jaychubb
+     */
     private void searchSongs(Scanner scanner) {
         System.out.println("Who would you like to search for?");
         String artist = scanner.nextLine().trim();
@@ -223,7 +254,7 @@ public class SongLibraryMode implements Mode {
         System.out.print("\nEnter the number of a song to play (or 0 to return): ");
         try {
             int selection = scanner.nextInt();
-            scanner.nextLine();  // Consume newline
+            scanner.nextLine();
             
             if (selection > 0 && selection <= songs.size()) {
                 // Play the selected song
@@ -235,7 +266,7 @@ public class SongLibraryMode implements Mode {
             }
         } catch (Exception e) {
             System.out.println("Please enter a valid number.");
-            scanner.nextLine(); // Clear the invalid input
+            scanner.nextLine();
         }
     }
 

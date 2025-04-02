@@ -9,7 +9,8 @@ import java.util.stream.Collectors;
  * ProfileManager class manages user profiles
  * 
  * @author edwinjwood
- * @author allanpaiz
+ * @author jaychubb
+ * @author allanpaiz - debug/javadoc
  */
 public class ProfileManager implements DataConstants {
     private List<User> profiles;
@@ -19,6 +20,16 @@ public class ProfileManager implements DataConstants {
      */
     public ProfileManager() {
         loadProfiles();
+    }
+    
+    /**
+     * Testing constructor that initializes profiles
+     * @param users List<User>
+     * 
+     * @author allanpaiz
+     */
+    public ProfileManager(List<User> users) {
+        this.profiles = users;
     }
     
     /**
@@ -120,10 +131,10 @@ public class ProfileManager implements DataConstants {
         int choice = 0;
         try {
             choice = scanner.nextInt();
-            scanner.nextLine();  // Consume newline
+            scanner.nextLine();
         } catch (Exception e) {
             System.out.println("Please enter a valid number.");
-            scanner.nextLine(); // Clear the invalid input
+            scanner.nextLine();
         }
 
         UserType role = UserType.STUDENT;
@@ -146,10 +157,10 @@ public class ProfileManager implements DataConstants {
         choice = 0;
         try {
             choice = scanner.nextInt();
-            scanner.nextLine();  // Consume newline
+            scanner.nextLine();
         } catch (Exception e) {
             System.out.println("Please enter a valid number.");
-            scanner.nextLine(); // Clear the invalid input
+            scanner.nextLine();
         }
 
         ExperienceLevel experienceLevel = ExperienceLevel.BEGINNER;
@@ -197,6 +208,12 @@ public class ProfileManager implements DataConstants {
         return profileInfo.toString();
     }
     
+    /**
+     * Get a user profile by username
+     * 
+     * @param username Username to search for
+     * @return User object if found, null otherwise
+     */
     public User getProfile(String username) {
         if (profiles == null) {
             return null;
@@ -210,6 +227,12 @@ public class ProfileManager implements DataConstants {
         return null;
     }
     
+    /**
+     * Get a user profile by user ID
+     * 
+     * @param userId User ID to search for
+     * @return User object if found, null otherwise
+     */
     public User getProfileById(String userId) {
         if (profiles == null) {
             return null;
@@ -223,6 +246,12 @@ public class ProfileManager implements DataConstants {
         return null;
     }
     
+    /**
+     * Add a user profile to the list
+     * 
+     * @param user User object to add
+     * @return True if added successfully, false if username exists
+     */
     public boolean addProfile(User user) {
         if (getProfile(user.getUsername()) != null) {
             return false; // Username already exists
@@ -232,22 +261,51 @@ public class ProfileManager implements DataConstants {
         saveProfiles();
         return true;
     }
-    
+
+    /**
+     * Test addProfile(), does not saveProfiles()
+     * 
+     * @param user User
+     * @return True if added successfully, false if username exists
+     * 
+     * @author allanpaiz
+     */
+    public boolean addProfileTest(User user) {
+        if (getProfile(user.getUsername()) != null) {
+            return false; // Username already exists
+        }
+
+        profiles.add(user);
+        // saveProfiles();
+        return true;
+    }
+
+
+    /**
+     * Save profiles to json file via DataWriter
+     */
     private void saveProfiles() {
         DataWriter.saveUsers(profiles);
     }
     
+    /**
+     * Get all students from the list of profiles
+     * 
+     * @return List<User> with role "Student"
+     */
     public List<User> getAllStudents() {
-        return profiles.stream()
-            .filter(user -> user.getRole().equals("Student"))
-            .collect(Collectors.toList());
+        return profiles.stream().filter(user -> user.getRole() == UserType.STUDENT).collect(Collectors.toList());
     }
-    
+
+    /**
+     * Get all students by experience level
+     * 
+     * @param experienceLevel Experience level to filter by
+     * @return List<User> with role "Student" and matching experience level
+     */
     public List<User> getStudentsByExperienceLevel(ExperienceLevel experienceLevel) {
-        return profiles.stream()
-            .filter(user -> user.getRole().equals("Student") && 
-                   user.getExperienceLevel() == experienceLevel)
-            .collect(Collectors.toList());
+        return profiles.stream().filter(user -> user.getRole() == UserType.STUDENT && 
+                   user.getExperienceLevel() == experienceLevel).collect(Collectors.toList());
     }
 
     /**
@@ -258,7 +316,7 @@ public class ProfileManager implements DataConstants {
      * @return Formatted string with student list or access denied message
      */
     public String displayStudentList(User currentUser) {
-        if (currentUser == null || !currentUser.getRole().equals("Teacher")) {
+        if (currentUser == null || currentUser.getRole() != UserType.TEACHER) {
             return "This option is only available to teachers.";
         }
         
@@ -293,6 +351,12 @@ public class ProfileManager implements DataConstants {
         scanner.nextLine();
     }
 
+    /**
+     * Get the username of a user by ID
+     * 
+     * @param userId User ID to search for
+     * @return Username if found, "Unknown" otherwise
+     */
     public String getUsernameById(String userId) {
         User user = getProfileById(userId);
         return (user != null) ? user.getUsername() : "Unknown";

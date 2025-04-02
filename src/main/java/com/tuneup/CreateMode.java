@@ -4,9 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * CreateMode allows users to create new songs.
+ * 
+ * @author edwinjwood
+ */
 public class CreateMode implements Mode {
     private User userProfile;
-    private TuneUp facade;
+    // private TuneUp facade;
     private final String[] VALID_NOTES = {"C4", "D4", "E4", "F4", "G4", "A4", "B4", "C5"};
     
     // Default music parameters
@@ -16,15 +21,23 @@ public class CreateMode implements Mode {
     // Constructor for terminal mode
     public CreateMode(User userProfile, TuneUp facade) {
         this.userProfile = userProfile;
-        this.facade = facade;
+        // this.facade = facade;
     }
 
+    /**
+     * Handles the Create Mode for the GUI
+     */
     @Override
     public void handle() {
         // Placeholder for GUI implementation
         System.out.println("Create mode activated for user: " + userProfile.getUsername());
     }
     
+    /**
+     * Handles the Create Mode for the terminal interface
+     * 
+     * @param scanner Scanner for user input
+     */
     @Override
     public void handleTerminal(Scanner scanner) {
         System.out.println("\n=== Create Mode ===");
@@ -39,7 +52,7 @@ public class CreateMode implements Mode {
             
             try {
                 int choice = scanner.nextInt();
-                scanner.nextLine();  // Consume newline
+                scanner.nextLine();
                 
                 switch (choice) {
                     case 1:
@@ -53,13 +66,14 @@ public class CreateMode implements Mode {
                 }
             } catch (Exception e) {
                 System.out.println("Please enter a valid number.");
-                scanner.nextLine(); // Clear the invalid input
+                scanner.nextLine();
             }
         }
     }
     
     /**
      * Creates a new song by allowing the user to input a sequence of notes
+     * 
      * @param scanner Scanner for user input
      */
     private void createNewSong(Scanner scanner) {
@@ -101,6 +115,7 @@ public class CreateMode implements Mode {
     
     /**
      * Gets tempo from user input
+     * 
      * @param scanner Scanner for user input
      * @return The chosen tempo (beats per minute)
      */
@@ -132,6 +147,7 @@ public class CreateMode implements Mode {
     
     /**
      * Gets time signature from user input
+     * 
      * @param scanner Scanner for user input
      * @return The chosen time signature
      */
@@ -175,6 +191,7 @@ public class CreateMode implements Mode {
     
     /**
      * Builds a song using a measure-based approach for easier note selection
+     * 
      * @param scanner Scanner for user input
      * @param timeSignature The time signature for the song
      * @return List of notes in the song
@@ -229,6 +246,7 @@ public class CreateMode implements Mode {
     
     /**
      * Calculates beats per measure based on time signature
+     * 
      * @param timeSignature The time signature string
      * @return Number of beats per measure
      */
@@ -243,6 +261,7 @@ public class CreateMode implements Mode {
     
     /**
      * Builds a single measure by allowing the user to select notes by number
+     * 
      * @param scanner Scanner for user input
      * @param beatsPerMeasure Number of beats in this measure
      * @return List of notes in the measure
@@ -320,6 +339,7 @@ public class CreateMode implements Mode {
     
     /**
      * Previews a measure by playing the notes in sequence
+     * 
      * @param measure List of notes in the measure to preview
      */
     private void previewMeasure(List<String> measure) {
@@ -370,6 +390,7 @@ public class CreateMode implements Mode {
     
     /**
      * Previews the entire completed song
+     * 
      * @param song The song to preview
      */
     private void previewCompleteSong(Song song) {
@@ -420,6 +441,7 @@ public class CreateMode implements Mode {
     
     /**
      * Validates if a note is in the allowed range
+     * 
      * @param note The note to validate
      * @return true if valid, false otherwise
      */
