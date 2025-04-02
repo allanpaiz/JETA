@@ -1,12 +1,16 @@
 package com.tuneup;
 
-import org.junit.Before;
-import org.junit.Test;
-
+/**
+ *  @author Terdooachu
+ * 
+ */
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import org.junit.Before;
+import org.junit.Test;
 
 public class PlayModeTest {
 
