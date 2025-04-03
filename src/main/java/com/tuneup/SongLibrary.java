@@ -13,8 +13,8 @@ import java.util.List;
  * @author Terdoo
  */
 public class SongLibrary implements DataConstants {
-    private static List<Song> songLibrary = new ArrayList<>();
-    private static boolean isInitialized = false;
+    public static List<Song> songLibrary = new ArrayList<>();
+    public static boolean isInitialized = false;
 
     /**
      * Gets the song library sorted by title.
@@ -56,8 +56,8 @@ public class SongLibrary implements DataConstants {
      * 
      * This method initializes the song library by reading the data from the JSON file.
      */
-    private static void loadSongLibrary() {
-// Load songs using DataLoader
+    public static void loadSongLibrary() {
+        // Load songs using DataLoader
         songLibrary = DataLoader.loadSongs();
         isInitialized = true;
     }
@@ -67,7 +67,7 @@ public class SongLibrary implements DataConstants {
      * 
      * This method writes the current state of the song library to the JSON file.
      */
-    private static void saveSongLibrary() {
+    public static void saveSongLibrary() {
         DataWriter.saveSongs(songLibrary);
     }
     
