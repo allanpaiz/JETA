@@ -56,13 +56,8 @@ public class SongLibrary implements DataConstants {
      * 
      * This method initializes the song library by reading the data from the JSON file.
      */
-<<<<<<< HEAD
-    private static void loadSongLibrary() {
-// Load songs using DataLoader
-=======
     public static void loadSongLibrary() {
         // Load songs using DataLoader
->>>>>>> 6f2c00a (Test file for SongLibraryMode #135)
         songLibrary = DataLoader.loadSongs();
         isInitialized = true;
     }
