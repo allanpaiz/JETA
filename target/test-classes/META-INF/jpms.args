@@ -1,0 +1,4 @@
+--patch-module
+com.tuneup=_
+--add-reads
+com.tuneup=ALL-UNNAMED

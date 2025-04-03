@@ -7,11 +7,7 @@ import java.util.List;
 import java.util.UUID;
 
 /**
- * Represents a musical song with attributes such as title, creator, artist name, notes, tempo, and time signature.
- * This class provides methods to access and modify song properties.
- * 
- * @author allanpaiz
- * @author Terdoo 
+ * Represents a musical song in the TuneUp application
  */
 public class Song {
     private String id;
@@ -21,16 +17,16 @@ public class Song {
     private List<String> notes;
     private int tempo = 120; // Default tempo (beats per minute)
     private String timeSignature = "4/4"; // Default time signature
-
+    
     /**
-     * Constructor for creating a Song with all properties.
+     * Full constructor with all properties
      * 
-     * @param title The title of the song.
-     * @param creatorId The ID of the creator of the song.
-     * @param artistName The name of the artist of the song.
-     * @param notes The notes of the song.
-     * @param tempo The tempo of the song in beats per minute (optional).
-     * @param timeSignature The time signature of the song (optional).
+     * @param title Song title
+     * @param creatorId ID of the creator
+     * @param artistName Name of the artist
+     * @param notes List of musical notes
+     * @param tempo Tempo in beats per minute (optional)
+     * @param timeSignature Time signature (optional)
      */
     @JsonCreator
     public Song(
@@ -53,23 +49,24 @@ public class Song {
     }
     
     /**
-     * Constructor for creating a Song with mandatory properties.
+     * Simpler constructor with default values for tempo and time signature
      * 
-     * @param title The title of the song.
-     * @param creatorId The ID of the creator of the song.
-     * @param artistName The name of the artist of the song.
-     * @param notes The notes of the song.
+     * @param title Song title
+     * @param creatorId ID of the creator
+     * @param artistName Name of the artist
+     * @param notes List of musical notes
      */
     public Song(String title, String creatorId, String artistName, List<String> notes) {
         this(title, creatorId, artistName, notes, null, null);
     }
-
+    
     /**
-     * Default constructor for deserialization.
+     * Default constructor for Jackson deserialization
      */
     public Song() {
+        this.id = UUID.randomUUID().toString();
     }
-
+    
     /**
      * Gets the ID of the song.
      * 
@@ -87,7 +84,7 @@ public class Song {
     public String getTitle() {
         return title;
     }
-
+    
     /**
      * Gets the ID of the creator of the song.
      * 
@@ -96,20 +93,20 @@ public class Song {
     public String getCreatorId() {
         return creatorId;
     }
-
+    
     /**
-     * Gets the name of the artist of the song.
+     * Gets the artist name.
      * 
-     * @return The name of the artist of the song.
+     * @return The artist name.
      */
     public String getArtistName() {
         return artistName;
     }
-
+    
     /**
      * Gets the notes of the song.
      * 
-     * @return A list of notes in the song.
+     * @return The notes of the song.
      */
     public List<String> getNotes() {
         return notes;
@@ -132,47 +129,47 @@ public class Song {
     public String getTimeSignature() {
         return timeSignature;
     }
-
+    
     /**
      * Sets the ID of the song.
      * 
-     * @param id The new ID of the song.
+     * @param id The ID of the song.
      */
     public void setId(String id) {
         this.id = id;
     }
-
+    
     /**
      * Sets the title of the song.
      * 
-     * @param title The new title of the song.
+     * @param title The title of the song.
      */
     public void setTitle(String title) {
         this.title = title;
     }
-
+    
     /**
      * Sets the ID of the creator of the song.
      * 
-     * @param creatorId The new ID of the creator of the song.
+     * @param creatorId The ID of the creator of the song.
      */
     public void setCreatorId(String creatorId) {
         this.creatorId = creatorId;
     }
-
+    
     /**
-     * Sets the name of the artist of the song.
+     * Sets the artist name.
      * 
-     * @param artistName The new name of the artist of the song.
+     * @param artistName The artist name.
      */
     public void setArtistName(String artistName) {
         this.artistName = artistName;
     }
-
+    
     /**
      * Sets the notes of the song.
      * 
-     * @param notes The new list of notes for the song.
+     * @param notes The notes of the song.
      */
     public void setNotes(List<String> notes) {
         this.notes = notes;
@@ -181,7 +178,7 @@ public class Song {
     /**
      * Sets the tempo of the song.
      * 
-     * @param tempo The new tempo of the song in beats per minute.
+     * @param tempo The tempo of the song in beats per minute.
      */
     public void setTempo(int tempo) {
         this.tempo = tempo;
@@ -190,27 +187,27 @@ public class Song {
     /**
      * Sets the time signature of the song.
      * 
-     * @param timeSignature The new time signature of the song.
+     * @param timeSignature The time signature of the song.
      */
     public void setTimeSignature(String timeSignature) {
         this.timeSignature = timeSignature;
     }
-
+    
     /**
-     * Returns the sheet music tempo notation based on the BPM tempo of the song.
+     * Converts the numeric tempo to a musical tempo notation
      * 
-     * @return A string representing the tempo notation (e.g., "Largo", "Adagio").
+     * @return String representation of the tempo (e.g., "Allegro", "Moderato")
      */
     public String getTempoNotation() {
         if (tempo <= 60) {
             return "Largo";
-        } else if (tempo > 60 && tempo <= 80) {
+        } else if (tempo <= 80) {
             return "Adagio";
-        } else if (tempo > 80 && tempo <= 100) {
+        } else if (tempo <= 100) {
             return "Andante";
-        } else if (tempo > 100 && tempo <= 120) {
+        } else if (tempo <= 120) {
             return "Moderato";
-        } else if (tempo > 120 && tempo <= 160) {
+        } else if (tempo <= 160) {
             return "Allegro";
         } else {
             return "Presto";
