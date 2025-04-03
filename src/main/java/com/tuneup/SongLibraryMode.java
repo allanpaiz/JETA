@@ -87,7 +87,7 @@ public class SongLibraryMode implements Mode {
      * 
      * @param scanner Scanner for user input
      */
-    private void browseSongs(Scanner scanner) {
+    public void browseSongs(Scanner scanner) {
         // Get all songs from the SongLibrary (already sorted by title)
         List<Song> songs = SongLibrary.getSongLibrary();
         
@@ -224,7 +224,7 @@ public class SongLibraryMode implements Mode {
      * @param maxLength The maximum length
      * @return Truncated string
      */
-    private String truncate(String text, int maxLength) {
+    public String truncate(String text, int maxLength) {
         if (text == null || text.length() <= maxLength) {
             return text;
         }
@@ -237,7 +237,7 @@ public class SongLibraryMode implements Mode {
      * @param scanner Scanner for user input
      * @author jaychubb
      */
-    private void searchSongs(Scanner scanner) {
+    public void searchSongs(Scanner scanner) {
         System.out.println("Who would you like to search for?");
         String artist = scanner.nextLine().trim();
 
@@ -341,5 +341,16 @@ public class SongLibraryMode implements Mode {
         } catch (java.io.IOException e) {
             System.out.println("Error writing to file: " + filename);
         }
+    }
+
+    /**
+     * Gets the user profile
+     * 
+     * @return User userProfile
+     * 
+     * @author allanpaiz
+     */
+    public User getUserProfile() {
+        return userProfile;
     }
 }
