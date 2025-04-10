@@ -1,27 +1,27 @@
-C:\VSprojects\JETA\JETA\src\main\java\com\tuneup\DataLoader.java
-C:\VSprojects\JETA\JETA\src\main\java\com\module-info.java
-C:\VSprojects\JETA\JETA\src\main\java\com\tuneup\TuneUp.java
-C:\VSprojects\JETA\JETA\src\main\java\com\tuneup\PasswordUtils.java
-C:\VSprojects\JETA\JETA\src\main\java\com\tuneup\InstrumentStrategy.java
-C:\VSprojects\JETA\JETA\src\main\java\com\tuneup\Mode.java
-C:\VSprojects\JETA\JETA\src\main\java\com\tuneup\InstrumentFactory.java
-C:\VSprojects\JETA\JETA\src\main\java\com\tuneup\DataWriter.java
-C:\VSprojects\JETA\JETA\src\main\java\com\tuneup\ExperienceLevel.java
-C:\VSprojects\JETA\JETA\src\main\java\com\tuneup\TerminalUI.java
-C:\VSprojects\JETA\JETA\src\main\java\com\tuneup\InstrumentType.java
-C:\VSprojects\JETA\JETA\src\main\java\com\tuneup\Song.java
-C:\VSprojects\JETA\JETA\src\main\java\com\tuneup\SongLibrary.java
-C:\VSprojects\JETA\JETA\src\main\java\com\tuneup\LessonLibrary.java
-C:\VSprojects\JETA\JETA\src\main\java\com\tuneup\FileUtils.java
-C:\VSprojects\JETA\JETA\src\main\java\com\tuneup\Progress.java
-C:\VSprojects\JETA\JETA\src\main\java\com\tuneup\ProfileManager.java
-C:\VSprojects\JETA\JETA\src\main\java\com\tuneup\LessonMode.java
-C:\VSprojects\JETA\JETA\src\main\java\com\tuneup\CreateMode.java
-C:\VSprojects\JETA\JETA\src\main\java\com\tuneup\SongLibraryMode.java
-C:\VSprojects\JETA\JETA\src\main\java\com\tuneup\User.java
-C:\VSprojects\JETA\JETA\src\main\java\com\tuneup\Lesson.java
-C:\VSprojects\JETA\JETA\src\main\java\com\tuneup\TuneUpUI.java
-C:\VSprojects\JETA\JETA\src\main\java\com\tuneup\PianoStrategy.java
-C:\VSprojects\JETA\JETA\src\main\java\com\tuneup\UserType.java
-C:\VSprojects\JETA\JETA\src\main\java\com\tuneup\PlayMode.java
-C:\VSprojects\JETA\JETA\src\main\java\com\tuneup\DataConstants.java
+C:\VS Projects\CSCE247\project\src\main\java\com\tuneup\TuneUpUI.java
+C:\VS Projects\CSCE247\project\src\main\java\com\tuneup\DataConstants.java
+C:\VS Projects\CSCE247\project\src\main\java\com\tuneup\TuneUp.java
+C:\VS Projects\CSCE247\project\src\main\java\com\tuneup\UserType.java
+C:\VS Projects\CSCE247\project\src\main\java\com\tuneup\CreateMode.java
+C:\VS Projects\CSCE247\project\src\main\java\com\tuneup\InstrumentStrategy.java
+C:\VS Projects\CSCE247\project\src\main\java\com\tuneup\InstrumentType.java
+C:\VS Projects\CSCE247\project\src\main\java\com\tuneup\ProfileManager.java
+C:\VS Projects\CSCE247\project\src\main\java\com\tuneup\SongLibraryMode.java
+C:\VS Projects\CSCE247\project\src\main\java\com\tuneup\User.java
+C:\VS Projects\CSCE247\project\src\main\java\com\tuneup\LessonMode.java
+C:\VS Projects\CSCE247\project\src\main\java\com\tuneup\ExperienceLevel.java
+C:\VS Projects\CSCE247\project\src\main\java\com\tuneup\InstrumentFactory.java
+C:\VS Projects\CSCE247\project\src\main\java\com\tuneup\LessonLibrary.java
+C:\VS Projects\CSCE247\project\src\main\java\com\tuneup\TerminalUI.java
+C:\VS Projects\CSCE247\project\src\main\java\com\tuneup\DataWriter.java
+C:\VS Projects\CSCE247\project\src\main\java\com\tuneup\PlayMode.java
+C:\VS Projects\CSCE247\project\src\main\java\com\tuneup\FileUtils.java
+C:\VS Projects\CSCE247\project\src\main\java\com\tuneup\Song.java
+C:\VS Projects\CSCE247\project\src\main\java\com\tuneup\PianoStrategy.java
+C:\VS Projects\CSCE247\project\src\main\java\com\tuneup\SongLibrary.java
+C:\VS Projects\CSCE247\project\src\main\java\com\tuneup\PasswordUtils.java
+C:\VS Projects\CSCE247\project\src\main\java\com\tuneup\Lesson.java
+C:\VS Projects\CSCE247\project\src\main\java\com\tuneup\Progress.java
+C:\VS Projects\CSCE247\project\src\main\java\com\tuneup\DataLoader.java
+C:\VS Projects\CSCE247\project\src\main\java\com\tuneup\Mode.java
+C:\VS Projects\CSCE247\project\src\main\java\com\module-info.java
