@@ -1,5 +1,7 @@
 # TuneUp Application by JETA
 
+[Prototype Link](https://allanpaiz.github.io/JETA/)
+
 ## Purpose
 TuneUp's purpose is to enhance the Teacher / Student classroom experience.
 Teacher's can utilize the application to interact with their students by creating songs and assigning lessons.
@@ -9,6 +11,8 @@ Student's have a stress free way of practicing new instruments and a way to lear
 Watch the phase 1 of development video below:
 - [Video Link](https://www.youtube.com/watch?v=sk9v1fPIWgI)
 
+Watch the prototype walkthrough below:
+- [Video Link](https://www.youtube.com/watch?v=lD_9fbJtOM8)
 
 ## Features
 - **User Profiles**: Create and manage user profiles with different roles (Teacher, Student) and experience levels (Beginner, Intermediate, Advanced).
