@@ -54,4 +54,18 @@
   "email" : "testExperience@test.com",
   "role" : "STUDENT",
   "experienceLevel" : "BEGINNER"
+}, {
+  "id" : "007b619f-b884-47fd-afc9-7ad01c39c745",
+  "username" : "edwinjwood",
+  "password" : "JW6oZ42Z6klgWKYyAswLkcF33AAt7Hfm477OasyABNU=",
+  "email" : "e@a.com",
+  "role" : "STUDENT",
+  "experienceLevel" : "BEGINNER"
+}, {
+  "id" : "aeffd0f6-b2ec-4186-82c2-8a5e39475483",
+  "username" : "Marshall",
+  "password" : "JW6oZ42Z6klgWKYyAswLkcF33AAt7Hfm477OasyABNU=",
+  "email" : "m@s.com",
+  "role" : "STUDENT",
+  "experienceLevel" : "INTERMEDIATE"
 } ]
