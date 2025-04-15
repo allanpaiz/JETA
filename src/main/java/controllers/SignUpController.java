@@ -94,4 +94,11 @@ public class SignUpController {
         
         return "";
     }
+     /**
+     * Gets the application facade
+     * @return TuneUp facade
+     */
+    public TuneUp getFacade() {
+        return facade;
+    }
 }

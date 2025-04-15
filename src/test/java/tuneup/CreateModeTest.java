@@ -1,65 +1,82 @@
 package tuneup;
 
+import org.junit.Before;
 import org.junit.Test;
-
-import tuneup.*;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import org.junit.Assert;
-
-import java.util.Scanner;
 
 /**
- * Tested by JChubb
+ * Tests for CreateMode functionality
+ * @author JChubb
  */
 public class CreateModeTest {
-    public CreateMode testCreateMode = new CreateMode(null, null);
-
-    @Test
-    public void testTesting() {
-        assertTrue(true);
+    private CreateMode testCreateMode;
+    
+    @Before
+    public void setup() {
+        // Create minimal test objects for constructor requirements
+        TuneUp mockFacade = new TuneUp();
+        User mockUser = new User(
+            "test-id", 
+            "testUser", 
+            "password", 
+            "test@example.com",
+            UserType.STUDENT,
+            ExperienceLevel.BEGINNER
+        );
+        
+        // The error suggests the constructor parameters are in wrong order 
+        // or that CreateMode's constructor has changed
+        // Let's fix it according to current CreateMode implementation:
+        testCreateMode = new CreateMode(mockUser, mockFacade);
     }
 
+    // Rest of the test methods remain unchanged
     @Test
     public void testBeatsPerMeasureTrue() {
         int beats = testCreateMode.getBeatsPerMeasure("3/4");
-        assertEquals(beats, 3);
+        assertEquals(3, beats);
     }
-    // if given an invalid time signature, defaults to four beats per measure
+    
     @Test
     public void testBeatsPerMeasureInvalid() {
         int beats = testCreateMode.getBeatsPerMeasure("no");
-        assertEquals(beats, 4);
+        assertEquals(4, beats);
     }
+    
     @Test
     public void testBeatsPerMeasureEmpty() {
         int beats = testCreateMode.getBeatsPerMeasure("");
-        assertEquals(beats, 4);
+        assertEquals(4, beats);
     }
+    
     @Test
     public void testBeatsPerMeasureNull() {
         int beats = testCreateMode.getBeatsPerMeasure(null);
-        assertEquals(beats, 4);
+        assertEquals(4, beats);
     }
 
     @Test
     public void testIsValidNoteTrue() {
         assertTrue(testCreateMode.isValidNote("C4"));
     }
+    
     @Test
     public void testIsValidNoteFalse() {
         assertFalse(testCreateMode.isValidNote("not a note"));
     }
+    
     @Test
     public void testIsValidNoteNull() {
         assertFalse(testCreateMode.isValidNote(null));
     }
+    
     @Test
     public void testIsValidNoteUnlistedNote() {
         assertFalse(testCreateMode.isValidNote("C3"));
     }
+    
     @Test
     public void testIsValidNoteIncompleteNote() {
         assertFalse(testCreateMode.isValidNote("C"));
