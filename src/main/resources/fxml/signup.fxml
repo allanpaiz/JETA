@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" 
+     fx:controller="controllers.SignUpViewController"
+     alignment="CENTER" spacing="20" styleClass="login-background">
+    
+    <padding>
+        <Insets top="30" right="20" bottom="30" left="20" />
+    </padding>
+    
+    <!-- Semi-transparent form container -->
+    <VBox alignment="CENTER" spacing="15" styleClass="login-form">
+        <Label text="Create an Account" styleClass="login-title" />
+        
+        <TextField fx:id="usernameField" promptText="Username" 
+                  style="-fx-pref-height: 40; -fx-font-size: 14px; -fx-pref-width: 250;" />
+                  
+        <PasswordField fx:id="passwordField" promptText="Password" 
+                      style="-fx-pref-height: 40; -fx-font-size: 14px; -fx-pref-width: 250;" />
+                      
+        <PasswordField fx:id="confirmPasswordField" promptText="Confirm Password" 
+                      style="-fx-pref-height: 40; -fx-font-size: 14px; -fx-pref-width: 250;" />
+        
+        <TextField fx:id="emailField" promptText="Email" 
+                  style="-fx-pref-height: 40; -fx-font-size: 14px; -fx-pref-width: 250;" />
+        
+        <VBox spacing="5">
+            <Label text="Select Role:" style="-fx-font-size: 14px;" />
+            <HBox spacing="10">
+                <RadioButton fx:id="studentRadio" text="Student" selected="true" >
+                    <toggleGroup>
+                        <ToggleGroup fx:id="roleGroup" />
+                    </toggleGroup>
+                </RadioButton>
+                <RadioButton fx:id="teacherRadio" text="Teacher" toggleGroup="$roleGroup" />
+            </HBox>
+        </VBox>
+        
+        <VBox fx:id="experienceLevelContainer" spacing="5">
+            <Label text="Experience Level:" style="-fx-font-size: 14px;" />
+            <ComboBox fx:id="experienceLevelComboBox" prefWidth="250" promptText="Select Level" />
+        </VBox>
+        
+        <Label fx:id="statusLabel" styleClass="status-label" />
+        
+        <Button text="SIGN UP" onAction="#handleSignUp" styleClass="login-button" />
+               
+        <Hyperlink text="Already have an account? Log in" onAction="#navigateToLogin" />
+    </VBox>
+    
+    <Label text="TuneUp v1.0" style="-fx-font-size: 12px; -fx-text-fill: white;" />
+</VBox>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" 
+     fx:controller="controllers.LoginViewController"
+     alignment="CENTER" spacing="20" styleClass="login-background">
+    
+    <padding>
+        <Insets top="40" right="20" bottom="40" left="20" />
+    </padding>
+    
+    <!-- Semi-transparent form container -->
+    <VBox alignment="CENTER" spacing="15" styleClass="login-form">
+        <Label text="TuneUp Login" styleClass="login-title" />
+        
+        <TextField fx:id="usernameField" promptText="Username" 
+                  style="-fx-pref-height: 40; -fx-font-size: 14px; -fx-pref-width: 250;" />
+                  
+        <PasswordField fx:id="passwordField" promptText="Password" 
+                      style="-fx-pref-height: 40; -fx-font-size: 14px; -fx-pref-width: 250;" />
+        
+        <Label fx:id="statusLabel" styleClass="status-label" />
+        
+        <Button text="LOGIN" onAction="#handleLogin" styleClass="login-button" />
+               
+        <Hyperlink text="New user? Create an account" onAction="#navigateToRegistration" />
+    </VBox>
+    
+    <Label text="TuneUp v1.0" style="-fx-font-size: 12px; -fx-text-fill: white;" />
+</VBox>

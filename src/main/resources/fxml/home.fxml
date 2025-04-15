@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.Circle?>
+
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" 
+     fx:controller="controllers.HomeViewController"
+     styleClass="app-background" spacing="15" style="-fx-background-color: #f5f5f5;">
+    
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20" />
+    </padding>
+    
+    <!-- Header with user info -->
+    <HBox alignment="CENTER_LEFT" spacing="15" style="-fx-background-color: white; -fx-background-radius: 10; -fx-padding: 15;">
+        <!-- User avatar circle -->
+        <Circle radius="25" fill="#6200EE" />
+        
+        <!-- User info -->
+        <VBox spacing="5">
+            <Label fx:id="usernameLabel" text="Username" style="-fx-font-size: 18px; -fx-font-weight: bold;" />
+            <Label fx:id="roleLabel" text="Role" style="-fx-font-size: 14px; -fx-text-fill: #666666;" />
+        </VBox>
+        
+        <Region HBox.hgrow="ALWAYS" />
+        
+        <!-- Logout button -->
+        <Button text="Logout" onAction="#handleLogout" 
+               style="-fx-background-color: white; -fx-text-fill: #6200EE; -fx-border-color: #6200EE; -fx-border-radius: 20; -fx-background-radius: 20; -fx-border-width: 1.5; -fx-padding: 5 15;" />
+    </HBox>
+    
+    <!-- Title label -->
+    <Label text="Welcome to TuneUp" style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-padding: 10 0;" />
+    
+    <!-- Main options grid -->
+    <GridPane hgap="15" vgap="15" alignment="CENTER">
+        <columnConstraints>
+            <ColumnConstraints percentWidth="50" />
+            <ColumnConstraints percentWidth="50" />
+        </columnConstraints>
+        
+        <!-- Play Mode option -->
+        <VBox GridPane.columnIndex="0" GridPane.rowIndex="0" 
+              style="-fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 5);" 
+              onMouseClicked="#navigateToPractice">
+            <padding>
+                <Insets topRightBottomLeft="20" />
+            </padding>
+            
+            <VBox alignment="CENTER" style="-fx-background-color: #f0f0f0; -fx-background-radius: 25; -fx-min-height: 50; -fx-max-height: 50; -fx-min-width: 50; -fx-max-width: 50;">
+                <Label text="🎹" style="-fx-font-size: 24px;" />
+            </VBox>
+            
+            <Region prefHeight="10" />
+            
+            <Label text="Play Mode" style="-fx-font-size: 18px; -fx-font-weight: bold;" />
+            <Label text="Practice songs and instruments" style="-fx-font-size: 14px; -fx-text-fill: #666666;" wrapText="true" />
+        </VBox>
+        
+        <!-- Create Mode option -->
+        <VBox GridPane.columnIndex="1" GridPane.rowIndex="0" 
+              style="-fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 5);" 
+              onMouseClicked="#navigateToCreate">
+            <padding>
+                <Insets topRightBottomLeft="20" />
+            </padding>
+            
+            <VBox alignment="CENTER" style="-fx-background-color: #f0f0f0; -fx-background-radius: 25; -fx-min-height: 50; -fx-max-height: 50; -fx-min-width: 50; -fx-max-width: 50;">
+                <Label text="🎵" style="-fx-font-size: 24px;" />
+            </VBox>
+            
+            <Region prefHeight="10" />
+            
+            <Label text="Create Mode" style="-fx-font-size: 18px; -fx-font-weight: bold;" />
+            <Label text="Compose your own music" style="-fx-font-size: 14px; -fx-text-fill: #666666;" wrapText="true" />
+        </VBox>
+        
+        <!-- Song Library option -->
+        <VBox GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.columnSpan="2" 
+              style="-fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 5);" 
+              onMouseClicked="#navigateToSongLibrary">
+            <padding>
+                <Insets topRightBottomLeft="20" />
+            </padding>
+            
+            <VBox alignment="CENTER" style="-fx-background-color: #f0f0f0; -fx-background-radius: 25; -fx-min-height: 50; -fx-max-height: 50; -fx-min-width: 50; -fx-max-width: 50;">
+                <Label text="📚" style="-fx-font-size: 24px;" />
+            </VBox>
+            
+            <Region prefHeight="10" />
+            
+            <Label text="Song Library" style="-fx-font-size: 18px; -fx-font-weight: bold;" />
+            <Label text="Browse and play from song collection" style="-fx-font-size: 14px; -fx-text-fill: #666666;" wrapText="true" />
+        </VBox>
+    </GridPane>
+    
+    <!-- Version label -->
+    <Region VBox.vgrow="ALWAYS" />
+    <Label text="TuneUp v1.0" style="-fx-font-size: 12px; -fx-text-fill: #666666;" alignment="CENTER" />
+</VBox>

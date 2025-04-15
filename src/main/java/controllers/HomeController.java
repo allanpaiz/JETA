@@ -35,7 +35,7 @@ public class HomeController {
     }
     
     /**
-     * Switch to Play Mode
+     * Switch to Play Mode (practice mode)
      * 
      * @return Success status
      */
@@ -65,5 +65,13 @@ public class HomeController {
         // This would contain logic to enter song library mode
         // For now, just return success
         return true;
+    }
+    
+    /**
+     * Gets the application facade
+     * @return TuneUp facade
+     */
+    public TuneUp getFacade() {
+        return facade;
     }
 }
