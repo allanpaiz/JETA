@@ -3,6 +3,8 @@ tuneup\DataLoader$2.class
 tuneup\PlayMode.class
 controllers\SignUpController.class
 tuneup\User.class
+controllers\ProfileController.class
+controllers\ProfileViewController.class
 tuneup\DataConstants.class
 tuneup\LessonMode.class
 tuneup\UserType.class
@@ -25,7 +27,6 @@ tuneup\PasswordUtils.class
 tuneup\PianoStrategy.class
 tuneup\SongLibraryMode.class
 tuneup\ProfileManager.class
-controllers\HomeViewController$1.class
 tuneup\InstrumentType.class
 tuneup\SongLibrary.class
 tuneup\DataLoader$1.class

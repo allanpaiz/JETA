@@ -1,77 +1,58 @@
 package controllers;
 
+import java.util.logging.Logger;
+
 import tuneup.TuneUp;
 import tuneup.User;
 
 /**
- * Controller responsible for managing the home screen and navigation to different modes
+ * Controller for the home screen business logic
  */
 public class HomeController {
+    private static final Logger logger = Logger.getLogger(HomeController.class.getName());
     private TuneUp facade;
     
     /**
-     * Constructor initializes with a reference to the application facade
-     * 
-     * @param facade Application facade
+     * Constructor initializes with app facade
      */
     public HomeController(TuneUp facade) {
         this.facade = facade;
+        logger.info("HomeController initialized");
     }
     
     /**
-     * Get the currently logged in user
-     * 
-     * @return Current user or null if not logged in
+     * Gets the current user from the facade
      */
     public User getCurrentUser() {
         return facade.getCurrentUser();
     }
     
     /**
-     * Log out the current user
-     */
-    public void logout() {
-        facade.logout();
-    }
-    
-    /**
-     * Switch to Play Mode (practice mode)
-     * 
-     * @return Success status
-     */
-    public boolean enterPlayMode() {
-        // This would contain logic to enter play mode
-        // For now, just return success
-        return true;
-    }
-    
-    /**
-     * Switch to Create Mode
-     * 
-     * @return Success status
-     */
-    public boolean enterCreateMode() {
-        // This would contain logic to enter create mode
-        // For now, just return success
-        return true;
-    }
-    
-    /**
-     * Switch to Song Library Mode
-     * 
-     * @return Success status
-     */
-    public boolean enterSongLibraryMode() {
-        // This would contain logic to enter song library mode
-        // For now, just return success
-        return true;
-    }
-    
-    /**
      * Gets the application facade
-     * @return TuneUp facade
      */
     public TuneUp getFacade() {
         return facade;
+    }
+    
+    /**
+     * Process logout request
+     */
+    public void logout() {
+        facade.logout();
+        logger.info("User logged out");
+    }
+    
+    /**
+     * Update user information
+     */
+    public boolean updateUserProfile(User updatedUser) {
+        try {
+            // Handle profile update through the facade
+            facade.updateCurrentUser(updatedUser);
+            return true;
+        } catch (Exception e) {
+            logger.warning("Failed to update user profile: " + e.getMessage());
+            return false;
+        }
     }
 }

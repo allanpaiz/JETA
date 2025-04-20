@@ -140,7 +140,7 @@ private void loadHomeScreen(User user) {
         HomeViewController controller = loader.getController();
         controller.initialize(new HomeController(facade));
         controller.setStage(stage);
-        controller.displayUserData(user);
+        controller.displayUserData(user); // Explicitly pass user here
         
         // Create and set scene
         Scene scene = new Scene(root, 390, 600);
