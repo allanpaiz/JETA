@@ -54,4 +54,11 @@
   "email" : "testExperience@test.com",
   "role" : "STUDENT",
   "experienceLevel" : "BEGINNER"
+}, {
+  "id" : "da781cc9-7144-4ace-9b28-775de3273aaf",
+  "username" : "1",
+  "password" : "9dc/QpiSsCILmjigFq71inPYT57e0wCr5mJnnEtkCek=",
+  "email" : "1",
+  "role" : "STUDENT",
+  "experienceLevel" : "BEGINNER"
 } ]

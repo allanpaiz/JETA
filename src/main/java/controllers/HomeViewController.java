@@ -13,6 +13,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import tuneup.User;
+import tuneup.TuneUp;
 
 public class HomeViewController {
     private static final Logger logger = Logger.getLogger(HomeViewController.class.getName());
@@ -22,6 +23,7 @@ public class HomeViewController {
     
     private Stage stage;
     private HomeController homeController;
+    private TuneUp facade;
     
     /**
      * Initialize with business logic controller
@@ -130,7 +132,37 @@ public void handleLogout() {
     
     @FXML
     public void navigateToSongLibrary() {
-        showNotImplemented("Song Library");
+        try {
+            // Load the signup screen using resource path
+            URL fxmlUrl = getClass().getResource("/fxml/songlibrary.fxml");
+            URL cssUrl = getClass().getResource("/css/styles.css");
+            
+            if (fxmlUrl == null) {
+                throw new IOException("Cannot find songlibrary.fxml resource");
+            }
+            
+            // Load the FXML
+            FXMLLoader loader = new FXMLLoader(fxmlUrl);
+            Parent root = loader.load();
+            
+            // Get controller and initialize it
+            SongLibraryViewController controller = loader.getController();
+            controller.initialize(facade);
+            controller.setStage(stage);
+            
+            // Create and set scene
+            Scene scene = new Scene(root, 390, 700);
+            if (cssUrl != null) {
+                scene.getStylesheets().add(cssUrl.toExternalForm());
+            }
+            
+            stage.setScene(scene);
+            stage.setTitle("Song Library Mode");
+            
+        } catch (IOException ex) {
+            logger.log(Level.SEVERE, "Error loading song library mode", ex);
+            // statusLabel.setText("Error loading signup screen");
+        }
     }
     
     private void showNotImplemented(String feature) {
