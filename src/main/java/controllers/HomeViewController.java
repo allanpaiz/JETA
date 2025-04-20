@@ -12,8 +12,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
-import tuneup.User;
 import tuneup.TuneUp;
+import tuneup.User;
 
 /**
  * View controller for the home screen
@@ -27,7 +27,7 @@ public class HomeViewController {
     private Stage stage;
     private HomeController homeController;
     private User currentUser; // Add a reference to current user
-
+    private TuneUp facade;
     
     /**
      * Initialize with business logic controller
