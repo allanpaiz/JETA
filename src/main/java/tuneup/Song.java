@@ -198,7 +198,7 @@ public class Song {
      * 
      * @return String representation of the tempo (e.g., "Allegro", "Moderato")
      */
-    public String getTempoNotation() {
+    public String tempoNotation() {
         if (tempo <= 60) {
             return "Largo";
         } else if (tempo <= 80) {

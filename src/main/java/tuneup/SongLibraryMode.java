@@ -322,7 +322,7 @@ public class SongLibraryMode implements Mode {
             printWriter.println("Tempo: " + song.getTempo());
             printWriter.println("Time Signature: " + timeSignature);
             printWriter.println();
-            printWriter.println(song.getTempoNotation());
+            printWriter.println(song.tempoNotation());
 
             for (int i = 0; i < notes.size(); i += beatsPerMeasure) {
                 printWriter.print("Measure " + (i / beatsPerMeasure + 1) + ": ");

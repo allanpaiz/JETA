@@ -193,56 +193,56 @@ public class SongTest {
     public void testGetTempoNotation() {
         // Test all tempo notation ranges
         song.setTempo(50);
-        assertEquals("Tempo 50 should be Largo", "Largo", song.getTempoNotation());
+        assertEquals("Tempo 50 should be Largo", "Largo", song.tempoNotation());
         
         song.setTempo(70);
-        assertEquals("Tempo 70 should be Adagio", "Adagio", song.getTempoNotation());
+        assertEquals("Tempo 70 should be Adagio", "Adagio", song.tempoNotation());
         
         song.setTempo(90);
-        assertEquals("Tempo 90 should be Andante", "Andante", song.getTempoNotation());
+        assertEquals("Tempo 90 should be Andante", "Andante", song.tempoNotation());
         
         song.setTempo(110);
-        assertEquals("Tempo 110 should be Moderato", "Moderato", song.getTempoNotation());
+        assertEquals("Tempo 110 should be Moderato", "Moderato", song.tempoNotation());
         
         song.setTempo(140);
-        assertEquals("Tempo 140 should be Allegro", "Allegro", song.getTempoNotation());
+        assertEquals("Tempo 140 should be Allegro", "Allegro", song.tempoNotation());
         
         song.setTempo(180);
-        assertEquals("Tempo 180 should be Presto", "Presto", song.getTempoNotation());
+        assertEquals("Tempo 180 should be Presto", "Presto", song.tempoNotation());
     }
     
     @Test
     public void testTempoNotationEdgeCases() {
         // Test edge cases
         song.setTempo(60);
-        assertEquals("Tempo 60 should be Largo", "Largo", song.getTempoNotation());
+        assertEquals("Tempo 60 should be Largo", "Largo", song.tempoNotation());
         
         song.setTempo(61);
-        assertEquals("Tempo 61 should be Adagio", "Adagio", song.getTempoNotation());
+        assertEquals("Tempo 61 should be Adagio", "Adagio", song.tempoNotation());
         
         song.setTempo(80);
-        assertEquals("Tempo 80 should be Adagio", "Adagio", song.getTempoNotation());
+        assertEquals("Tempo 80 should be Adagio", "Adagio", song.tempoNotation());
         
         song.setTempo(81);
-        assertEquals("Tempo 81 should be Andante", "Andante", song.getTempoNotation());
+        assertEquals("Tempo 81 should be Andante", "Andante", song.tempoNotation());
         
         song.setTempo(100);
-        assertEquals("Tempo 100 should be Andante", "Andante", song.getTempoNotation());
+        assertEquals("Tempo 100 should be Andante", "Andante", song.tempoNotation());
         
         song.setTempo(101);
-        assertEquals("Tempo 101 should be Moderato", "Moderato", song.getTempoNotation());
+        assertEquals("Tempo 101 should be Moderato", "Moderato", song.tempoNotation());
         
         song.setTempo(120);
-        assertEquals("Tempo 120 should be Moderato", "Moderato", song.getTempoNotation());
+        assertEquals("Tempo 120 should be Moderato", "Moderato", song.tempoNotation());
         
         song.setTempo(121);
-        assertEquals("Tempo 121 should be Allegro", "Allegro", song.getTempoNotation());
+        assertEquals("Tempo 121 should be Allegro", "Allegro", song.tempoNotation());
         
         song.setTempo(160);
-        assertEquals("Tempo 160 should be Allegro", "Allegro", song.getTempoNotation());
+        assertEquals("Tempo 160 should be Allegro", "Allegro", song.tempoNotation());
         
         song.setTempo(161);
-        assertEquals("Tempo 161 should be Presto", "Presto", song.getTempoNotation());
+        assertEquals("Tempo 161 should be Presto", "Presto", song.tempoNotation());
     }
     
     /**
