@@ -12,8 +12,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import tuneup.TuneUp;
 import tuneup.User;
 
+/**
+ * View controller for the home screen
+ */
 public class HomeViewController {
     private static final Logger logger = Logger.getLogger(HomeViewController.class.getName());
     
@@ -22,6 +26,8 @@ public class HomeViewController {
     
     private Stage stage;
     private HomeController homeController;
+    private User currentUser; // Add a reference to current user
+    private TuneUp facade;
     
     /**
      * Initialize with business logic controller
@@ -39,9 +45,11 @@ public class HomeViewController {
     }
     
     /**
-     * Display user data in the UI
+     * Display user data in the UI and store reference
      */
     public void displayUserData(User user) {
+        this.currentUser = user; // Store reference to user
+        
         if (user != null) {
             usernameLabel.setText(user.getUsername());
             
@@ -49,32 +57,88 @@ public class HomeViewController {
             String expText = "";
             
             if (user.getRole() == tuneup.UserType.STUDENT) {
-                // Add experience level if available
                 if (user.getExperienceLevel() != null) {
-                    switch (user.getExperienceLevel()) {
-                        case BEGINNER:
-                            expText = " (Beginner)";
-                            break;
-                        case INTERMEDIATE:
-                            expText = " (Intermediate)";
-                            break;
-                        case ADVANCED:
-                            expText = " (Advanced)";
-                            break;
-                    }
+                    expText = " (" + user.getExperienceLevel().toString() + ")";
                 }
             }
             
             roleLabel.setText(roleText + expText);
+            logger.info("Displayed user data for: " + user.getUsername());
+        } else {
+            logger.warning("Attempted to display null user data");
+            usernameLabel.setText("Guest");
+            roleLabel.setText("Not logged in");
         }
     }
     
+    /**
+     * Navigate to user profile
+     */
+    @FXML
+    public void navigateToProfile() {
+        try {
+            // Make sure we have a user before trying to navigate
+            if (currentUser == null) {
+                logger.warning("Cannot navigate to profile: User is null");
+                showError("Session Error", "User session not found. Please log in again.");
+                handleLogout();
+                return;
+            }
+            
+            logger.info("Navigating to profile for: " + currentUser.getUsername());
+            
+            // Load the profile screen using resource path
+            URL fxmlUrl = getClass().getResource("/fxml/profile.fxml");
+            URL cssUrl = getClass().getResource("/css/styles.css");
+            
+            if (fxmlUrl == null) {
+                throw new IOException("Cannot find profile.fxml resource");
+            }
+            
+            // Load the FXML
+            FXMLLoader loader = new FXMLLoader(fxmlUrl);
+            Parent root = loader.load();
+            
+            // Get controller and initialize it
+            ProfileViewController controller = loader.getController();
+            controller.initialize(homeController.getFacade(), currentUser); // Pass the stored user
+            controller.setStage(stage);
+            
+            // Create and set scene
+            Scene scene = new Scene(root, 390, 700);
+            if (cssUrl != null) {
+                scene.getStylesheets().add(cssUrl.toExternalForm());
+            }
+            
+            stage.setScene(scene);
+            stage.setTitle("TuneUp Profile");
+            
+        } catch (IOException ex) {
+            logger.log(Level.SEVERE, "Error navigating to profile", ex);
+            showError("Navigation Error", "Could not navigate to profile screen");
+        }
+    }
+    
+    // Other methods (handleLogout, showError, etc.) remain the same...
+
+    private void showError(String header, String content) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("TuneUp Error");
+        alert.setHeaderText(header);
+        alert.setContentText(content);
+        alert.showAndWait();
+    }
     /**
  * Handle logout button click
  */
 @FXML
 public void handleLogout() {
     try {
+        // Log user out via controller
+        if (homeController != null) {
+            homeController.logout();
+        }
+        
         // Load login screen using resource path
         URL fxmlUrl = getClass().getResource("/fxml/login.fxml");
         URL cssUrl = getClass().getResource("/css/styles.css");
@@ -89,7 +153,7 @@ public void handleLogout() {
         
         // Get controller and initialize it
         LoginViewController controller = loader.getController();
-        controller.initialize(homeController.getFacade());
+        controller.initialize(homeController != null ? homeController.getFacade() : null);
         controller.setStage(stage);
         
         // Create and set scene
@@ -106,21 +170,10 @@ public void handleLogout() {
         showError("Navigation Error", "Could not return to login screen");
     }
 }
-    
-    /**
-     * Show error alert
-     */
-    private void showError(String header, String content) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("TuneUp Error");
-        alert.setHeaderText(header);
-        alert.setContentText(content);
-        alert.showAndWait();
-    }
-    
+    // Navigation stubs for other screens
     @FXML
     public void navigateToPractice() {
-        showNotImplemented("Play Mode");
+        showNotImplemented("Practice Mode");
     }
     
     @FXML
@@ -130,7 +183,37 @@ public void handleLogout() {
     
     @FXML
     public void navigateToSongLibrary() {
-        showNotImplemented("Song Library");
+        try {
+            // Load the signup screen using resource path
+            URL fxmlUrl = getClass().getResource("/fxml/songlibrary.fxml");
+            URL cssUrl = getClass().getResource("/css/styles.css");
+            
+            if (fxmlUrl == null) {
+                throw new IOException("Cannot find songlibrary.fxml resource");
+            }
+            
+            // Load the FXML
+            FXMLLoader loader = new FXMLLoader(fxmlUrl);
+            Parent root = loader.load();
+            
+            // Get controller and initialize it
+            SongLibraryViewController controller = loader.getController();
+            controller.initialize(facade);
+            controller.setStage(stage);
+            
+            // Create and set scene
+            Scene scene = new Scene(root, 390, 700);
+            if (cssUrl != null) {
+                scene.getStylesheets().add(cssUrl.toExternalForm());
+            }
+            
+            stage.setScene(scene);
+            stage.setTitle("Song Library Mode");
+            
+        } catch (IOException ex) {
+            logger.log(Level.SEVERE, "Error loading song library mode", ex);
+            // statusLabel.setText("Error loading signup screen");
+        }
     }
     
     private void showNotImplemented(String feature) {

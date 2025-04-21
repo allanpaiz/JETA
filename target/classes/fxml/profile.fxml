@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.Circle?>
+
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" 
+     fx:controller="controllers.ProfileViewController"
+     styleClass="app-background" spacing="15" style="-fx-background-color: #f5f5f5;">
+    
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20" />
+    </padding>
+    
+    <!-- Header with title and back button -->
+    <HBox alignment="CENTER_LEFT" spacing="15">
+        <Button text="← Back" onAction="#navigateToHome" 
+               style="-fx-background-color: white; -fx-text-fill: #6200EE; -fx-border-color: #6200EE; -fx-border-radius: 20; -fx-background-radius: 20; -fx-border-width: 1.5; -fx-padding: 5 15;" />
+        
+        <Region HBox.hgrow="ALWAYS" />
+        
+        <Label text="My Profile" style="-fx-font-size: 22px; -fx-font-weight: bold;" />
+        
+        <Region HBox.hgrow="ALWAYS" />
+    </HBox>
+    
+    <!-- Profile card -->
+    <VBox alignment="CENTER" spacing="15" style="-fx-background-color: white; -fx-background-radius: 10; -fx-padding: 20; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 5);">
+        <!-- Profile photo -->
+        <Circle radius="50" fill="#6200EE" />
+        
+        <!-- Username -->
+        <Label fx:id="usernameLabel" text="Username" style="-fx-font-size: 24px; -fx-font-weight: bold;" />
+        
+        <!-- Role badge -->
+        <HBox alignment="CENTER">
+            <Label fx:id="roleLabel" text="Student" 
+                  style="-fx-background-color: #e0cffc; -fx-text-fill: #6200EE; -fx-padding: 5 15; -fx-background-radius: 20;" />
+        </HBox>
+        
+        <!-- Divider -->
+        <Separator />
+        
+        <!-- Profile details grid -->
+        <GridPane hgap="10" vgap="15" alignment="CENTER">
+            <columnConstraints>
+                <ColumnConstraints minWidth="120" />
+                <ColumnConstraints hgrow="ALWAYS" />
+            </columnConstraints>
+            
+            <!-- Email -->
+            <Label text="Email:" style="-fx-font-weight: bold;" 
+                  GridPane.rowIndex="0" GridPane.columnIndex="0" />
+            <Label fx:id="emailLabel" text="user@example.com" 
+                  GridPane.rowIndex="0" GridPane.columnIndex="1" />
+            
+            <!-- Experience Level -->
+            <Label text="Experience:" style="-fx-font-weight: bold;" 
+                  GridPane.rowIndex="1" GridPane.columnIndex="0" />
+            <Label fx:id="experienceLevelLabel" text="Intermediate" 
+                  GridPane.rowIndex="1" GridPane.columnIndex="1" />
+            
+            <!-- Account Created -->
+            <Label text="Member Since:" style="-fx-font-weight: bold;" 
+                  GridPane.rowIndex="2" GridPane.columnIndex="0" />
+            <Label fx:id="memberSinceLabel" text="April 2023" 
+                  GridPane.rowIndex="2" GridPane.columnIndex="1" />
+            
+            <!-- Songs Created -->
+            <Label text="Songs Created:" style="-fx-font-weight: bold;" 
+                  GridPane.rowIndex="3" GridPane.columnIndex="0" />
+            <Label fx:id="songsCreatedLabel" text="12" 
+                  GridPane.rowIndex="3" GridPane.columnIndex="1" />
+            
+            <!-- Lessons Completed -->
+            <Label text="Lessons Completed:" style="-fx-font-weight: bold;" 
+                  GridPane.rowIndex="4" GridPane.columnIndex="0" />
+            <Label fx:id="lessonsCompletedLabel" text="8" 
+                  GridPane.rowIndex="4" GridPane.columnIndex="1" />
+        </GridPane>
+    </VBox>
+    
+    <!-- Action buttons -->
+    <HBox spacing="10" alignment="CENTER">
+        <Button text="Edit Profile" onAction="#handleEditProfile" 
+               style="-fx-background-color: #6200EE; -fx-text-fill: white; -fx-font-size: 14px; -fx-background-radius: 20; -fx-padding: 10 30;" />
+        
+        <Button text="Change Password" onAction="#handleChangePassword" 
+               style="-fx-background-color: white; -fx-text-fill: #6200EE; -fx-border-color: #6200EE; -fx-border-radius: 20; -fx-background-radius: 20; -fx-border-width: 1.5; -fx-padding: 10 20;" />
+    </HBox>
+    
+    <!-- Status message -->
+    <Label fx:id="statusLabel" style="-fx-font-size: 14px; -fx-text-fill: green;" alignment="CENTER" />
+    
+    <!-- Version label -->
+    <Region VBox.vgrow="ALWAYS" />
+    <Label text="TuneUp v1.0" style="-fx-font-size: 12px; -fx-text-fill: #666666;" alignment="CENTER" />
+</VBox>
