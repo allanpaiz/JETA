@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" 
+     fx:controller="controllers.SongLibraryViewController"
+     styleClass="app-background" spacing="10" style="-fx-background-color: #B4F0F9;">
+    
+    <padding>
+        <Insets top="10" right="10" bottom="10" left="10" />
+    </padding>
+    
+    <Label text="Song Library" style="-fx-font-size: 30px; -fx-font-weight: bold; -fx-padding: 10 0; -fx-text-fill: rgba(255,255,255,0.85); -fx-alignment: center; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 2, 0, 0, 1);" maxWidth="Infinity" />
+
+    <VBox alignment="CENTER" spacing="15" styleClass="sl-form">
+        <Label text="Search by Artist or Song Title" styleClass="sl-title" />
+        
+        <TextField fx:id="searchBar" promptText="Search" 
+                  style="-fx-pref-height: 40; -fx-font-size: 14px; -fx-pref-width: 250;" />
+
+        <Button text="Browse All Songs"  onAction="#browseAllSongs" styleClass="login-button" />
+    </VBox>
+
+    <VBox fx:id="carouselContainer" alignment="CENTER" spacing="10" styleClass="login-form">
+        <Label text="Recently Added" styleClass="sl-title" />
+        <ScrollPane fitToHeight="true" hbarPolicy="ALWAYS">
+            <HBox spacing="3" alignment="CENTER">
+                <ImageView fitWidth="150" fitHeight="150" preserveRatio="true">
+                    <Image url="@../images/back_down.jpg" />
+                </ImageView>
+                <ImageView fitWidth="150" fitHeight="150" preserveRatio="true">
+                    <Image url="@../images/im_yours.jpg" />
+                </ImageView>
+                <ImageView fitWidth="150" fitHeight="150" preserveRatio="true">
+                    <Image url="@../images/free_fallin.jpg" />
+                </ImageView>
+            </HBox>
+        </ScrollPane>
+    </VBox>
+
+    <VBox fx:id="libraryContainer" alignment="CENTER" spacing="5" styleClass="sl-list" >
+        <Label text="Search by Artist or Song Title" styleClass="sl-title" />
+    </VBox>
+
+    <VBox fx:id="footer" alignment="CENTER" spacing="5" style="-fx-background-color: rgba(0,0,0,0.2); -fx-padding: 10; -fx-background-radius: 1;">
+        <Button text="Home" onAction="#returnHome" styleClass="sl-home-button" />
+        <Label text="TuneUp v1.0" style="-fx-font-size: 12px; -fx-text-fill: white;" />
+    </VBox>
+</VBox>

@@ -2,6 +2,7 @@ package tuneup;
 
 import java.util.List;
 import java.util.UUID;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -100,6 +101,30 @@ public class TuneUp {
         return currentUser;
     }
     
+    /**
+     * Updates the current user information
+     * @param updatedUser Updated user object
+     */
+    public void updateCurrentUser(User updatedUser) {
+        // First, update the in-memory current user
+        this.currentUser = updatedUser;
+        
+        try {
+            // Then update the persisted user data
+            List<User> users = DataLoader.loadUsers();
+            for (int i = 0; i < users.size(); i++) {
+                if (users.get(i).getId().equals(updatedUser.getId())) {
+                    users.set(i, updatedUser);
+                    DataWriter.saveUsers(users);
+                    logger.info("User updated: " + updatedUser.getUsername());
+                    break;
+                }
+            }
+        } catch (Exception e) {
+            logger.log(Level.WARNING, "Error updating user", e);
+            throw new RuntimeException("Failed to update user data", e);
+        }
+    }
     /**
      * Register a new user
      * 

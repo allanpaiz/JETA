@@ -16,7 +16,9 @@ C:\VS Projects\CSCE247\project\src\main\java\tuneup\LessonMode.java
 C:\VS Projects\CSCE247\project\src\main\java\tuneup\ProfileManager.java
 C:\VS Projects\CSCE247\project\src\main\java\tuneup\TuneUpMobileUI.java
 C:\VS Projects\CSCE247\project\src\main\java\tuneup\PianoStrategy.java
+C:\VS Projects\CSCE247\project\src\main\java\controllers\ProfileController.java
 C:\VS Projects\CSCE247\project\src\main\java\tuneup\UserType.java
+C:\VS Projects\CSCE247\project\src\main\java\controllers\ProfileViewController.java
 C:\VS Projects\CSCE247\project\src\main\java\tuneup\DataConstants.java
 C:\VS Projects\CSCE247\project\src\main\java\tuneup\PlayMode.java
 C:\VS Projects\CSCE247\project\src\main\java\tuneup\Progress.java
@@ -27,7 +29,9 @@ C:\VS Projects\CSCE247\project\src\main\java\tuneup\DataLoader.java
 C:\VS Projects\CSCE247\project\src\main\java\tuneup\SongLibraryMode.java
 C:\VS Projects\CSCE247\project\src\main\java\tuneup\DataWriter.java
 C:\VS Projects\CSCE247\project\src\main\java\controllers\HomeController.java
+C:\VS Projects\CSCE247\project\src\main\java\controllers\SongLibraryViewController.java
 C:\VS Projects\CSCE247\project\src\main\java\tuneup\ExperienceLevel.java
+C:\VS Projects\CSCE247\project\src\main\java\controllers\SongLibraryController.java
 C:\VS Projects\CSCE247\project\src\main\java\tuneup\Song.java
 C:\VS Projects\CSCE247\project\src\main\java\controllers\SignUpViewController.java
 C:\VS Projects\CSCE247\project\src\main\java\tuneup\User.java
