@@ -45,38 +45,37 @@ public class PracticeModeViewController {
 
     @FXML
     public void navigateToPiano() {
-        // try {
-        //     // Load the signup screen using resource path
-        //     URL fxmlUrl = getClass().getResource("/fxml/piano.fxml");
-        //     URL cssUrl = getClass().getResource("/css/styles.css");
+        try {
+            // Load the signup screen using resource path
+            URL fxmlUrl = getClass().getResource("/fxml/piano.fxml");
+            URL cssUrl = getClass().getResource("/css/styles.css");
             
-        //     if (fxmlUrl == null) {
-        //         throw new IOException("Cannot find piano.fxml resource");
-        //     }
+            if (fxmlUrl == null) {
+                throw new IOException("Cannot find piano.fxml resource");
+            }
             
-        //     // Load the FXML
-        //     FXMLLoader loader = new FXMLLoader(fxmlUrl);
-        //     Parent root = loader.load();
+            // Load the FXML
+            FXMLLoader loader = new FXMLLoader(fxmlUrl);
+            Parent root = loader.load();
             
-        //     // Get controller and initialize it
-        //     PianoViewController controller = loader.getController();
-        //     controller.initialize(facade);
-        //     controller.setStage(stage);
+            // Get controller and initialize it
+            PianoViewController controller = loader.getController();
+            controller.initialize(facade);
+            controller.setStage(stage);
             
-        //     // Create and set scene
-        //     Scene scene = new Scene(root, 390, 700);
-        //     if (cssUrl != null) {
-        //         scene.getStylesheets().add(cssUrl.toExternalForm());
-        //     }
+            // Create and set scene
+            Scene scene = new Scene(root, 700, 390);
+            if (cssUrl != null) {
+                scene.getStylesheets().add(cssUrl.toExternalForm());
+            }
             
-        //     stage.setScene(scene);
-        //     stage.setTitle("Piano");
+            stage.setScene(scene);
+            stage.setTitle("Piano");
             
-        // } catch (IOException ex) {
-        //     logger.log(Level.SEVERE, "Error loading playable piano", ex);
-        //     // statusLabel.setText("Error loading signup screen");
-        // }
-        showNotImplemented("Piano");
+        } catch (IOException ex) {
+            logger.log(Level.SEVERE, "Error loading playable piano", ex);
+            // statusLabel.setText("Error loading signup screen");
+        }
     }
     @FXML
     public void navigateToGuitar() {
