@@ -173,7 +173,37 @@ public void handleLogout() {
     // Navigation stubs for other screens
     @FXML
     public void navigateToPractice() {
-        showNotImplemented("Practice Mode");
+        try {
+            // Load the signup screen using resource path
+            URL fxmlUrl = getClass().getResource("/fxml/practicemode.fxml");
+            URL cssUrl = getClass().getResource("/css/styles.css");
+            
+            if (fxmlUrl == null) {
+                throw new IOException("Cannot find practicemode.fxml resource");
+            }
+            
+            // Load the FXML
+            FXMLLoader loader = new FXMLLoader(fxmlUrl);
+            Parent root = loader.load();
+            
+            // Get controller and initialize it
+            PracticeModeViewController controller = loader.getController();
+            controller.initialize(facade);
+            controller.setStage(stage);
+            
+            // Create and set scene
+            Scene scene = new Scene(root, 390, 700);
+            if (cssUrl != null) {
+                scene.getStylesheets().add(cssUrl.toExternalForm());
+            }
+            
+            stage.setScene(scene);
+            stage.setTitle("Practice Mode");
+            
+        } catch (IOException ex) {
+            logger.log(Level.SEVERE, "Error loading practice mode", ex);
+            // statusLabel.setText("Error loading signup screen");
+        }
     }
     
     @FXML
