@@ -16,6 +16,7 @@ public class User {
     private String email;
     private UserType role;
     private ExperienceLevel experienceLevel;
+    private String profilePicturePath;
 
     /**
      * Constructor
@@ -149,6 +150,15 @@ public class User {
         return PasswordUtils.verifyPassword(password, this.password);
     }
 
+    // Add getters and setters for fields
+
+    public String getProfilePicturePath() {
+        return profilePicturePath;
+    }
+
+    public void setProfilePicturePath(String profilePicturePath) {
+        this.profilePicturePath = profilePicturePath;
+    }
     /**
      * Method to return a string representation of the user
      *  
