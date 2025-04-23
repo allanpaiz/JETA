@@ -21,6 +21,7 @@ import javafx.scene.control.Button;
 import tuneup.Song;
 import tuneup.SongLibrary;
 import tuneup.TuneUp;
+import tuneup.User;
 
 public class SongLibraryViewController {
     private static final Logger logger = Logger.getLogger(SignUpViewController.class.getName());
@@ -33,9 +34,11 @@ public class SongLibraryViewController {
     private Stage stage;
     private TuneUp facade;
     private SongLibraryController songLibraryController;
-    
-    public void initialize(TuneUp facade) {
+    private User currentUser;
+
+    public void initialize(TuneUp facade, User currentUser) {
         this.facade = facade;
+        this.currentUser = currentUser;
         this.songLibraryController = new SongLibraryController(facade);
         
         libraryContainer.setVisible(false);
@@ -52,6 +55,7 @@ public class SongLibraryViewController {
 
     @FXML
     public void browseAllSongs() {
+        carouselContainer.getChildren().clear();
         carouselContainer.setVisible(false);
         libraryContainer.setVisible(true);
 
@@ -60,30 +64,31 @@ public class SongLibraryViewController {
         titleLabel.getStyleClass().add("sl-title");
         libraryContainer.getChildren().add(titleLabel);
 
-        List<Song> songs = SongLibrary.getSongLibrary();
+        List<Song> songs = songLibraryController.getSongs("-ALL-");
+        displayLibrary(songs);
 
-        for (Song song : songs) {
-            HBox songRow = new HBox(10);
-            songRow.setAlignment(javafx.geometry.Pos.CENTER_LEFT);
-            
-            Label songLabel = new Label(song.getTitle());
-            songLabel.setStyle("-fx-font-size: 14px; -fx-padding: 2px;");
-            
-            Button playButton = new Button("▷");
-            playButton.setStyle("-fx-background-color: #4CAF50; -fx-text-fill: white;");
-            playButton.setOnAction(e -> {
-                System.out.println("play");
-            });
-            
-            Button saveButton = new Button("💾");
-            saveButton.setStyle("-fx-background-color: #2196F3; -fx-text-fill: white;");
-            saveButton.setOnAction(e -> {
-                System.out.println("save");
-            });
-            
-            songRow.getChildren().addAll(songLabel, playButton, saveButton);
-            libraryContainer.getChildren().add(songRow);
+    }
+
+    @FXML
+    public void browseFilteredSongs() {
+        String searchText = searchBar.getText().trim();
+        
+        if (searchText.isEmpty()) {
+            browseAllSongs();
+            return;
         }
+
+        carouselContainer.getChildren().clear();
+        carouselContainer.setVisible(false);
+        libraryContainer.setVisible(true);
+
+        libraryContainer.getChildren().clear();
+        Label titleLabel = new Label("Search : " + searchText);
+        titleLabel.getStyleClass().add("sl-title");
+        libraryContainer.getChildren().add(titleLabel);
+
+        List<Song> songs = songLibraryController.getSongs(searchText);
+        displayLibrary(songs);
     }
 
     @FXML
@@ -120,4 +125,67 @@ public class SongLibraryViewController {
         }
     }
 
+    @FXML
+    public void navigateToProfile() {
+        try {            
+            // Load the profile screen using resource path
+            URL fxmlUrl = getClass().getResource("/fxml/profile.fxml");
+            URL cssUrl = getClass().getResource("/css/styles.css");
+            
+            if (fxmlUrl == null) {
+                throw new IOException("Cannot find profile.fxml resource");
+            }
+            
+            // Load the FXML
+            FXMLLoader loader = new FXMLLoader(fxmlUrl);
+            Parent root = loader.load();
+            
+            // Get controller and initialize it
+            ProfileViewController controller = loader.getController();
+            controller.initialize(songLibraryController.getFacade(), currentUser);
+            controller.setStage(stage);
+            
+            // Create and set scene
+            Scene scene = new Scene(root, 390, 700);
+            if (cssUrl != null) {
+                scene.getStylesheets().add(cssUrl.toExternalForm());
+            }
+            
+            stage.setScene(scene);
+            stage.setTitle("TuneUp Profile");
+            
+        } catch (IOException ex) {
+            logger.log(Level.SEVERE, "Error navigating to profile", ex);
+        }
+    }
+
+    public void displayLibrary(List<Song> songs) {
+        for (Song song : songs) {
+            HBox songRow = new HBox();
+            songRow.getStyleClass().add("sl-list-row");
+            songRow.setAlignment(javafx.geometry.Pos.CENTER_LEFT);
+            songRow.setMaxWidth(Double.MAX_VALUE);
+            
+            VBox songInfo = new VBox();
+            songInfo.setAlignment(javafx.geometry.Pos.CENTER_LEFT);
+            Label songLabel = new Label(song.getTitle() + " by " + song.getArtistName());
+            songInfo.getChildren().addAll(songLabel);
+            
+            HBox buttonContainer = new HBox(5);
+            buttonContainer.setAlignment(javafx.geometry.Pos.CENTER_RIGHT);
+            
+            Button playButton = new Button("▶");
+            playButton.getStyleClass().add("sl-play-button");
+            playButton.setOnAction(e -> {songLibraryController.playSong(song);});
+            
+            Button saveButton = new Button("💾");
+            saveButton.getStyleClass().add("sl-save-button");
+            saveButton.setOnAction(e -> {songLibraryController.printSongToFile(song);});
+            
+            buttonContainer.getChildren().addAll(playButton, saveButton);
+            HBox.setHgrow(songInfo, javafx.scene.layout.Priority.ALWAYS);
+            songRow.getChildren().addAll(songInfo, buttonContainer);
+            libraryContainer.getChildren().add(songRow);
+        }
+    }
 }
