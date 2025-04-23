@@ -1,18 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
-<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
-    fx:controller="controllers.PianoViewController"
-    styleClass="app-background" spacing="15" style="-fx-background-color:rgb(255, 255, 255);">
-    
-    <padding>
-        <Insets top="20" right="20" bottom="20" left="20" />
-    </padding>
-    
-    <Label text="TuneUp v1.0" style="-fx-font-size: 12px; -fx-text-fill: white;" />
+<VBox spacing="15" style="-fx-background-color: #B4F0F9;" styleClass="app-background" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.PianoViewController">
+    <children>
+      <Button alignment="TOP_LEFT" mnemonicParsing="false" onMouseClicked="#navigateBack" text="Back">
+         <VBox.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </VBox.margin>
+      </Button>
+
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <ImageView fx:id="quarterNote" fitHeight="61.0" fitWidth="64.0" layoutX="177.0" layoutY="18.0">
+                     <image>
+                        <Image url="@../images/quarter%20note.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="97.0" fitWidth="418.0">
+                     <image>
+                        <Image url="@../images/bar.png" />
+                     </image>
+                  </ImageView>
+               </children>
+               <HBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </HBox.margin>
+            </AnchorPane>
+         </children>
+      </HBox>
+
+      <HBox alignment="BASELINE_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <Button layoutX="554.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#playA4Note" prefHeight="500.0" prefWidth="231.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 1px;" text="A4" />
+            <Button layoutX="576.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#playB4Note" prefHeight="500.0" prefWidth="231.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 1px;" text="B4" />
+            <Button mnemonicParsing="false" onMouseClicked="#playC4Note" prefHeight="500.0" prefWidth="231.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 1px;" text="C4" />
+            <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#playD4Note" prefHeight="500.0" prefWidth="231.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 1px;" text="D4" />
+            <Button layoutX="241.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#playE4Note" prefHeight="500.0" prefWidth="231.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 1px;" text="E4" />
+            <Button layoutX="463.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#playF4Note" prefHeight="500.0" prefWidth="231.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 1px;" text="F4" />
+            <Button layoutX="520.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#playG4Note" prefHeight="500.0" prefWidth="231.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 1px;" text="G4" />
+            <Button layoutX="308.0" layoutY="10.0" mnemonicParsing="false" prefHeight="500.0" prefWidth="231.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 1px;" />
+            <Button layoutX="318.0" layoutY="10.0" mnemonicParsing="false" prefHeight="500.0" prefWidth="231.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 1px;" />
+            <Button layoutX="592.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#playC5Note" prefHeight="500.0" prefWidth="231.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 1px;" text="C5" />
+         </children>
+         <VBox.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </VBox.margin>
+      </HBox>
+   </children>
 </VBox>
