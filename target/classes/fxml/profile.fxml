@@ -28,9 +28,7 @@
     <!-- Profile card -->
     <VBox alignment="CENTER" spacing="15" style="-fx-background-color: white; -fx-background-radius: 10; -fx-padding: 20; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 5);">
         <!-- Profile photo -->
-        <Circle fx:id="profilePictureCircle" radius="50" fill="#6200EE" 
-        onMouseClicked="#handleChangeProfilePicture" 
-        style="-fx-cursor: hand;" />
+        <Circle radius="50" fill="#6200EE" />
         
         <!-- Username -->
         <Label fx:id="usernameLabel" text="Username" style="-fx-font-size: 24px; -fx-font-weight: bold;" />
