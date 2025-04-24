@@ -1,5 +1,6 @@
 package controllers;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
@@ -19,8 +20,12 @@ import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import tuneup.DataLoader;
 import tuneup.Song;
@@ -41,6 +46,7 @@ public class ProfileViewController {
     @FXML private Label songsCreatedLabel;
     @FXML private Label lessonsCompletedLabel;
     @FXML private Label statusLabel;
+    @FXML private Circle profilePictureCircle;
     
     private Stage stage;
     private TuneUp facade;
@@ -50,23 +56,20 @@ public class ProfileViewController {
     /**
      * Initialize controller with application facade and user
      */
-    /**
- * Initialize controller with application facade and user
- */
-public void initialize(TuneUp facade, User user) {
-    this.facade = facade;
-    this.currentUser = user;
-    this.profileController = new ProfileController(facade);
-    
-    if (user == null) {
-        logger.severe("Attempted to initialize ProfileViewController with null user");
-        // In a real app, you might want to redirect back to login
-        return;
+    public void initialize(TuneUp facade, User user) {
+        this.facade = facade;
+        this.currentUser = user;
+        this.profileController = new ProfileController(facade);
+        
+        if (user == null) {
+            logger.severe("Attempted to initialize ProfileViewController with null user");
+            // In a real app, you might want to redirect back to login
+            return;
+        }
+        
+        displayUserData();
+        logger.info("ProfileViewController initialized for user: " + user.getUsername());
     }
-    
-    displayUserData();
-    logger.info("ProfileViewController initialized for user: " + user.getUsername());
-}
     
     /**
      * Display user data in the profile view
@@ -95,6 +98,12 @@ public void initialize(TuneUp facade, User user) {
         
         // Lessons completed - would come from a user stats system
         lessonsCompletedLabel.setText("0"); // Placeholder
+
+        // Load profile picture
+        String profilePicturePath = currentUser.getProfilePicturePath();
+        if (profilePicturePath != null && !profilePicturePath.isEmpty()) {
+            profilePictureCircle.setFill(new ImagePattern(new Image(profilePicturePath)));
+        }
     }
     
     /**
@@ -242,6 +251,47 @@ public void initialize(TuneUp facade, User user) {
                 statusLabel.setTextFill(Color.RED);
             }
         });
+    }
+    
+    /**
+     * Handle the change profile picture button click
+     */
+    @FXML
+    public void handleChangeProfilePicture() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Select Profile Picture");
+        fileChooser.getExtensionFilters().addAll(
+            new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg")
+        );
+
+        // Set initial directory to the images folder
+        File imagesFolder = new File("images");
+        if (imagesFolder.exists() && imagesFolder.isDirectory()) {
+            fileChooser.setInitialDirectory(imagesFolder);
+        } else {
+            logger.warning("Images folder not found. Defaulting to user home directory.");
+            fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
+        }
+
+        File selectedFile = fileChooser.showOpenDialog(stage);
+        if (selectedFile != null) {
+            String imagePath = selectedFile.toURI().toString();
+
+            // Update the profile picture in the UI
+            profilePictureCircle.setFill(new ImagePattern(new Image(imagePath)));
+
+            // Save the profile picture path to the user profile
+            currentUser.setProfilePicturePath(imagePath);
+            boolean success = profileController.updateUserProfile(currentUser.getId(), currentUser);
+
+            if (success) {
+                statusLabel.setText("Profile picture updated successfully!");
+                statusLabel.setTextFill(Color.GREEN);
+            } else {
+                statusLabel.setText("Failed to update profile picture");
+                statusLabel.setTextFill(Color.RED);
+            }
+        }
     }
     
     /**
