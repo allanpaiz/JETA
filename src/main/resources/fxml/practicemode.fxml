@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" 
+     fx:controller="controllers.PracticeModeViewController"
+     styleClass="app-background" spacing="15" style="-fx-background-color: #B4F0F9;">
+    
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20" />
+    </padding>
+    
+    <Label text="Practice Mode" style="-fx-font-size: 30px; -fx-font-weight: bold; -fx-padding: 10 0; -fx-text-fill: rgba(255,255,255,0.85); -fx-alignment: center; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 2, 0, 0, 1);" maxWidth="Infinity" />
+    <Label text="Here, you can test out instruments and play different notes" style="-fx-font-size: 16px; -fx-text-fill: #666666;" />
+
+    <!-- Option cards -->
+    <VBox spacing="15">
+        <!-- Piano option -->
+        <VBox styleClass="option-card" onMouseClicked="#navigateToPiano">
+            <padding>
+                <Insets top="15" right="15" bottom="15" left="15" />
+            </padding>
+            <HBox spacing="15" alignment="CENTER_LEFT">
+                <VBox spacing="5">
+                    <Label text="Piano" styleClass="option-text" />
+                </VBox>
+            </HBox>
+        </VBox>
+        
+        <!-- Guitar option -->
+        <VBox styleClass="option-card" onMouseClicked="#navigateToGuitar">
+            <padding>
+                <Insets top="15" right="15" bottom="15" left="15" />
+            </padding>
+            <HBox spacing="15" alignment="CENTER_LEFT">
+                <VBox spacing="5">
+                    <Label text="Guitar" styleClass="option-text" />
+                </VBox>
+            </HBox>
+        </VBox>
+        
+        <!-- Ukelele option -->
+        <VBox styleClass="option-card" onMouseClicked="#navigateToUkelele">
+            <padding>
+                <Insets top="15" right="15" bottom="15" left="15" />
+            </padding>
+            <HBox spacing="15" alignment="CENTER_LEFT">
+                <VBox spacing="5">
+                    <Label text="Ukelele" styleClass="option-text" />
+                </VBox>
+            </HBox>
+        </VBox>
+    </VBox>
+    
+    <Region VBox.vgrow="ALWAYS" />
+
+    <Label text="TuneUp v1.0" style="-fx-font-size: 12px; -fx-text-fill: white;" />
+</VBox>
