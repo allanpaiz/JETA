@@ -228,7 +228,7 @@ public void handleLogout() {
             
             // Get controller and initialize it
             SongLibraryViewController controller = loader.getController();
-            controller.initialize(facade);
+            controller.initialize(facade, currentUser);
             controller.setStage(stage);
             
             // Create and set scene
