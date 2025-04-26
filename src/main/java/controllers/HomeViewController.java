@@ -188,11 +188,11 @@ public void handleLogout() {
             
             // Get controller and initialize it
             PracticeModeViewController controller = loader.getController();
-            controller.initialize(facade);
+            controller.initialize(facade, currentUser);
             controller.setStage(stage);
             
             // Create and set scene
-            Scene scene = new Scene(root, 390, 700);
+            Scene scene = new Scene(root, 390, 600);
             if (cssUrl != null) {
                 scene.getStylesheets().add(cssUrl.toExternalForm());
             }
@@ -232,7 +232,7 @@ public void handleLogout() {
             controller.setStage(stage);
             
             // Create and set scene
-            Scene scene = new Scene(root, 390, 700);
+            Scene scene = new Scene(root, 390, 600);
             if (cssUrl != null) {
                 scene.getStylesheets().add(cssUrl.toExternalForm());
             }

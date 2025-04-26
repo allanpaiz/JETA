@@ -10,7 +10,7 @@
 
 <VBox spacing="15" style="-fx-background-color: #B4F0F9;" styleClass="app-background" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.PianoViewController">
     <children>
-      <Button alignment="TOP_LEFT" mnemonicParsing="false" onMouseClicked="#navigateBack" text="Back">
+      <Button alignment="TOP_LEFT" mnemonicParsing="false" onMouseClicked="#navigateBack" text="Back" styleClass="piano-back-button">
          <VBox.margin>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </VBox.margin>
