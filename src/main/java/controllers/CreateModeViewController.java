@@ -329,6 +329,12 @@ public class CreateModeViewController {
             cleanup();
             
             URL fxmlUrl = getClass().getResource("/fxml/home.fxml");
+            URL cssUrl = getClass().getResource("/css/styles.css");
+            
+            if (fxmlUrl == null) {
+                throw new IOException("Cannot find home.fxml");
+            }
+            
             FXMLLoader loader = new FXMLLoader(fxmlUrl);
             Parent root = loader.load();
             
@@ -337,24 +343,51 @@ public class CreateModeViewController {
             controller.setStage(stage);
             controller.displayUserData(currentUser);
             
+            // Create scene with correct size for home screen
             Scene scene = new Scene(root, 390, 600);
+            
+            // Apply CSS styles
+            if (cssUrl != null) {
+                scene.getStylesheets().clear();
+                scene.getStylesheets().add(cssUrl.toExternalForm());
+            }
+            
+            // Set scene and resize window
             stage.setScene(scene);
             stage.setTitle("TuneUp Home");
+            stage.sizeToScene();
+            stage.centerOnScreen();
             
         } catch (IOException ex) {
             logger.log(Level.SEVERE, "Error returning to home", ex);
             showError("Navigation Error", "Could not return to home screen");
         }
     }
-
     public void cleanup() {
+        // Stop and cleanup piano
         if (piano != null) {
+            piano.stop();
             piano.close();
             piano = null;
         }
+    
+        // Stop any running animations
         if (noteAnimation != null) {
             noteAnimation.stop();
             noteAnimation = null;
         }
+    
+        // Clear collections
+        if (measureNotes != null) {
+            measureNotes.clear();
+        }
+        if (allMeasures != null) {
+            allMeasures.clear();
+        }
+        if (songMeasuresListView != null && songMeasuresListView.getItems() != null) {
+            songMeasuresListView.getItems().clear();
+        }
+    
+        logger.info("CreateModeViewController cleanup completed");
     }
 }
