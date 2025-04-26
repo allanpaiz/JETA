@@ -64,7 +64,7 @@ public class PracticeModeViewController {
             controller.setStage(stage);
             
             // Create and set scene
-            Scene scene = new Scene(root, 700, 390);
+            Scene scene = new Scene(root, 600, 390);
             if (cssUrl != null) {
                 scene.getStylesheets().add(cssUrl.toExternalForm());
             }

@@ -80,7 +80,7 @@ public class PianoViewController {
             controller.setStage(stage);
             
             // Create and set scene
-            Scene scene = new Scene(root, 390, 700);
+            Scene scene = new Scene(root, 390, 600);
             if (cssUrl != null) {
                 scene.getStylesheets().add(cssUrl.toExternalForm());
             }
