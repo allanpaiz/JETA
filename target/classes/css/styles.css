@@ -236,3 +236,16 @@
     -fx-background-color: #1976D2;
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 5, 0, 0, 2);
 }
+
+.piano-back-button {
+    -fx-background-color: #2196F3;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-padding: 5 10;
+    -fx-background-radius: 5;
+}
+
+.piano-back-button:hover {
+    -fx-background-color: #1976D2;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 5, 0, 0, 2);
+}

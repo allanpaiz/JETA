@@ -21,6 +21,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import tuneup.TuneUp;
+import tuneup.User;
 
 public class PianoViewController {
     private static final Logger logger = Logger.getLogger(PianoController.class.getName());
@@ -40,12 +41,14 @@ public class PianoViewController {
     private Stage stage;
     private PianoController pianoController;
     private TuneUp facade;
+    private User currentUser;
     
     /**
      * Initialize with business logic controller
      */
-    public void initialize(TuneUp facade) {
+    public void initialize(TuneUp facade, User currentUser) {
         this.facade = facade;
+        this.currentUser = currentUser;
         this.pianoController = new PianoController(facade);
         quarterNote.setVisible(false);
         
@@ -76,11 +79,11 @@ public class PianoViewController {
             
             // Get controller and initialize it
             PracticeModeViewController controller = loader.getController();
-            controller.initialize(facade);
+            controller.initialize(facade, currentUser);
             controller.setStage(stage);
             
             // Create and set scene
-            Scene scene = new Scene(root, 390, 700);
+            Scene scene = new Scene(root, 390, 600);
             if (cssUrl != null) {
                 scene.getStylesheets().add(cssUrl.toExternalForm());
             }
