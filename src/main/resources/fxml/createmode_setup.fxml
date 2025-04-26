@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" 
+     fx:controller="controllers.CreateModeViewController"
+     styleClass="app-background" spacing="15" style="-fx-background-color: #B4F0F9;">
+    
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20" />
+    </padding>
+    
+    <!-- Header -->
+    <HBox alignment="CENTER_LEFT" spacing="15">
+        <Button text="← Back" onAction="#navigateToHome" 
+                style="-fx-background-color: white; -fx-text-fill: #6200EE; -fx-border-color: #6200EE; -fx-border-radius: 20; -fx-background-radius: 20; -fx-border-width: 1.5; -fx-padding: 5 15;" />
+        <Label text="Create Mode" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: white;" />
+    </HBox>
+    
+    <Label text="Let's start by setting up your song" style="-fx-font-size: 16px; -fx-text-fill: #666666;" />
+
+    <!-- Song Setup Form -->
+    <VBox spacing="20" style="-fx-background-color: white; -fx-padding: 20; -fx-background-radius: 10;">
+        <!-- Song Title -->
+        <VBox spacing="5">
+            <Label text="Song Title" style="-fx-font-weight: bold;" />
+            <TextField fx:id="songTitleField" promptText="Enter your song title" />
+        </VBox>
+        
+        <!-- Tempo -->
+        <VBox spacing="5">
+            <Label text="Tempo (BPM)" style="-fx-font-weight: bold;" />
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Slider fx:id="tempoSlider" min="40" max="240" value="120" 
+                        showTickLabels="true" showTickMarks="true" 
+                        majorTickUnit="40" minorTickCount="3" 
+                        snapToTicks="true" HBox.hgrow="ALWAYS" />
+                <Label fx:id="tempoValueLabel" text="120 BPM" prefWidth="80" />
+            </HBox>
+        </VBox>
+        
+        <!-- Time Signature -->
+        <VBox spacing="5">
+            <Label text="Time Signature" style="-fx-font-weight: bold;" />
+            <ComboBox fx:id="timeSignatureCombo" prefWidth="150" />
+        </VBox>
+    </VBox>
+    
+    <Region VBox.vgrow="ALWAYS" />
+    
+    <!-- Continue Button -->
+    <Button text="Continue to Composition" onAction="#continueToComposition" 
+            style="-fx-background-color: #6200EE; -fx-text-fill: white; -fx-background-radius: 20; -fx-padding: 10 30;"
+            maxWidth="Infinity" />
+</VBox>

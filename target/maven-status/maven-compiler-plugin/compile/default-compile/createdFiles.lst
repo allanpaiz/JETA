@@ -1,9 +1,11 @@
 controllers\HomeController.class
 tuneup\DataLoader$2.class
+controllers\PracticeModeController.class
 controllers\ProfileViewController.class
 tuneup\CreateMode.class
 tuneup\InstrumentStrategy.class
 controllers\LoginController.class
+controllers\PracticeModeViewController.class
 tuneup\DataLoader.class
 tuneup\TuneUpMobileUI.class
 tuneup\TuneUp.class
@@ -18,6 +20,7 @@ tuneup\InstrumentFactory.class
 controllers\SignUpViewController$1.class
 tuneup\FileUtils.class
 tuneup\Lesson.class
+controllers\CreateModeController.class
 tuneup\PlayMode.class
 controllers\SignUpController.class
 tuneup\User.class
@@ -27,13 +30,16 @@ tuneup\LessonMode.class
 tuneup\UserType.class
 tuneup\Song.class
 module-info.class
+controllers\PianoController.class
 tuneup\LessonLibrary.class
 controllers\SongLibraryController.class
 tuneup\DataLoader$3.class
+controllers\PianoViewController.class
 tuneup\ExperienceLevel.class
 controllers\LoginViewController.class
 tuneup\PasswordUtils.class
 tuneup\PianoStrategy.class
+controllers\CreateModeViewController.class
 tuneup\InstrumentType.class
 tuneup\SongLibrary.class
 controllers\SignUpViewController.class
