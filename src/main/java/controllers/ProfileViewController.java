@@ -33,7 +33,8 @@ import tuneup.TuneUp;
 import tuneup.User;
 
 /**
- * Controller for the profile view
+ * Controller for the profile view.
+ * Handles the display and interaction logic for the user's profile page.
  */
 public class ProfileViewController {
     private static final Logger logger = Logger.getLogger(ProfileViewController.class.getName());
@@ -54,7 +55,10 @@ public class ProfileViewController {
     private User currentUser;
     
     /**
-     * Initialize controller with application facade and user
+     * Initializes the controller with the application facade and the current user.
+     * 
+     * @param facade The application facade providing access to core functionality.
+     * @param user The current user whose profile is being displayed.
      */
     public void initialize(TuneUp facade, User user) {
         this.facade = facade;
@@ -63,7 +67,7 @@ public class ProfileViewController {
         
         if (user == null) {
             logger.severe("Attempted to initialize ProfileViewController with null user");
-            // In a real app, you might want to redirect back to login
+// In a real app, you might want to redirect back to login
             return;
         }
         
@@ -72,19 +76,20 @@ public class ProfileViewController {
     }
     
     /**
-     * Display user data in the profile view
+     * Displays the user's data in the profile view.
+     * Populates labels and other UI elements with user information.
      */
     private void displayUserData() {
-        // Basic user data
+// Basic user data
         usernameLabel.setText(currentUser.getUsername());
         roleLabel.setText(currentUser.getRole().toString());
         emailLabel.setText(currentUser.getEmail());
         experienceLevelLabel.setText(currentUser.getExperienceLevel().toString());
-        
+
         // Member since - this would need to be added to User class
         memberSinceLabel.setText("April 2023"); // Placeholder
         
-        // Count songs created by this user
+// Count songs created by this user
         try {
             List<Song> allSongs = DataLoader.loadSongs();
             long songsCreated = allSongs.stream()
@@ -96,10 +101,10 @@ public class ProfileViewController {
             logger.log(Level.WARNING, "Error loading songs", e);
         }
         
-        // Lessons completed - would come from a user stats system
+// Lessons completed - would come from a user stats system
         lessonsCompletedLabel.setText("0"); // Placeholder
 
-        // Load profile picture
+// Load profile picture
         String profilePicturePath = currentUser.getProfilePicturePath();
         if (profilePicturePath != null && !profilePicturePath.isEmpty()) {
             profilePictureCircle.setFill(new ImagePattern(new Image(profilePicturePath)));
@@ -107,27 +112,30 @@ public class ProfileViewController {
     }
     
     /**
-     * Set the application stage
+     * Sets the application stage.
+     * 
+     * @param stage The primary stage of the application.
      */
     public void setStage(Stage stage) {
         this.stage = stage;
     }
     
     /**
-     * Handle the edit profile button click
+     * Handles the "Edit Profile" button click.
+     * Opens a dialog to allow the user to edit their profile information.
      */
     @FXML
     public void handleEditProfile() {
-        // Create a dialog for editing profile
+// Create a dialog for editing profile
         Dialog<User> dialog = new Dialog<>();
         dialog.setTitle("Edit Profile");
         dialog.setHeaderText("Update your profile information");
         
-        // Set the button types
+// Set the button types
         ButtonType saveButtonType = new ButtonType("Save", ButtonBar.ButtonData.OK_DONE);
         dialog.getDialogPane().getButtonTypes().addAll(saveButtonType, ButtonType.CANCEL);
         
-        // Create the fields grid
+// Create the fields grid
         GridPane grid = new GridPane();
         grid.setHgap(10);
         grid.setVgap(10);
@@ -148,10 +156,9 @@ public class ProfileViewController {
         
         dialog.getDialogPane().setContent(grid);
         
-        // Convert the result to a user when the save button is clicked
         dialog.setResultConverter(dialogButton -> {
             if (dialogButton == saveButtonType) {
-                // Update only certain fields
+// Update only certain fields
                 User updatedUser = new User(
                     currentUser.getId(),
                     usernameField.getText(),
@@ -170,7 +177,7 @@ public class ProfileViewController {
         result.ifPresent(updatedUser -> {
             boolean success = profileController.updateUserProfile(currentUser.getId(), updatedUser);
             if (success) {
-                // Update the current user and display
+// Update the current user and display
                 currentUser = updatedUser;
                 displayUserData();
                 statusLabel.setText("Profile updated successfully!");
@@ -183,20 +190,21 @@ public class ProfileViewController {
     }
     
     /**
-     * Handle the change password button click
+     * Handles the "Change Password" button click.
+     * Opens a dialog to allow the user to change their password.
      */
     @FXML
-    public void handleChangePassword() {
-        // Create a dialog for changing password
+    public void handleChangdial// Set the button types
+ood){/Cate a dialog for changing password
         Dialog<String[]> dialog = new Dialog<>();
         dialog.setTitle("Change Password");
         dialog.setHeaderText("Enter your current password and a new password");
         
-        // Set the button types
+// Set the button types
         ButtonType saveButtonType = new ButtonType("Change Password", ButtonBar.ButtonData.OK_DONE);
         dialog.getDialogPane().getButtonTypes().addAll(saveButtonType, ButtonType.CANCEL);
         
-        // Create the password fields grid
+// Create the password fields grid
         GridPane grid = new GridPane();
         grid.setHgap(10);
         grid.setVgap(10);
@@ -215,7 +223,7 @@ public class ProfileViewController {
         
         dialog.getDialogPane().setContent(grid);
         
-        // Convert the result when the change password button is clicked
+// Convert the result when the change password button is clicked
         dialog.setResultConverter(dialogButton -> {
             if (dialogButton == saveButtonType) {
                 return new String[] {
@@ -254,17 +262,19 @@ public class ProfileViewController {
     }
     
     /**
-     * Handle the change profile picture button click
+     * Handles the "Change Profile Picture" button click.
+     * Opens a file chooser to allow the user to select a new profile picture.
      */
     @FXML
     public void handleChangeProfilePicture() {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Select Profile Picture");
+// Set initial directory to the images folder
         fileChooser.getExtensionFilters().addAll(
             new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg")
         );
 
-        // Set initial directory to the images folder
+// Set initial directory to the images folder
         File imagesFolder = new File("images");
         if (imagesFolder.exists() && imagesFolder.isDirectory()) {
             fileChooser.setInitialDirectory(imagesFolder);
@@ -277,10 +287,10 @@ public class ProfileViewController {
         if (selectedFile != null) {
             String imagePath = selectedFile.toURI().toString();
 
-            // Update the profile picture in the UI
+// Update the profile picture in the UI
             profilePictureCircle.setFill(new ImagePattern(new Image(imagePath)));
 
-            // Save the profile picture path to the user profile
+// Save the profile picture path to the user profile
             currentUser.setProfilePicturePath(imagePath);
             boolean success = profileController.updateUserProfile(currentUser.getId(), currentUser);
 
@@ -300,7 +310,7 @@ public class ProfileViewController {
     @FXML
     public void navigateToHome() {
         try {
-            // Load the home screen using resource path
+// Load the home screen using resource path
             URL fxmlUrl = getClass().getResource("/fxml/home.fxml");
             URL cssUrl = getClass().getResource("/css/styles.css");
             
@@ -308,17 +318,17 @@ public class ProfileViewController {
                 throw new IOException("Cannot find home.fxml resource");
             }
             
-            // Load the FXML
+// Load the FXML
             FXMLLoader loader = new FXMLLoader(fxmlUrl);
             Parent root = loader.load();
             
-            // Get controller and initialize it
+// Get controller and initialize it
             HomeViewController controller = loader.getController();
             controller.initialize(new HomeController(facade));
             controller.setStage(stage);
             controller.displayUserData(currentUser);
             
-            // Create and set scene
+// Create and set scene
             Scene scene = new Scene(root, 390, 600);
             if (cssUrl != null) {
                 scene.getStylesheets().add(cssUrl.toExternalForm());
@@ -334,7 +344,10 @@ public class ProfileViewController {
     }
     
     /**
-     * Show an error dialog
+     * Displays an error dialog with the specified title and message.
+     * 
+     * @param title The title of the error dialog.
+     * @param message The message to display in the error dialog.
      */
     private void showError(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);

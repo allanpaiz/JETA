@@ -6,20 +6,33 @@ import tuneup.User;
 import tuneup.UserType;
 
 /**
- * Controller responsible for user registration
+ * Controller responsible for user registration.
+ * Handles the logic for validating and registering new users in the system.
  */
 public class SignUpController {
     private TuneUp facade;
     
     /**
-     * Constructor initializes with a reference to the application facade
+     * Constructor initializes the controller with a reference to the application facade.
+     * 
+     * @param facade The application facade providing access to core functionality.
      */
     public SignUpController(TuneUp facade) {
         this.facade = facade;
     }
     
     /**
-     * Registers a new user with the system
+     * Registers a new user with the system.
+     * Validates the input data, converts role and experience level strings to enums,
+     * and delegates the registration process to the application facade.
+     * 
+     * @param username The username of the new user.
+     * @param password The password of the new user.
+     * @param confirmPassword The confirmation of the password.
+     * @param email The email address of the new user.
+     * @param roleStr The role of the user as a string (e.g., "Teacher" or "Student").
+     * @param experienceLevelStr The experience level of the user as a string (e.g., "Beginner").
+     * @return The registered User object if successful, or null if registration fails.
      */
     public User registerUser(String username, String password, String confirmPassword,
                            String email, String roleStr, String experienceLevelStr) {
@@ -62,7 +75,16 @@ public class SignUpController {
     }
     
     /**
-     * Validates registration data
+     * Validates the registration data provided by the user.
+     * Ensures that all required fields are filled and that passwords match.
+     * 
+     * @param username The username of the new user.
+     * @param password The password of the new user.
+     * @param confirmPassword The confirmation of the password.
+     * @param email The email address of the new user.
+     * @param roleStr The role of the user as a string (e.g., "Teacher" or "Student").
+     * @param experienceLevelStr The experience level of the user as a string (optional).
+     * @return A validation error message if validation fails, or an empty string if validation succeeds.
      */
     public String validateRegistrationData(String username, String password, 
                                          String confirmPassword, String email,
@@ -94,9 +116,12 @@ public class SignUpController {
         
         return "";
     }
-     /**
-     * Gets the application facade
-     * @return TuneUp facade
+    
+    /**
+     * Gets the application facade.
+     * Provides access to the core functionality of the application.
+     * 
+     * @return The TuneUp facade.
      */
     public TuneUp getFacade() {
         return facade;
