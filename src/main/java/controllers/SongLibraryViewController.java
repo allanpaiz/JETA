@@ -17,42 +17,57 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
 
-
 import tuneup.Song;
 import tuneup.SongLibrary;
 import tuneup.TuneUp;
 import tuneup.User;
 
+/**
+ * View Controller Class for Song Library
+ *
+ * @author allanpaiz
+ */
 public class SongLibraryViewController {
     private static final Logger logger = Logger.getLogger(SignUpViewController.class.getName());
-    
+
     @FXML private TextField searchBar;
     @FXML private Label statusLabel;
     @FXML private VBox carouselContainer;
     @FXML private VBox libraryContainer;
-    
+
     private Stage stage;
     private TuneUp facade;
     private SongLibraryController songLibraryController;
     private User currentUser;
 
+    /**
+     * Initialize method for UI
+     *
+     * @param facade TuneUp
+     * @param currentUser User
+     */
     public void initialize(TuneUp facade, User currentUser) {
         this.facade = facade;
         this.currentUser = currentUser;
         this.songLibraryController = new SongLibraryController(facade);
-        
+
         libraryContainer.setVisible(false);
-        
+
         logger.info("SongLibraryController initialized");
     }
-    
+
     /**
-     * Set the application stage
+     * Sets application stage 
+     *
+     * @param stage Stage
      */
     public void setStage(Stage stage) {
         this.stage = stage;
     }
 
+    /**
+     *  Browse All Songs Button functionality
+     */
     @FXML
     public void browseAllSongs() {
         carouselContainer.getChildren().clear();
@@ -69,10 +84,13 @@ public class SongLibraryViewController {
 
     }
 
+    /**
+     *  Search Songs functionality
+     */
     @FXML
     public void browseFilteredSongs() {
         String searchText = searchBar.getText().trim();
-        
+
         if (searchText.isEmpty()) {
             browseAllSongs();
             return;
@@ -91,6 +109,9 @@ public class SongLibraryViewController {
         displayLibrary(songs);
     }
 
+    /**
+     * Home button functionality
+     */
     @FXML
     public void returnHome() {
         try {
@@ -125,6 +146,9 @@ public class SongLibraryViewController {
         }
     }
 
+    /**
+     * Profile button functionality
+     */
     @FXML
     public void navigateToProfile() {
         try {            
@@ -159,6 +183,11 @@ public class SongLibraryViewController {
         }
     }
 
+    /**
+     * Helper function that displays all songs or filtered library
+     *
+     * @param songs List<Song>
+     */
     public void displayLibrary(List<Song> songs) {
         for (Song song : songs) {
             HBox songRow = new HBox();
