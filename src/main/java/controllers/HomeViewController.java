@@ -188,11 +188,11 @@ public void handleLogout() {
             
             // Get controller and initialize it
             PracticeModeViewController controller = loader.getController();
-            controller.initialize(facade);
+            controller.initialize(facade, currentUser);
             controller.setStage(stage);
             
             // Create and set scene
-            Scene scene = new Scene(root, 390, 700);
+            Scene scene = new Scene(root, 390, 600);
             if (cssUrl != null) {
                 scene.getStylesheets().add(cssUrl.toExternalForm());
             }
@@ -208,7 +208,34 @@ public void handleLogout() {
     
     @FXML
     public void navigateToCreate() {
-        showNotImplemented("Create Mode");
+        try {
+            // Load the create mode setup screen
+            URL fxmlUrl = getClass().getResource("/fxml/createmode_setup.fxml");
+            URL cssUrl = getClass().getResource("/css/styles.css");
+            
+            if (fxmlUrl == null) {
+                throw new IOException("Cannot find createmode_setup.fxml");
+            }
+            
+            FXMLLoader loader = new FXMLLoader(fxmlUrl);
+            Parent root = loader.load();
+            
+            CreateModeViewController controller = loader.getController();
+            controller.initialize(homeController.getFacade(), currentUser);
+            controller.setStage(stage);
+            
+            Scene scene = new Scene(root, 390, 600);
+            if (cssUrl != null) {
+                scene.getStylesheets().add(cssUrl.toExternalForm());
+            }
+            
+            stage.setScene(scene);
+            stage.setTitle("TuneUp - Create Mode Setup");
+            
+        } catch (IOException ex) {
+            logger.log(Level.SEVERE, "Error loading create mode setup", ex);
+            showError("Navigation Error", "Could not navigate to Create Mode");
+        }
     }
     
     @FXML
@@ -232,7 +259,7 @@ public void handleLogout() {
             controller.setStage(stage);
             
             // Create and set scene
-            Scene scene = new Scene(root, 390, 700);
+            Scene scene = new Scene(root, 390, 600);
             if (cssUrl != null) {
                 scene.getStylesheets().add(cssUrl.toExternalForm());
             }

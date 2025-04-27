@@ -8,6 +8,9 @@ Teacher's can utilize the application to interact with their students by creatin
 Student's have a stress free way of practicing new instruments and a way to learn song composition.
 
 ## Video
+Watch the TuneUp GUI video below:
+- [Video Link](https://youtu.be/pgapDJYTSwM)
+
 Watch the phase 1 of development video below:
 - [Video Link](https://www.youtube.com/watch?v=sk9v1fPIWgI)
 

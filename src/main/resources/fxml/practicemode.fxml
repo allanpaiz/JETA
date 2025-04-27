@@ -1,56 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 
-<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" 
-     fx:controller="controllers.PracticeModeViewController"
-     styleClass="app-background" spacing="15" style="-fx-background-color: #B4F0F9;">
+<VBox spacing="15" style="-fx-background-color: #B4F0F9;" styleClass="app-background" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.PracticeModeViewController">
     
     <padding>
-        <Insets top="20" right="20" bottom="20" left="20" />
+        <Insets bottom="20" left="20" right="20" top="20" />
     </padding>
     
-    <Label text="Practice Mode" style="-fx-font-size: 30px; -fx-font-weight: bold; -fx-padding: 10 0; -fx-text-fill: rgba(255,255,255,0.85); -fx-alignment: center; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 2, 0, 0, 1);" maxWidth="Infinity" />
-    <Label text="Here, you can test out instruments and play different notes" style="-fx-font-size: 16px; -fx-text-fill: #666666;" />
+    <Label maxWidth="Infinity" style="-fx-font-size: 30px; -fx-font-weight: bold; -fx-padding: 10 0; -fx-text-fill: #6200EE; -fx-alignment: center; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 2, 0, 0, 1);" text="Practice Mode" />
+    <Label alignment="CENTER" prefHeight= "0.0" prefWidth="600.0" style="-fx-font-size: 16px; -fx-text-fill: #666666;" text="Here, you can test out instruments" />
+    <Label alignment="CENTER" prefHeight= "0.0" prefWidth="600.0" style="-fx-font-size: 16px; -fx-text-fill: #666666;" text="and play different notes" />
 
     <!-- Option cards -->
-    <VBox spacing="15">
+    <VBox spacing="35">
         <!-- Piano option -->
-        <VBox styleClass="option-card" onMouseClicked="#navigateToPiano">
+        <VBox onMouseClicked="#navigateToPiano" styleClass="option-card">
             <padding>
-                <Insets top="15" right="15" bottom="15" left="15" />
+                <Insets bottom="25" left="15" right="15" top="25" />
             </padding>
-            <HBox spacing="15" alignment="CENTER_LEFT">
+            <HBox alignment="CENTER_LEFT" spacing="15">
                 <VBox spacing="5">
-                    <Label text="Piano" styleClass="option-text" />
+                    <Label styleClass="option-text" text="Piano" />
                 </VBox>
             </HBox>
         </VBox>
         
         <!-- Guitar option -->
-        <VBox styleClass="option-card" onMouseClicked="#navigateToGuitar">
+        <VBox onMouseClicked="#navigateToGuitar" styleClass="option-card">
             <padding>
-                <Insets top="15" right="15" bottom="15" left="15" />
+                <Insets bottom="25" left="15" right="15" top="25" />
             </padding>
-            <HBox spacing="15" alignment="CENTER_LEFT">
+            <HBox alignment="CENTER_LEFT" spacing="15">
                 <VBox spacing="5">
-                    <Label text="Guitar" styleClass="option-text" />
+                    <Label styleClass="option-text" text="Guitar" />
                 </VBox>
             </HBox>
         </VBox>
         
         <!-- Ukelele option -->
-        <VBox styleClass="option-card" onMouseClicked="#navigateToUkelele">
+        <VBox onMouseClicked="#navigateToUkelele" styleClass="option-card">
             <padding>
-                <Insets top="15" right="15" bottom="15" left="15" />
+                <Insets bottom="25" left="15" right="15" top="25" />
             </padding>
-            <HBox spacing="15" alignment="CENTER_LEFT">
+            <HBox alignment="CENTER_LEFT" spacing="15">
                 <VBox spacing="5">
-                    <Label text="Ukelele" styleClass="option-text" />
+                    <Label styleClass="option-text" text="Ukelele" />
                 </VBox>
             </HBox>
         </VBox>
@@ -58,5 +59,11 @@
     
     <Region VBox.vgrow="ALWAYS" />
 
-    <Label text="TuneUp v1.0" style="-fx-font-size: 12px; -fx-text-fill: white;" />
+    <VBox fx:id="footer" alignment="CENTER" spacing="5" style="-fx-background-color: #B4F0F9; -fx-padding: 10; -fx-background-radius: 1;">
+        <HBox alignment="CENTER" spacing="10">
+            <Button text="Home" onAction="#returnHome" styleClass="sl-foot-button" />
+            <Button text="Profile" onAction="#navigateToProfile" styleClass="sl-foot-button" />
+        </HBox>
+        <Label text="TuneUp v1.0" style="-fx-font-size: 12px; -fx-text-fill: white;" />
+    </VBox>
 </VBox>
