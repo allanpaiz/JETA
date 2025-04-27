@@ -10,17 +10,37 @@ import tuneup.SongLibraryMode;
 import tuneup.TuneUp;
 import tuneup.User;
 
+/**
+ * Controller class for Song Library
+ *
+ * @author allanpaiz
+ */
 public class SongLibraryController {
     private TuneUp facade;
-    
+
+    /**
+     * Constructor
+     *
+     * @param facade TuneUp
+     */
     public SongLibraryController(TuneUp facade) {
         this.facade = facade;
     }
 
+    /**
+     * Facade gettor 
+     *
+     * @return TuneUp
+     */
     public TuneUp getFacade() {
         return facade;
     }
 
+    /**
+     * Method that plays selected song.
+     *
+     * @param song Song
+     */
     public void playSong(Song song) {
         System.out.println("Playing song: " + song.getTitle());
 
@@ -40,6 +60,11 @@ public class SongLibraryController {
         System.out.println();
     }
 
+    /**
+     * Method that prints selected song to a .txt file.
+     *
+     * @param song Song
+     */
     public void printSongToFile(Song song) {
         try {
             List<String> notes = song.getNotes();
@@ -73,12 +98,19 @@ public class SongLibraryController {
             printWriter.close();
         } catch (java.io.IOException e) {
             System.out.println("Error writing to file");
-        }    
+        }
     }
-    
-    public List<Song> getSongs(String searchString) {
+
+    /**
+     * Method utilized to build the song library list.
+     *
+     * @param searchString String
+     *
+     * @return List<Song>
+     */
+   public List<Song> getSongs(String searchString) {
         List<Song> songs = SongLibrary.getSongLibrary();
-        
+
         if (searchString == "-ALL-") {
             return songs;
         } else if ( searchString == null || searchString.isEmpty() ) {
@@ -93,6 +125,13 @@ public class SongLibraryController {
         return songs;
     }
 
+    /**
+     * Method to return username by userid.
+     *
+     * @param userId String
+     *
+     * @return String
+     */
     public String getUsernameById(String userId) {
 
         List<User> users = DataLoader.loadUsers();
@@ -101,11 +140,15 @@ public class SongLibraryController {
                 return user.getUsername();
             }
         }
-        
+
         return "Unknown";
     }
 
-
+    /**
+     * Method to clean up the code, used to force pauses between note playing.
+     *
+     * @param miliseconds Int
+     */
     private void sleepWrapper(int milliseconds) {
         try {
             Thread.sleep(milliseconds);
