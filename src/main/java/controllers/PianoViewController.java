@@ -23,6 +23,9 @@ import javafx.stage.Stage;
 import tuneup.TuneUp;
 import tuneup.User;
 
+/**
+ * Controls view of piano
+ */
 public class PianoViewController {
     private static final Logger logger = Logger.getLogger(PianoController.class.getName());
 
@@ -62,6 +65,9 @@ public class PianoViewController {
         this.stage = stage;
     }
 
+    /**
+     * Navigating back to PracticeMode
+     */
     @FXML
     public void navigateBack() {
         try {
@@ -97,6 +103,9 @@ public class PianoViewController {
         }
     }
 
+    /**
+     * Playing different notes
+     */
     @FXML
     public void playA4Note() {
         pianoController.playNote("A4");
