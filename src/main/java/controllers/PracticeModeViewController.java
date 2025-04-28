@@ -20,6 +20,9 @@ import javafx.stage.Stage;
 import tuneup.TuneUp;
 import tuneup.User;
 
+/**
+ * Handles view of PracticeMode
+ */
 public class PracticeModeViewController {
     private static final Logger logger = Logger.getLogger(PracticeModeViewController.class.getName());
 
@@ -46,6 +49,9 @@ public class PracticeModeViewController {
         this.stage = stage;
     }
 
+    /**
+     * navigate to piano screen
+     */
     @FXML
     public void navigateToPiano() {
         try {
@@ -89,6 +95,10 @@ public class PracticeModeViewController {
         showNotImplemented("Ukelele");
     }
 
+    /**
+     * Shows "not implemented" message for a given feature
+     * @param feature
+     */
     private void showNotImplemented(String feature) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Feature Not Available");
@@ -97,6 +107,9 @@ public class PracticeModeViewController {
         alert.showAndWait();
     }
 
+    /**
+     * navigates back to the home screen
+     */
     @FXML
     public void returnHome() {
         try {
@@ -132,6 +145,9 @@ public class PracticeModeViewController {
     }
     }
 
+    /**
+     * navigates to profile screen
+     */
     @FXML
     public void navigateToProfile() {
         try {            

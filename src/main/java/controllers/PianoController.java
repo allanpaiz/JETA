@@ -30,6 +30,10 @@ public class PianoController {
         return facade;
     }
 
+    /**
+     * Gets playNote from playMode.java
+     * @param note
+     */
     public void playNote(String note) {
         playModeFacade.playNote(note, new PianoStrategy());
     }
