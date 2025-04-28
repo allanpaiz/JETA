@@ -4,54 +4,70 @@
   "password" : "ffhcUYEzfA3b0x3W80BM3akLW/uiK1IJu3b4znxC5BA=",
   "email" : "student1@test.com",
   "role" : "STUDENT",
-  "experienceLevel" : "BEGINNER"
+  "experienceLevel" : "BEGINNER",
+  "profilePicturePath" : "file:/C:/Users/terdo/Downloads/professionalpic1.jpg"
 }, {
   "id" : "2",
   "username" : "student2",
   "password" : "/vIbi/6Ascc+GJ6hVxXOGm7op8WfN0rqPkHObfsVYZg=",
   "email" : "student2@test.com",
   "role" : "STUDENT",
-  "experienceLevel" : "INTERMEDIATE"
+  "experienceLevel" : "INTERMEDIATE",
+  "profilePicturePath" : null
 }, {
   "id" : "3",
   "username" : "student3",
   "password" : "mYCa+OBqFvsc/Cky58un57mYL38XCzY78R+5K9D9P6w=",
   "email" : "student3@test.com",
   "role" : "STUDENT",
-  "experienceLevel" : "ADVANCED"
+  "experienceLevel" : "ADVANCED",
+  "profilePicturePath" : null
 }, {
   "id" : "4",
   "username" : "teacher1",
   "password" : "aGbOVlTosTs4NERrPFBm+Hof4TluTVtfNmvZtfIkAm0=",
   "email" : "teacher1@test.com",
   "role" : "TEACHER",
-  "experienceLevel" : "ADVANCED"
+  "experienceLevel" : "ADVANCED",
+  "profilePicturePath" : null
 }, {
-  "id" : "cd467a3d-2286-49ba-8b11-492dc773b7fa",
+  "id" : "17783241-e961-4c1c-8141-3d3c00724c6a",
   "username" : "newstudent",
   "password" : "Ikw8M68rvh65RYwx/SphdYwSHD+jjEUqzNK7sx508mo=",
   "email" : "newstudent@test.com",
   "role" : "STUDENT",
-  "experienceLevel" : "BEGINNER"
+  "experienceLevel" : "BEGINNER",
+  "profilePicturePath" : null
 }, {
-  "id" : "52403c14-a174-4c6e-b972-ac7051dc4e42",
+  "id" : "f488fec1-148f-4d25-83e0-d1fb861befb3",
   "username" : "newteacher",
   "password" : "Ikw8M68rvh65RYwx/SphdYwSHD+jjEUqzNK7sx508mo=",
   "email" : "newteacher@test.com",
   "role" : "TEACHER",
-  "experienceLevel" : "ADVANCED"
+  "experienceLevel" : "ADVANCED",
+  "profilePicturePath" : null
 }, {
-  "id" : "1a265a94-535e-40d0-9742-e440d8137d05",
+  "id" : "5a42867e-9cf6-44fb-9795-4b77aab048e3",
   "username" : "testRole",
   "password" : "Ikw8M68rvh65RYwx/SphdYwSHD+jjEUqzNK7sx508mo=",
   "email" : "testRole@test.com",
   "role" : "STUDENT",
-  "experienceLevel" : "BEGINNER"
+  "experienceLevel" : "BEGINNER",
+  "profilePicturePath" : null
 }, {
-  "id" : "42579581-7d5e-457b-8ae5-944888ed413c",
+  "id" : "defce3a7-0a9e-4558-ad38-a5c4642b1d88",
   "username" : "testExperience",
   "password" : "Ikw8M68rvh65RYwx/SphdYwSHD+jjEUqzNK7sx508mo=",
   "email" : "testExperience@test.com",
   "role" : "STUDENT",
-  "experienceLevel" : "BEGINNER"
+  "experienceLevel" : "BEGINNER",
+  "profilePicturePath" : null
+}, {
+  "id" : "da781cc9-7144-4ace-9b28-775de3273aaf",
+  "username" : "1",
+  "password" : "9dc/QpiSsCILmjigFq71inPYT57e0wCr5mJnnEtkCek=",
+  "email" : "1",
+  "role" : "STUDENT",
+  "experienceLevel" : "BEGINNER",
+  "profilePicturePath" : null
 } ]

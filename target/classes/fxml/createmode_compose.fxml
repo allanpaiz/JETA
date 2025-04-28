@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.*?>
+
+<VBox spacing="15" style="-fx-background-color: #B4F0F9;" styleClass="app-background" 
+      xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" 
+      fx:controller="controllers.CreateModeViewController">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20" />
+    </padding>
+
+    <!-- Header with song info and controls -->
+    <HBox alignment="CENTER_LEFT" spacing="15">
+        <Button text="← Back" onAction="#navigateToHome" 
+                style="-fx-background-color: white; -fx-text-fill: #6200EE; -fx-border-color: #6200EE; -fx-border-radius: 20; -fx-background-radius: 20; -fx-border-width: 1.5; -fx-padding: 5 15;" />
+        
+        <VBox>
+            <Label fx:id="songTitleDisplay" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: white;" />
+            <HBox spacing="10">
+                <Label fx:id="tempoDisplay" style="-fx-font-size: 14px; -fx-text-fill: white;" />
+                <Label fx:id="timeSignatureDisplay" style="-fx-font-size: 14px; -fx-text-fill: white;" />
+            </HBox>
+        </VBox>
+        
+        <Region HBox.hgrow="ALWAYS" />
+        
+        <Button text="Save Song" onAction="#saveSong" 
+                style="-fx-background-color: #6200EE; -fx-text-fill: white; -fx-background-radius: 20; -fx-padding: 8 20;" />
+    </HBox>
+
+    <!-- Music Staff Display -->
+    <HBox alignment="CENTER" prefHeight="100.0">
+        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+            <ImageView fx:id="quarterNote" fitHeight="61.0" fitWidth="64.0" layoutX="177.0" layoutY="18.0">
+                <image>
+                    <Image url="@../images/quarter%20note.png" />
+                </image>
+            </ImageView>
+            <ImageView fitHeight="97.0" fitWidth="418.0">
+                <image>
+                    <Image url="@../images/bar.png" />
+                </image>
+            </ImageView>
+            <HBox.margin>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            </HBox.margin>
+        </AnchorPane>
+    </HBox>
+
+    <!-- Current Measure Display -->
+    <VBox spacing="10" style="-fx-background-color: white; -fx-background-radius: 10; -fx-padding: 20;">
+        <HBox alignment="CENTER_LEFT" spacing="10">
+            <Label text="Current Measure" style="-fx-font-weight: bold;" />
+            <Label fx:id="measureCountLabel" />
+            <Region HBox.hgrow="ALWAYS" />
+            <Button text="Add to Song" onAction="#addMeasureToSong" />
+            <Button text="Clear" onAction="#clearMeasure" />
+            <Button text="Play" onAction="#playMeasure" />
+        </HBox>
+        <ListView fx:id="measureNotesListView" prefHeight="100" />
+    </VBox>
+
+    <!-- Piano Interface -->
+    <HBox alignment="BASELINE_CENTER" VBox.vgrow="ALWAYS">
+        <Button mnemonicParsing="false" onMouseClicked="#onPianoKeyPressed" prefHeight="500.0" prefWidth="231.0" 
+                style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 1px;" text="C4" />
+        <Button mnemonicParsing="false" onMouseClicked="#onPianoKeyPressed" prefHeight="500.0" prefWidth="231.0" 
+                style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 1px;" text="D4" />
+        <Button mnemonicParsing="false" onMouseClicked="#onPianoKeyPressed" prefHeight="500.0" prefWidth="231.0" 
+                style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 1px;" text="E4" />
+        <Button mnemonicParsing="false" onMouseClicked="#onPianoKeyPressed" prefHeight="500.0" prefWidth="231.0" 
+                style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 1px;" text="F4" />
+        <Button mnemonicParsing="false" onMouseClicked="#onPianoKeyPressed" prefHeight="500.0" prefWidth="231.0" 
+                style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 1px;" text="G4" />
+        <Button mnemonicParsing="false" onMouseClicked="#onPianoKeyPressed" prefHeight="500.0" prefWidth="231.0" 
+                style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 1px;" text="A4" />
+        <Button mnemonicParsing="false" onMouseClicked="#onPianoKeyPressed" prefHeight="500.0" prefWidth="231.0" 
+                style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 1px;" text="B4" />
+        <Button mnemonicParsing="false" onMouseClicked="#onPianoKeyPressed" prefHeight="500.0" prefWidth="231.0" 
+                style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 1px;" text="C5" />
+    </HBox>
+
+    <!-- Song Preview -->
+    <VBox spacing="10" style="-fx-background-color: white; -fx-background-radius: 10; -fx-padding: 20;">
+        <HBox alignment="CENTER_LEFT" spacing="10">
+            <Label text="Song Preview" style="-fx-font-weight: bold;" />
+            <Region HBox.hgrow="ALWAYS" />
+            <Button text="Play All" onAction="#playSong" />
+        </HBox>
+        <ListView fx:id="songMeasuresListView" prefHeight="100" />
+    </VBox>
+
+</VBox>

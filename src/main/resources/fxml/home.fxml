@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" 
+     fx:controller="controllers.HomeViewController"
+     styleClass="app-background" spacing="15" style="-fx-background-color: #f5f5f5;">
+    
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20" />
+    </padding>
+    
+    <!-- Header with user info - clickable to navigate to profile -->
+    <HBox alignment="CENTER_LEFT" spacing="15" styleClass="user-info-panel" 
+          style="-fx-cursor: hand;" onMouseClicked="#navigateToProfile">
+        <!-- User avatar circle -->
+        <Circle radius="25" fill="#6200EE" />
+        
+        <!-- User info -->
+        <VBox spacing="5">
+            <Label fx:id="usernameLabel" text="Username" styleClass="user-name" />
+            <Label fx:id="roleLabel" text="Role" styleClass="user-role" />
+        </VBox>
+        
+        <Region HBox.hgrow="ALWAYS" />
+        
+        <!-- Profile hint -->
+        <Label text="View Profile >" style="-fx-text-fill: #6200EE; -fx-font-size: 12px;" />
+        
+        <!-- Logout button -->
+        <Button text="Logout" onAction="#handleLogout" styleClass="secondary-button" />
+    </HBox>
+    
+    <!-- Welcome message -->
+    <Label text="Welcome to TuneUp!" style="-fx-font-size: 22px; -fx-font-weight: bold;" />
+    <Label text="What would you like to do today?" style="-fx-font-size: 16px; -fx-text-fill: #666666;" />
+    
+    <!-- Option cards -->
+    <VBox spacing="15">
+        <!-- Practice option -->
+        <VBox styleClass="option-card" onMouseClicked="#navigateToPractice">
+            <padding>
+                <Insets top="15" right="15" bottom="15" left="15" />
+            </padding>
+            <HBox spacing="15" alignment="CENTER_LEFT">
+                <StackPane styleClass="option-icon">
+                    <Label text="▶" style="-fx-font-size: 20px; -fx-text-fill: #6200EE;" />
+                </StackPane>
+                <VBox spacing="5">
+                    <Label text="Practice" styleClass="option-text" />
+                    <Label text="Train your skills with guided exercises" styleClass="option-description" />
+                </VBox>
+            </HBox>
+        </VBox>
+        
+        <!-- Create option -->
+        <VBox styleClass="option-card" onMouseClicked="#navigateToCreate">
+            <padding>
+                <Insets top="15" right="15" bottom="15" left="15" />
+            </padding>
+            <HBox spacing="15" alignment="CENTER_LEFT">
+                <StackPane styleClass="option-icon">
+                    <Label text="✏" style="-fx-font-size: 20px; -fx-text-fill: #6200EE;" />
+                </StackPane>
+                <VBox spacing="5">
+                    <Label text="Create" styleClass="option-text" />
+                    <Label text="Compose your own music" styleClass="option-description" />
+                </VBox>
+            </HBox>
+        </VBox>
+        
+        <!-- Song Library option -->
+        <VBox styleClass="option-card" onMouseClicked="#navigateToSongLibrary">
+            <padding>
+                <Insets top="15" right="15" bottom="15" left="15" />
+            </padding>
+            <HBox spacing="15" alignment="CENTER_LEFT">
+                <StackPane styleClass="option-icon">
+                    <Label text="🎵" style="-fx-font-size: 20px; -fx-text-fill: #6200EE;" />
+                </StackPane>
+                <VBox spacing="5">
+                    <Label text="Song Library" styleClass="option-text" />
+                    <Label text="Browse and play from our collection" styleClass="option-description" />
+                </VBox>
+            </HBox>
+        </VBox>
+    </VBox>
+    
+    <Region VBox.vgrow="ALWAYS" />
+    
+    <!-- Version label -->
+    <Label text="TuneUp v1.0" styleClass="version-label-dark" />
+</VBox>
